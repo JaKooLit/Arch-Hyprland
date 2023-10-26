@@ -41,8 +41,7 @@ install_package() {
 printf "${WARN} #### IF YOU HAVE ALREADY ZSH AND OH MY ZSH, YOU SHOULD CHOOSE NO HERE #########\n"
 printf "${WARN} ### --------------------------------------------------------------------########\n"
 printf "${NOTE} ## CHECK OUT README FOR ADDITIONAL STEPS REQUIRED ONCE ZSH AND OH-MY-ZSH INSTALLED ##\n"
-printf "\n"
-printf "\n"
+printf "\n\n"
 read -n1 -rep "${CAT} OPTIONAL - Would you like to install zsh and oh-my-zsh and use as default shell? (y/n)" zsh
 echo
 
@@ -60,7 +59,6 @@ if [[ $zsh =~ ^[Yy]$ ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
   cp -r 'assets/.zshrc' ~/
-  print_success "ZSH and oh-my-zsh installed."
 else
   printf "${NOTE} ZSH wont be installed.\n"
 fi
