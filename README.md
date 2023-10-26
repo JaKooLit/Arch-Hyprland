@@ -11,8 +11,8 @@
 ### Basically a copy of my Hyprland-v4 Hyprland-install script [`Link`](https://github.com/JaKooLit/Hyprland-v4)
 
 <p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/dual-panel-light-dark-switch.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/dual-panel-dark_light-switch.png" />   
-   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/gnome-style.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/Plasma-Style.png" />  /> 
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Screenshots/Arch/dual-panel-light-dark-switch.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Screenshots/Arch/dual-panel-dark_light-switch.png" />   
+   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Screenshots/Arch/gnome-style.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Screenshots/Arch/Plasma-Style.png" />  /> 
 
 ### 📽️ youtube video showcase: [`Youtube Link`](https://youtu.be/otda1nXJ5Dg?si=Wbb8eg-u3Y-tDnDQ)
 
