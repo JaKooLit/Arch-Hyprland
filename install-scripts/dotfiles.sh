@@ -15,11 +15,19 @@ LOG="install-$(date +'%d-%H%M%S')_dots.log"
 
 printf "${NOTE} Downloading Hyprland dots...\n"
 
-if git clone https://github.com/JaKooLit/Hyprland-Dots.git; then
-  cd Hyprland-Dots || exit 1
+if [ -d Hyprland-Dots ]; then
+  cd Hyprland-Dots
   chmod +x copy.sh
   ./copy.sh 2>&1 | tee -a "$LOG"
 else
-  echo -e "${ERROR} Cant download Hyprland-Dots" 2>&1 | tee -a "$LOG"
+  if git clone https://github.com/JaKooLit/Hyprland-Dots.git; then
+    cd Hyprland-Dots || exit 1
+    chmod +x copy.sh
+    ./copy.sh 2>&1 | tee -a "$LOG"
+  else
+    echo -e "${ERROR} Can't download Hyprland-Dots" 2>&1 | tee -a "$LOG"
+  fi
 fi
+
+
 
