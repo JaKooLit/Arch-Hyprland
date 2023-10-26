@@ -17,6 +17,9 @@ printf "${NOTE} Downloading Hyprland dots...\n"
 
 if [ -d Hyprland-Dots ]; then
   cd Hyprland-Dots
+  git stash
+  git pull
+  git stash apply
   chmod +x copy.sh
   ./copy.sh 2>&1 | tee -a "$LOG"
 else
