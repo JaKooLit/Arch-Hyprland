@@ -2,19 +2,17 @@
 
 # 💌 ** JaKooLit's Arch Hyprland Install Script ** 💌
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Hyprland-v4?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Hyprland-v4?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Hyprland-v4?style=for-the-badge&color=cba6f7)
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Arch-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7)
 
 
 <br/>
 </div>
 
-### A re-structured install script of my Hyprland-v3 [`Link`](https://github.com/JaKooLit/Hyprland-v3)
+### Basically a copy of my Hyprland-v4 Hyprland-install script [`Link`](https://github.com/JaKooLit/Hyprland-v4)
 
-![alt text](https://github.com/JaKooLit/Ja-Hyprland/blob/main/screenshots/Sample-Tokyo-waybar.png "Default")
-
-![alt text](https://github.com/JaKooLit/Ja-Hyprland/blob/main/screenshots/dual-panel-light-dark-switch.png "Default")
-
-### 📷 you can find more screenshots in the screenshots directory
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/dual-panel-light-dark-switch.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/dual-panel-dark_light-switch.png" />   
+   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/gnome-style.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Arch-Hyprland/Plasma-Style.png" />  /> 
 
 ### 📽️ youtube video showcase: [`Youtube Link`](https://youtu.be/otda1nXJ5Dg?si=Wbb8eg-u3Y-tDnDQ)
 
@@ -23,16 +21,10 @@
 ### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
 
 
-### 🆕  What's new compared to my V3
-- restructured Install script
-- Can modify the packages easily. (install-scripts/00-hypr-pkgs.sh) edit as desired
-- Added Tokyo-night-theme and TokyoNight-SE icons
-- using dunst instead of mako
-- Added Tokyo-Night SDDM Theme 
-- Use a wofi-power menu instead of wlogout
-- Added the following: 
-   - a. gnome-system-monitor - right click on cpu waybar module
-   - b. nvtop - right click on temperature waybar module
+### 🆕  What's new?
+- Basically just a clone of my Hyprland-v4. Just renamed and cleaned up codes.
+- Concentrated on Tokyo Themes and Tokyo Night SE icons only
+- Downloading of dot files will be a centralized repo
 
 
 ### 👀 NVidia GPU Owners.
@@ -42,10 +34,10 @@
 ### ✨ to run
 > clone this repo by using git. Change directory, make executable and run the script
 ```bash
-git clone https://github.com/JaKooLit/Hyprland-v4.git
-cd Hyprland-v4
-chmod +x install-v4.sh
-./install-v4.sh
+git clone https://github.com/JaKooLit/Arch-Hyprland.git
+cd Arch-Hyprland
+chmod +x install.sh
+./install.sh
 ```
 ### ✨ for ZSH and OH-MY-ZSH installation
 > do this once installed and script completed; do the following to change the default shell zsh

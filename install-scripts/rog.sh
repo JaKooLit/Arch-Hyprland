@@ -57,6 +57,5 @@ install_package() {
     done
     printf " Activating ROG services...\n"
     sudo systemctl enable --now supergfxd 2>&1 | tee -a "$LOG"
-    sed -i '20s/#//' config/hypr/configs/Execs.conf
 
 clear

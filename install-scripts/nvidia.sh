@@ -49,20 +49,17 @@ install_package() {
 # nvidia stuff
 printf "${YELLOW}Installing Nvidia Hyprland...${RESET}\n"
 if pacman -Qs hyprland > /dev/null; then
-  read -n1 -rp "${CAT} Hyprland detected. Would you like to remove and install hyprland-nvidia instead? (y/n) " nvidia_hypr
-  echo
-  if [[ $nvidia_hypr =~ ^[Yy]$ ]]; then
-    for hyprnvi in hyprland hyprland-nvidia hyprland-nvidia-hidpi-git; do
+  printf "${YELLOW} Hyprland detected uninstalling to install Hyprland-nvidia-git...${RESET}\n"
+    for hyprnvi in hyprland hyprland-nvidia hyprland-git hyprland-nvidia-hidpi-git; do
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
     done
-  fi
 fi
 
 # install hyprland-nvidia-git
 install_package "hyprland-nvidia-git" 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing Nvidia packages...\n"
+printf "${YELLOW} Installing addition Nvidia packages...\n"
 for krnl in $(cat /usr/lib/modules/*/pkgbase); do
   for NVIDIA in "${krnl}-headers" "${nvidia_pkg[@]}"; do
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
@@ -78,12 +75,7 @@ else
 fi
 
 sudo mkinitcpio -P 2>&1 | tee -a "$LOG"
-printf "\n"
-printf "\n"
-printf "\n"
-
-# Preparing exec.conf to enable env = WLR_NO_HARDWARE_CURSORS,1 so it will be ready once config files copied
-sed -i '21s/#//' config/hypr/configs/ENVariables.conf
+printf "\n\n\n"
 
 # Additional Nvidia steps
 NVEA="/etc/modprobe.d/nvidia.conf"

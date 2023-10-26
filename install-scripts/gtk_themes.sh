@@ -59,48 +59,25 @@ install_package() {
   fi
 }
 
+# installing unzip package to unzip theme packages
+for PKG1 in unzip; do
+  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\033[1A\033[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    exit 1
+  fi
+done
 
 # Themes and cursors
-printf "\n${NOTE} INSTALLING GTK THEMES \n"
-  while true; do
-    read -rp "${CAT} Which GTK Theme and Cursors to install? Catppuccin or Tokyo Theme? Enter 'c' or 't': " choice
-    case "$choice" in
-      c|C)
-        printf "${NOTE} Installing Catpuccin Theme packages...\n"
-        for THEME1 in catppuccin-gtk-theme-mocha catppuccin-gtk-theme-latte catppuccin-cursors-mocha; do
-          install_package "$THEME1" 2>&1 | tee -a "$LOG"
-          [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THEME1 install had failed, please check the install.log"; exit 1; }
-        done
-        # Shiny-Dark-Icons-themes
-        mkdir -p ~/.icons
-        cd assets
-        tar -xf Shiny-Dark-Icons.tar.gz -C ~/.icons
-        tar -xf Shiny-Light-Icons.tar.gz -C ~/.icons
-        cd ..
-        sed -i '9,12s/#//' config/hypr/scripts/DarkLight.sh
-        sed -i '9,12s/#//' config/hypr/scripts/DarkLight-swaybg.sh
-        sed -i '31s/#//' config/hypr/configs/Settings.conf
-        cp -f 'config/hypr/waybar/style/dark-styles/style-dark-cat.css' 'config/hypr/waybar/style/style-dark.css'
-        break
-        ;;
-      t|T)
-        printf "${NOTE} Installing Tokyo Theme packages...\n"
-        wget https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2
-        mkdir -p ~/.icons
-        tar -xvjf TokyoNight-SE.tar.bz2 -C ~/.icons
-        mkdir -p ~/.themes
-        cp -r -f assets/tokyo-themes/* ~/.themes/
-        sed -i '15,18s/#//' config/hypr/scripts/DarkLight.sh
-        sed -i '15,18s/#//' config/hypr/scripts/DarkLight-swaybg.sh
-        sed -i '32s/#//' config/hypr/configs/Settings.conf
-        cp -f 'config/hypr/waybar/style/dark-styles/style-dark-tokyo.css' 'config/hypr/waybar/style/style-dark.css'
-        break
-        ;;
-      *)
-        printf "%s - Invalid choice. Please enter 'c' or 't'\n" "${ERROR}"
-        continue
-        ;;
-    esac
-  done
+printf "${NOTE} Installing Tokyo Theme GTK packages...\n"
+if wget https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2; then
+  mkdir -p ~/.icons
+  tar -xvjf TokyoNight-SE.tar.bz2 -C ~/.icons
+  mkdir -p ~/.themes
+  unzip -q "assets/tokyo-themes/Tokyonight-Dark-B.zip" -d ~/.themes || true
+  unzip -q "assets/tokyo-themes/Tokyonight-Light-B.zip" -d ~/.themes || true
+else
+  echo -e "${ERROR} Download failed for Tokyo Theme GTK packages."
+fi
 
-  clear
+clear
