@@ -172,7 +172,7 @@ if [ "$zsh" == "Y" ]; then
 fi
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh" "$(pwd)"
+    execute_script "dotfiles.sh"
 
 fi
 
@@ -183,8 +183,7 @@ printf "\n"
 printf "\n${NOTE} NOTICE TO NVIDIA OWNERS! System will reboot your system!\n"
 sleep 2
 printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-printf "\n"
-printf "\n"
+printf "\n\n"
 read -n1 -rep "${CAT} Would you like to start Hyprland now? (y,n)" HYP
 
 if [[ $HYP =~ ^[Yy]$ ]]; then
