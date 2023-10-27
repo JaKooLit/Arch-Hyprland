@@ -21,6 +21,14 @@
 
 ### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
 
+## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
+- I have moved to a centralized Hyprland Dots/Configuration. [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
+
+- after initial boot-up after install, you will experience a NO wallpaper. This is due to changes I made on the install scripts to correct that, you can press the light/dark button or choose wallpaper (SUPER CTRL W), and that wallpaper will be loaded after reboot or login.
+
+- more info on announcement [`Link`](https://youtu.be/upDl1ns05eg)
+
+If you want to use swaybg as wallpaper provider, you can edit ~/.config/hypr/configs/Execs.conf and uncomment the swaybg part
 
 ### 🆕  What's new?
 - Basically just a clone of my Hyprland-v4. Just renamed and cleaned up codes.
