@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-keyboard-shortcuts" version="1.0">
+  <property name="commands" type="empty">
+    <property name="default" type="empty">
+      <property name="&lt;Alt&gt;F1" type="empty"/>
+      <property name="&lt;Alt&gt;F2" type="empty">
+        <property name="startup-notify" type="empty"/>
+      </property>
+      <property name="&lt;Alt&gt;F3" type="empty">
+        <property name="startup-notify" type="empty"/>
+      </property>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="empty"/>
+      <property name="XF86Display" type="empty"/>
+      <property name="&lt;Super&gt;p" type="empty"/>
+      <property name="&lt;Primary&gt;Escape" type="empty"/>
+      <property name="XF86WWW" type="empty"/>
+      <property name="HomePage" type="empty"/>
+      <property name="XF86Mail" type="empty"/>
+      <property name="Print" type="empty"/>
+      <property name="&lt;Alt&gt;Print" type="empty"/>
+      <property name="&lt;Shift&gt;Print" type="empty"/>
+      <property name="&lt;Super&gt;e" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;Escape" type="empty"/>
+      <property name="&lt;Super&gt;r" type="empty">
+        <property name="startup-notify" type="empty"/>
+      </property>
+    </property>
+    <property name="custom" type="empty">
+      <property name="&lt;Alt&gt;F2" type="string" value="xfce4-appfinder --collapsed">
+        <property name="startup-notify" type="bool" value="true"/>
+      </property>
+      <property name="&lt;Super&gt;r" type="string" value="rofi-theme-selector">
+        <property name="startup-notify" type="bool" value="true"/>
+      </property>
+      <property name="&lt;Alt&gt;F3" type="string" value="xfce4-appfinder">
+        <property name="startup-notify" type="bool" value="true"/>
+      </property>
+      <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
+      <property name="&lt;Super&gt;w" type="string" value="exo-open --launch WebBrowser"/>
+      <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
+      <property name="HomePage" type="string" value="exo-open --launch WebBrowser"/>
+      <property name="&lt;Super&gt;f" type="string" value="exo-open --launch FileManager"/>
+      <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xfce4-session-logout"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="string" value="firefox"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="string" value="archlinux-logout"/>
+      <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;Escape" type="string" value="xfce4-taskmanager"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="string" value="xkill"/>
+      <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
+      <property name="override" type="bool" value="true"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;w" type="string" value="arcolinux-welcome-app"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;m" type="string" value="xfce4-settings-manager"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
+      <property name="Print" type="string" value="xfce4-screenshooter -f"/>
+      <property name="&lt;Primary&gt;Print" type="string" value="xfce4-screenshooter"/>
+      <property name="&lt;Shift&gt;&lt;Super&gt;d" type="string" value="dmenu_run -i -nb &apos;#191919&apos; -nf &apos;#fea63c&apos; -sb &apos;#fea63c&apos; -sf &apos;#191919&apos; -fn &apos;NotoMonoRegular:bold:pixelsize=14&apos;"/>
+      <property name="&lt;Super&gt;t" type="string" value="urxvt"/>
+      <property name="&lt;Super&gt;m" type="string" value="pragha"/>
+      <property name="&lt;Super&gt;h" type="string" value="urxvt -T &apos;htop task manager&apos; -e htop"/>
+      <property name="&lt;Super&gt;v" type="string" value="pavucontrol"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;u" type="string" value="pavucontrol"/>
+      <property name="&lt;Super&gt;Escape" type="string" value="xkill"/>
+      <property name="&lt;Super&gt;Return" type="string" value="alacritty"/>
+      <property name="&lt;Shift&gt;&lt;Super&gt;Return" type="string" value="thunar"/>
+      <property name="&lt;Super&gt;F1" type="string" value="exo-open --launch webbrowser"/>
+      <property name="&lt;Super&gt;F2" type="string" value="atom"/>
+      <property name="&lt;Super&gt;F3" type="string" value="inkscape"/>
+      <property name="&lt;Super&gt;F4" type="string" value="gimp"/>
+      <property name="&lt;Super&gt;F5" type="string" value="meld"/>
+      <property name="&lt;Super&gt;F6" type="string" value="vlc"/>
+      <property name="&lt;Super&gt;F7" type="string" value="virtualbox"/>
+      <property name="&lt;Super&gt;F8" type="string" value="thunar"/>
+      <property name="&lt;Super&gt;F9" type="string" value="evolution"/>
+      <property name="&lt;Super&gt;F10" type="string" value="spotify"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;a" type="string" value="xfce4-appfinder"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;v" type="string" value="vivaldi-stable"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;b" type="string" value="thunar"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;s" type="string" value="spotify"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;c" type="string" value="catfish"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;g" type="string" value="chromium"/>
+      <property name="&lt;Super&gt;x" type="string" value="archlinux-logout"/>
+      <property name="XF86AudioPlay" type="string" value="playerctl play-pause"/>
+      <property name="XF86AudioStop" type="string" value="playerctl pause"/>
+      <property name="XF86AudioPrev" type="string" value="playerctl previous"/>
+      <property name="XF86AudioNext" type="string" value="playerctl next"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Return" type="string" value="alacritty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;r" type="string" value="rofi-theme-selector"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;p" type="string" value="pamac-manager"/>
+      <property name="&lt;Super&gt;c" type="string" value="conky-toggle"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Page_Up" type="string" value="conky-rotate -n"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Page_Down" type="string" value="conky-rotate -p"/>
+      <property name="F12" type="string" value="xfce4-terminal --drop-down"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;k" type="string" value="archlinux-logout"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;e" type="string" value="archlinux-tweak-tool"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;n" type="string" value="xfce4-settings-manager"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;comma" type="string" value="xfce4-settings-manager"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;z" type="string" value="arcolinux-welcome-app"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_Enter" type="string" value="alacritty"/>
+      <property name="&lt;Alt&gt;n" type="string" value="variety -n"/>
+      <property name="&lt;Alt&gt;p" type="string" value="variety -p"/>
+      <property name="&lt;Alt&gt;t" type="string" value="variety -t"/>
+      <property name="&lt;Alt&gt;f" type="string" value="variety -f"/>
+      <property name="&lt;Alt&gt;Right" type="string" value="variety -n"/>
+      <property name="&lt;Alt&gt;Left" type="string" value="variety -p"/>
+      <property name="&lt;Alt&gt;Up" type="string" value="variety --toggle-pause"/>
+      <property name="&lt;Alt&gt;Down" type="string" value="variety --resume"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="alacritty"/>
+      <property name="&lt;Super&gt;space" type="string" value="dmenu_run -i -nb &apos;#191919&apos; -nf &apos;#fea63c&apos; -sb &apos;#fea63c&apos; -sf &apos;#191919&apos; -fn &apos;NotoMonoRegular:bold:pixelsize=14&apos;"/>
+      <property name="&lt;Super&gt;F12" type="string" value="rofi -show drun"/>
+      <property name="&lt;Super&gt;F11" type="string" value="rofi -show drun -theme-str &apos;window {width: 100%;height: 100%;}&apos;"/>
+      <property name="&lt;Primary&gt;&lt;Super&gt;Print" type="string" value="flameshot gui"/>
+    </property>
+  </property>
+  <property name="xfwm4" type="empty">
+    <property name="default" type="empty">
+      <property name="&lt;Alt&gt;Insert" type="empty"/>
+      <property name="Escape" type="empty"/>
+      <property name="Left" type="empty"/>
+      <property name="Right" type="empty"/>
+      <property name="Up" type="empty"/>
+      <property name="Down" type="empty"/>
+      <property name="&lt;Alt&gt;Tab" type="empty"/>
+      <property name="&lt;Alt&gt;&lt;Shift&gt;Tab" type="empty"/>
+      <property name="&lt;Alt&gt;Delete" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Down" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Left" type="empty"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Down" type="empty"/>
+      <property name="&lt;Alt&gt;F4" type="empty"/>
+      <property name="&lt;Alt&gt;F6" type="empty"/>
+      <property name="&lt;Alt&gt;F7" type="empty"/>
+      <property name="&lt;Alt&gt;F8" type="empty"/>
+      <property name="&lt;Alt&gt;F9" type="empty"/>
+      <property name="&lt;Alt&gt;F10" type="empty"/>
+      <property name="&lt;Alt&gt;F11" type="empty"/>
+      <property name="&lt;Alt&gt;F12" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Left" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;End" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Home" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Right" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Up" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_1" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_2" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_3" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_4" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_5" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_6" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_7" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_8" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_9" type="empty"/>
+      <property name="&lt;Alt&gt;space" type="empty"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Up" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Right" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;d" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Up" type="empty"/>
+      <property name="&lt;Super&gt;Tab" type="empty"/>
+      <property name="&lt;Primary&gt;F1" type="empty"/>
+      <property name="&lt;Primary&gt;F2" type="empty"/>
+      <property name="&lt;Primary&gt;F3" type="empty"/>
+      <property name="&lt;Primary&gt;F4" type="empty"/>
+      <property name="&lt;Primary&gt;F5" type="empty"/>
+      <property name="&lt;Primary&gt;F6" type="empty"/>
+      <property name="&lt;Primary&gt;F7" type="empty"/>
+      <property name="&lt;Primary&gt;F8" type="empty"/>
+      <property name="&lt;Primary&gt;F9" type="empty"/>
+      <property name="&lt;Primary&gt;F10" type="empty"/>
+      <property name="&lt;Primary&gt;F11" type="empty"/>
+      <property name="&lt;Primary&gt;F12" type="empty"/>
+      <property name="&lt;Super&gt;KP_Left" type="empty"/>
+      <property name="&lt;Super&gt;KP_Right" type="empty"/>
+      <property name="&lt;Super&gt;KP_Up" type="empty"/>
+      <property name="&lt;Super&gt;KP_Down" type="empty"/>
+      <property name="&lt;Super&gt;KP_Page_Up" type="empty"/>
+      <property name="&lt;Super&gt;KP_Home" type="empty"/>
+      <property name="&lt;Super&gt;KP_End" type="empty"/>
+      <property name="&lt;Super&gt;KP_Next" type="empty"/>
+    </property>
+    <property name="custom" type="empty">
+      <property name="Up" type="string" value="up_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_9" type="string" value="move_window_workspace_9_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_8" type="string" value="move_window_workspace_8_key"/>
+      <property name="Left" type="string" value="left_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_6" type="string" value="move_window_workspace_6_key"/>
+      <property name="&lt;Alt&gt;Insert" type="string" value="add_workspace_key"/>
+      <property name="&lt;Alt&gt;Tab" type="string" value="cycle_windows_key"/>
+      <property name="&lt;Alt&gt;&lt;Shift&gt;Tab" type="string" value="cycle_reverse_windows_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_7" type="string" value="move_window_workspace_7_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Right" type="string" value="right_workspace_key"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Right" type="string" value="move_window_right_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;d" type="string" value="show_desktop_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Up" type="string" value="up_workspace_key"/>
+      <property name="&lt;Primary&gt;F7" type="string" value="workspace_7_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Home" type="string" value="move_window_prev_workspace_key"/>
+      <property name="&lt;Alt&gt;F4" type="string" value="close_window_key"/>
+      <property name="&lt;Super&gt;q" type="string" value="close_window_key"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Left" type="string" value="move_window_left_key"/>
+      <property name="&lt;Alt&gt;F6" type="string" value="stick_window_key"/>
+      <property name="&lt;Alt&gt;F10" type="string" value="maximize_window_key"/>
+      <property name="&lt;Alt&gt;F12" type="string" value="above_key"/>
+      <property name="&lt;Alt&gt;F9" type="string" value="hide_window_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Down" type="string" value="down_workspace_key"/>
+      <property name="&lt;Alt&gt;F8" type="string" value="resize_window_key"/>
+      <property name="&lt;Super&gt;Tab" type="string" value="switch_window_key"/>
+      <property name="Escape" type="string" value="cancel_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;End" type="string" value="move_window_next_workspace_key"/>
+      <property name="&lt;Primary&gt;F10" type="string" value="workspace_10_key"/>
+      <property name="&lt;Primary&gt;F11" type="string" value="workspace_11_key"/>
+      <property name="&lt;Alt&gt;F11" type="string" value="fullscreen_key"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Up" type="string" value="move_window_up_key"/>
+      <property name="Right" type="string" value="right_key"/>
+      <property name="Down" type="string" value="down_key"/>
+      <property name="&lt;Alt&gt;F7" type="string" value="move_window_key"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Down" type="string" value="lower_window_key"/>
+      <property name="&lt;Primary&gt;F12" type="string" value="workspace_12_key"/>
+      <property name="&lt;Primary&gt;F1" type="string" value="workspace_1_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Left" type="string" value="left_workspace_key"/>
+      <property name="&lt;Primary&gt;F2" type="string" value="workspace_2_key"/>
+      <property name="&lt;Primary&gt;F4" type="string" value="workspace_4_key"/>
+      <property name="&lt;Primary&gt;F5" type="string" value="workspace_5_key"/>
+      <property name="&lt;Primary&gt;F6" type="string" value="workspace_6_key"/>
+      <property name="&lt;Alt&gt;space" type="string" value="popup_menu_key"/>
+      <property name="&lt;Primary&gt;F8" type="string" value="workspace_8_key"/>
+      <property name="&lt;Primary&gt;F9" type="string" value="workspace_9_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_1" type="string" value="move_window_workspace_1_key"/>
+      <property name="&lt;Alt&gt;Delete" type="string" value="del_workspace_key"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Up" type="string" value="raise_window_key"/>
+      <property name="&lt;Primary&gt;F3" type="string" value="workspace_3_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_2" type="string" value="move_window_workspace_2_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_3" type="string" value="move_window_workspace_3_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_4" type="string" value="move_window_workspace_4_key"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;KP_5" type="string" value="move_window_workspace_5_key"/>
+      <property name="override" type="bool" value="true"/>
+    </property>
+  </property>
+  <property name="providers" type="array">
+    <value type="string" value="commands"/>
+    <value type="string" value="xfwm4"/>
+  </property>
+</channel>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>audacious</icon>
+	<name>Add to audacious playlist</name>
+	<submenu></submenu>
+	<unique-id>1681893052016505-1</unique-id>
+	<command>audacious -e %U</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1488955845049151-1</unique-id>
+	<command>for f in %F; do exo-open --working-directory &quot;$f&quot; --launch TerminalEmulator; done</command>
+	<description></description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>checkbox</icon>
+	<name>Check sha1sum</name>
+	<submenu></submenu>
+	<unique-id>1526633271260079-26</unique-id>
+	<command>zenity --info --title=&quot;Check sha1 for %n&quot; --text=&quot;$(sha1sum %f)&quot;</command>
+	<description>Check sha1sum</description>
+	<range></range>
+	<patterns>*.iso;*.ISO</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>checkbox</icon>
+	<name>Check sha256sum</name>
+	<submenu></submenu>
+	<unique-id>1577688162350307-1</unique-id>
+	<command>zenity --info --title=&quot;Check sha256 for %n&quot; --text=&quot;$(sha256sum %f)&quot;</command>
+	<description>Check sha256sum</description>
+	<range></range>
+	<patterns>*.iso;*.ISO</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>checkbox</icon>
+	<name>Check md5sum</name>
+	<submenu></submenu>
+	<unique-id>1526736788575383-2</unique-id>
+	<command>zenity --info --title=&quot;Check md5 for %n&quot; --text=&quot;$(md5sum %f)&quot;</command>
+	<description>Check md5sum</description>
+	<range></range>
+	<patterns>*.iso;*.ISO;*.tar.gz;*.TAR.GZ;*.zip;*.ZIP</patterns>
+	<other-files/>
+</action>
+</actions>

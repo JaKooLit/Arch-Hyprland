@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-appfinder" version="1.0">
+  <property name="last" type="empty">
+    <property name="window-height" type="int" value="600"/>
+    <property name="window-width" type="int" value="580"/>
+    <property name="pane-position" type="int" value="180"/>
+  </property>
+  <property name="actions" type="array">
+    <value type="int" value="5"/>
+    <value type="int" value="4"/>
+    <value type="int" value="3"/>
+    <value type="int" value="2"/>
+    <value type="int" value="1"/>
+    <property name="action-5" type="empty">
+      <property name="type" type="int" value="0"/>
+      <property name="pattern" type="string" value="/"/>
+      <property name="command" type="string" value="exo-open --launch FileManager %S"/>
+      <property name="save" type="bool" value="false"/>
+    </property>
+    <property name="action-4" type="empty">
+      <property name="type" type="int" value="0"/>
+      <property name="pattern" type="string" value="#"/>
+      <property name="command" type="string" value="exo-open --launch TerminalEmulator man %s"/>
+      <property name="save" type="bool" value="false"/>
+    </property>
+    <property name="action-3" type="empty">
+      <property name="type" type="int" value="0"/>
+      <property name="pattern" type="string" value="!w"/>
+      <property name="command" type="string" value="exo-open --launch WebBrowser http://en.wikipedia.org/wiki/%s"/>
+      <property name="save" type="bool" value="false"/>
+    </property>
+    <property name="action-2" type="empty">
+      <property name="type" type="int" value="0"/>
+      <property name="pattern" type="string" value="$"/>
+      <property name="command" type="string" value="exo-open --launch TerminalEmulator %s"/>
+      <property name="save" type="bool" value="true"/>
+    </property>
+    <property name="action-1" type="empty">
+      <property name="type" type="int" value="1"/>
+      <property name="pattern" type="string" value="^(file|http|https):\/\/(.*)$"/>
+      <property name="command" type="string" value="exo-open \0"/>
+      <property name="save" type="bool" value="false"/>
+    </property>
+  </property>
+  <property name="always-center" type="bool" value="true"/>
+  <property name="sort-by-frecency" type="bool" value="true"/>
+</channel>
