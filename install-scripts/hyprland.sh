@@ -1,7 +1,7 @@
 #!/bin/bash
 
 hypr=(
-hyprland
+hyprland-git
 )
 
 # Set some colors for output messages
