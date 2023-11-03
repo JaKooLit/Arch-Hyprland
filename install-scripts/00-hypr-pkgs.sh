@@ -35,6 +35,7 @@ swww
 waybar
 wget
 wl-clipboard
+wlogout
 wofi 
 xdg-user-dirs 
 )
