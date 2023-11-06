@@ -40,6 +40,7 @@ wget
 wl-clipboard
 wlogout
 xdg-user-dirs 
+yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
