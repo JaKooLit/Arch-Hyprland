@@ -14,19 +14,22 @@ Extra=(
 hypr_package=( 
 cliphist
 dunst 
-foot
 grim 
 gvfs 
 gvfs-mtp 
-jq  
+jq
+kitty
+nano  
 network-manager-applet 
 pamixer 
 pavucontrol
 pipewire-alsa 
 playerctl
 polkit-kde-agent 
-python-requests 
-qt5ct 
+python-requests
+python-pywal 
+qt5ct
+rofi-lbonn-wayland-git 
 slurp 
 swappy 
 swayidle 
@@ -36,8 +39,8 @@ waybar
 wget
 wl-clipboard
 wlogout
-wofi 
 xdg-user-dirs 
+yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
@@ -51,7 +54,6 @@ mousepad
 mpv 
 nvtop
 nwg-look-bin
-swaybg
 viewnior
 vim
 wlsunset

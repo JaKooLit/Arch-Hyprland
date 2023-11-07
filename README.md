@@ -8,33 +8,25 @@
 <br/>
 </div>
 
-### Basically a copy of my Hyprland-v4 Hyprland-install script [`Link`](https://github.com/JaKooLit/Hyprland-v4)
-
 <p align="center">
     <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch/dual-panel-light-dark-switch.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch/dual-panel-dark_light-switch.png" />   
    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch/gnome-style.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch/Plasma-Style.png" />  /> 
 
 
-### 📽️ youtube video showcase: [`Youtube Link`](https://youtu.be/otda1nXJ5Dg?si=Wbb8eg-u3Y-tDnDQ)
-
-
+### 📽️ youtube video showcase: [`SOON to be POSTED`]()
 
 ### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
 
 ## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
-- I have moved to a centralized Hyprland Dots/Configuration. [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
+- This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
 
-- after initial boot-up after install, you will experience a NO wallpaper. This is due to changes I made on the install scripts to correct that, you can press the light/dark button or choose wallpaper (SUPER CTRL W), and that wallpaper will be loaded after reboot or login.
+### 🆕  What's new with v2?
+- Rofi, Pywal Colors and Moved to Kitty. (Previous config was foot as tty and wofi as app launcher)
+- Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
 
-- more info on announcement [`Link`](https://youtu.be/upDl1ns05eg)
-
-If you want to use swaybg as wallpaper provider, you can edit ~/.config/hypr/configs/Execs.conf and uncomment the swaybg part
-
-### 🆕  What's new?
-- Basically just a clone of my Hyprland-v4. Just renamed and cleaned up codes.
-- Concentrated on Tokyo Themes and Tokyo Night SE icons only
-- Downloading of dot files will be a centralized repo
-
+### ✨ Costumize the packages to be installed
+- inside the install-scripts folder, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
+- default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
 ### 👀 NVidia GPU Owners.
 - By default, nvidia-dkms will be installed. and only supports GTX 900 and newer. If required to install older driver, edit the nvidia.sh in scripts-folder
@@ -56,19 +48,17 @@ zsh
 source ~/.zshrc
 ```
 - reboot or logout
-- by default gnzh theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
-- to change the theme, edit ~/.zshrc ZSH_THEME="desired theme"
+- by default mikeh theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+- to change the theme, edit ~/.zshrc . Look for ZSH_THEME="desired theme"
 
-### 📒 Notes
-- super h for launching a small help file
-- super e to view / edit settings, monitor, keybinds, Environment Variables, etc
-- go through the keybinds. There are alot of hidden features like dual panel, change waybar styles, change wallpaper, etc... its too long to put all in the readme!!!
+### 📒 Hyprland Dot Notes
+- SUPER H for HINT or click on the waybar HINT! Button!
+- SUPER SHIFT H to launch the Some quick tips and tricks!
+
 
 ### 🛣️ Roadmap:
 - [ ] Install zsh and oh-my-zsh without necessary steps above
 - [ ] possibly adding gruvbox themes, cursors, icons
-- [ ] adding vertical waybar 
-- [X] ~~Use kitty in favor of foot~~ - Dropped the idea of kitty. Kitty is using twice memory compared to foot.
 
 ### ⚠️ some known issues
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
@@ -83,10 +73,13 @@ log into your account
 ```
 - more info from the hyprland wiki [`Hyprland Wiki Link`](https://wiki.hyprland.org/FAQ/#my-external-monitor-is-blank--doesnt-render--receives-no-signal-laptop)
 
+### 📒 Final Notes
+- join my discord channel [`Discord`](https://discord.gg/V2SJ92vbEN)
+- Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
 ### 👍👍👍 Thanks and Credits!
+- [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
 - shout out to CooSee from Gentoo forums for the nice rainbow borders
-
 
 ## 💖 Support
 - a Star on my Github repos would be nice 🌟

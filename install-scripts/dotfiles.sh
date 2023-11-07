@@ -23,7 +23,7 @@ if [ -d Hyprland-Dots ]; then
   chmod +x copy.sh
   ./copy.sh 2>&1 | tee -a "$LOG"
 else
-  if git clone https://github.com/JaKooLit/Hyprland-Dots.git; then
+  if git clone https://github.com/JaKooLit/Hyprland-Dots; then
     cd Hyprland-Dots || exit 1
     chmod +x copy.sh
     ./copy.sh 2>&1 | tee -a "$LOG"
