@@ -106,23 +106,23 @@ execute_script() {
 printf "\n"
 ask_custom_option "Select AUR helper" "paru or yay" aur_helper
 printf "\n"
-ask_yes_no "Do you have nvidia gpu?" nvidia
+ask_yes_no "-Do you have nvidia gpu?" nvidia
 printf "\n"
-ask_yes_no "Do you want to install GTK themes?" gtk_themes
+ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
 printf "\n"
-ask_yes_no "Do you want to configure Bluetooth?" bluetooth
+ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
-ask_yes_no "Do you want to install Thunar file manager?" thunar
+ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
-ask_yes_no "Installing in Asus ROG Laptops?" rog
+ask_yes_no "-Installing in Asus ROG Laptops?" rog
 printf "\n"
-ask_yes_no "install and configure SDDM log-in Manager?" sddm
+ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
 printf "\n"
-ask_yes_no "Install XDG-DESKTOP-PORTAL-HYPRLAND? (recommended for proper Screen ie OBS)" xdph
+ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (recommended for proper Screen ie OBS)" xdph
 printf "\n"
-ask_yes_no "Do you want to install zsh and oh-my-zsh?" zsh
+ask_yes_no "-Do you want to install zsh and oh-my-zsh?" zsh
 printf "\n"
-ask_yes_no "Do you want to copy Hyprland dotfiles?" dots
+ask_yes_no "-Do you want to copy Hyprland dotfiles?" dots
 printf "\n"
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
