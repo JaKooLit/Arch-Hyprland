@@ -3,7 +3,7 @@
 clear
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland Install Script!$(tput sgr0)"
+echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland v2 Install Script!$(tput sgr0)"
 echo
 echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
 echo
