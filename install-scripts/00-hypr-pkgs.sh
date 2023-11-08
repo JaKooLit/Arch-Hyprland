@@ -63,7 +63,6 @@ fonts=(
 adobe-source-code-pro-fonts 
 noto-fonts-emoji
 otf-font-awesome 
-otf-font-awesome-4 
 ttf-droid 
 ttf-fira-code
 ttf-jetbrains-mono 
