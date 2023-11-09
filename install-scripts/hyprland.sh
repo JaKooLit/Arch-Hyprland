@@ -42,8 +42,10 @@ install_package() {
   fi
 }
 
-# Hyprland
+# Removing outdated Hyprland from extra repo to avoid conflict
+sudo pacman -R hyprland --noconfirm "$1" 2>&1 | tee -a "$LOG"
 
+# Hyprland
 printf "${NOTE} Installing Hyprland Packages...\n"
  for HYPR in "${hypr[@]}"; do
    install_package "$HYPR" 2>&1 | tee -a "$LOG"
