@@ -182,24 +182,20 @@ clear
 
 printf "\n${OK} Yey! Installation Completed.\n"
 printf "\n"
-printf "\n${NOTE} NOTICE TO NVIDIA OWNERS! System will reboot your system!\n"
+printf "\n${NOTE} NOTICE TO NVIDIA OWNERS! IT's a MUST for your to reboot your system\n"
 sleep 2
 printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-printf "\n\n"
-read -n1 -rep "${CAT} Would you like to start Hyprland now? (y,n)" HYP
+printf "\n"
+printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+read -n1 -rep "${CAT} Would you like to reboot now? (y,n)" HYP
 
 if [[ $HYP =~ ^[Yy]$ ]]; then
     if [[ "$nvidia" == "Y" ]]; then
         echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
         systemctl reboot
-    elif command -v sddm >/dev/null; then
-        sudo systemctl start sddm 2>&1 | tee -a "$LOG"
     else
-        if command -v Hyprland >/dev/null; then
-            exec Hyprland
-        else
-            echo "${ERROR} Hyprland not found. Please make sure Hyprland is installed by checking install logs"
-        fi
+        systemctl reboot
+    
     fi    
 fi
 

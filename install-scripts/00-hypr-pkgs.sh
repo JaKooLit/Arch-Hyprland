@@ -16,7 +16,8 @@ cliphist
 dunst 
 grim 
 gvfs 
-gvfs-mtp 
+gvfs-mtp
+imagemagick 
 jq
 kitty
 nano  
