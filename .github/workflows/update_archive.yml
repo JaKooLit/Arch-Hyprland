@@ -16,6 +16,9 @@ jobs:
   # This workflow contains a single job called "build"
   create:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
 
     steps:
       - name: archive
