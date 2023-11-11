@@ -22,4 +22,4 @@ jobs:
 
     steps:
       - name: archive
-        run: ./update_archive.sh
+        run: update_archive.sh
