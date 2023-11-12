@@ -49,13 +49,13 @@ hypr_package_2=(
 brightnessctl 
 btop
 cava
+eog
 ffmpegthumbs
 gnome-system-monitor
 mousepad 
 mpv 
 nvtop
 nwg-look-bin
-viewnior
 vim
 wlsunset
 )
