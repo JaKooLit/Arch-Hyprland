@@ -56,6 +56,7 @@ mousepad
 mpv 
 nvtop
 nwg-look-bin
+pacman-contrib
 vim
 wlsunset
 )
