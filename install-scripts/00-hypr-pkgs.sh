@@ -50,7 +50,7 @@ brightnessctl
 btop
 cava
 eog
-ffmpegthumbs
+ffmpegthumbnailer
 gnome-system-monitor
 mousepad 
 mpv 
