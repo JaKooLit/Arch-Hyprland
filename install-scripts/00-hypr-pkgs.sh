@@ -26,7 +26,7 @@ pamixer
 pavucontrol
 pipewire-alsa 
 playerctl
-polkit-kde-agent 
+polkit-gnome
 python-requests
 python-pywal 
 qt5ct
@@ -50,7 +50,6 @@ brightnessctl
 btop
 cava
 eog
-ffmpegthumbnailer
 gnome-system-monitor
 mousepad 
 mpv 

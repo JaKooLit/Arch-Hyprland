@@ -3,7 +3,8 @@
 thunar=(
 thunar 
 thunar-volman 
-tumbler 
+tumbler
+ffmpegthumbnailer 
 thunar-archive-plugin
 )
 
