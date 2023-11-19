@@ -13,6 +13,7 @@ Extra=(
 
 hypr_package=( 
 cliphist
+curl
 dunst 
 grim 
 gvfs 
