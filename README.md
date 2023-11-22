@@ -35,7 +35,7 @@
 
 ### 🆕  What's new with v2?
 - Rofi, Pywal Colors and Moved to Kitty. (Previous config was foot as tty and wofi as app launcher)
-- Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
+Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/CHANGELOGS) 
 
 ### ✨ Costumize the packages to be installed
 - inside the install-scripts folder, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
