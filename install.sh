@@ -1,9 +1,28 @@
 #!/bin/bash
+# https://github.com/JaKooLit
+
+# Check if running as root. If root, script will exit
+if [[ $EUID -eq 0 ]]; then
+    echo "This script should not be executed as root! Exiting......."
+    exit 1
+fi
 
 clear
 
+echo " 
+
+     ██╗ █████╗    ██╗  ██╗ ██████╗  ██████╗ ██╗     ██╗████████╗
+     ██║██╔══██╗   ██║ ██╔╝██╔═══██╗██╔═══██╗██║     ██║╚══██╔══╝
+     ██║███████║   █████╔╝ ██║   ██║██║   ██║██║     ██║   ██║   
+██   ██║██╔══██║   ██╔═██╗ ██║   ██║██║   ██║██║     ██║   ██║   
+╚█████╔╝██║  ██║██╗██║  ██╗╚██████╔╝╚██████╔╝███████╗██║   ██║   
+ ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝   ╚═╝   
+                                                                 
+
+"
+
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland v2 Install Script!$(tput sgr0)"
+echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland Install Script!$(tput sgr0)"
 echo
 echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
 echo
@@ -17,11 +36,7 @@ if [ "$proceed" != "y" ]; then
     exit 1
 fi
 
-# Check if running as root. If root, script will exit
-if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
-    exit 1
-fi
+
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
