@@ -64,9 +64,11 @@ source ~/.zshrc
 - by default mikeh theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 - to change the theme, edit ~/.zshrc . Look for ZSH_THEME="desired theme"
 
-### 📒 Hyprland Dot Notes
-- SUPER H for HINT or click on the waybar HINT! Button!
-- SUPER SHIFT H to launch the Some quick tips and tricks!
+### ✨ TO DO once installation done and dotfiles copied
+- if you opted to install gtk themes, to apply the theme and icon, press the dark/light button (beside the padlock). To apply Bibata modern ice cursor, launch nwg-look (GTK Settings) through rofi.
+- SUPER H for HINT or click on the waybar HINT! Button 
+- Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
+
 
 
 ### 🛣️ Roadmap:
