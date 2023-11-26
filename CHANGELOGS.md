@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 26 Nov 2023
+- nvidia - Move to hyprland-git. see [`commit`](https://github.com/hyprwm/Hyprland/commit/cd96ceecc551c25631783499bd92c6662c5d3616)
+
 ## 25 Nov 2023
 - drop wlogout since Hyprland-Dots v2.1.9 uses rofi-power
 
