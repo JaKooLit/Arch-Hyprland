@@ -56,7 +56,7 @@ if pacman -Qs hyprland > /dev/null; then
 fi
 
 # install hyprland-nvidia-git
-install_package "hyprland-nvidia-git" 2>&1 | tee -a "$LOG"
+install_package "hyprland-git" 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing addition Nvidia packages...\n"
