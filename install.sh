@@ -143,6 +143,8 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Execute AUR helper script based on user choice
+execute_script "00-base.sh"
+
 if [ "$aur_helper" == "paru" ]; then
     execute_script "paru.sh"
 elif [ "$aur_helper" == "yay" ]; then
