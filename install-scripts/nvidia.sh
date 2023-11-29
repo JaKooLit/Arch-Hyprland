@@ -47,16 +47,19 @@ install_package() {
 }
 
 # nvidia stuff
-printf "${YELLOW}Installing Nvidia Hyprland...${RESET}\n"
+printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
 if pacman -Qs hyprland > /dev/null; then
-  printf "${YELLOW} Hyprland detected uninstalling to install Hyprland-nvidia-git...${RESET}\n"
-    for hyprnvi in hyprland hyprland-nvidia hyprland-git hyprland-nvidia-hidpi-git; do
+  printf "${YELLOW} Hyprland detected. uninstalling to install Hyprland-git...${RESET}\n"
+    for hyprnvi in hyprland hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
     done
 fi
 
-# install hyprland-nvidia-git
-install_package "hyprland-git" 2>&1 | tee -a "$LOG"
+# install hyprland-git
+printf "${YELLOW}Installing Hyprland-git...${RESET}\n"
+for PKG1 in hyprland-git; do
+  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+done
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing addition Nvidia packages...\n"

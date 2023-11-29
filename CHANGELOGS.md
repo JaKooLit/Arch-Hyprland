@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 29 Nov 2023
+- nvidia.sh edited to remove hyprland-nvidia-git as well 
+
 ## 26 Nov 2023
 - nvidia - Move to hyprland-git. see [`commit`](https://github.com/hyprwm/Hyprland/commit/cd96ceecc551c25631783499bd92c6662c5d3616)
 
