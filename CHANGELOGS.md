@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 30 Nov 2023
+- switched to swaylock-effects-git as non-git does not seem to work
+
 ## 29 Nov 2023
 - nvidia.sh edited to remove hyprland-nvidia-git as well 
 
