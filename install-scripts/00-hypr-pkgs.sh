@@ -58,6 +58,7 @@ nwg-look-bin
 pacman-contrib
 vim
 wlsunset
+yt-dlp
 )
 
 fonts=(
