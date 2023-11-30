@@ -35,7 +35,7 @@ rofi-lbonn-wayland-git
 slurp 
 swappy 
 swayidle 
-swaylock-effects 
+swaylock-effects-git 
 swww 
 waybar
 wget
