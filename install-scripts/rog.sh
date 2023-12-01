@@ -1,5 +1,8 @@
 #!/bin/bash
 
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+
+
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

@@ -154,6 +154,9 @@ fi
 # Install hyprland packages
 execute_script "00-hypr-pkgs.sh"
 
+# Install pipewire and pipewire-audio
+execute_script "pipewire.sh"
+
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi

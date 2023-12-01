@@ -32,10 +32,10 @@
 
 ## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
+- Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/7.-CHANGELOGS)
 
-### 🆕  What's new with v2?
-- Rofi, Pywal Colors and Moved to Kitty. (Previous config was foot as tty and wofi as app launcher)
-Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/CHANGELOGS) 
+### 🔘 Pipewire and Pipewire audio
+- This script will install pipewire and will also disable or will uninstall pulseaudio. If you dont want it, you can simply just delete pipewire.sh in install-scripts folder before installing. 
 
 ### ✨ Costumize the packages to be installed
 - inside the install-scripts folder, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
@@ -43,7 +43,6 @@ Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooL
 
 ### 👀 NVidia GPU Owners.
 - By default, nvidia-dkms will be installed. and only supports GTX 900 and newer. If required to install older driver, edit the nvidia.sh in scripts-folder
-
 
 ### ✨ to run
 > clone this repo by using git. Change directory, make executable and run the script
@@ -67,8 +66,7 @@ source ~/.zshrc
 ### ✨ TO DO once installation done and dotfiles copied
 - if you opted to install gtk themes, to apply the theme and icon, press the dark/light button (beside the padlock). To apply Bibata modern ice cursor, launch nwg-look (GTK Settings) through rofi.
 - SUPER H for HINT or click on the waybar HINT! Button 
-- Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
-
+- Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/5.-TIPS)
 
 
 ### 🛣️ Roadmap:

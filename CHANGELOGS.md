@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 01 Dec 2023
+- Added pipewire to install
+
 ## 30 Nov 2023
 - switched to swaylock-effects-git as non-git does not seem to work
 

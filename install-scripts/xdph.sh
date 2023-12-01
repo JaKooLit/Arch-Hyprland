@@ -1,5 +1,8 @@
 #!/bin/bash
 
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+
+
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
