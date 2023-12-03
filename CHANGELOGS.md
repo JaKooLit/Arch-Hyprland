@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 03 Dec 2023
+- Added kvantum for qt apps theming
+
 ## 01 Dec 2023
 - Added pipewire to install
 
