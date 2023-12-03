@@ -21,6 +21,7 @@ gvfs-mtp
 imagemagick 
 jq
 kitty
+kvantum
 nano  
 network-manager-applet 
 pamixer 
