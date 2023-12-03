@@ -2,6 +2,7 @@
 
 ## 03 Dec 2023
 - Added kvantum for qt apps theming
+- return of wlogout due to theming issues of rofi-power
 
 ## 01 Dec 2023
 - Added pipewire to install
