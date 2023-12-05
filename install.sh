@@ -202,20 +202,19 @@ clear
 
 printf "\n${OK} Yey! Installation Completed.\n"
 printf "\n"
-printf "\n${NOTE} NOTICE TO NVIDIA OWNERS! IT's a MUST for your to reboot your system\n"
 sleep 2
 printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
 printf "\n"
 printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
-read -n1 -rep "${CAT} Would you like to reboot now? (y,n)" HYP
 
-if [[ $HYP =~ ^[Yy]$ ]]; then
+read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+
+if [[ "$HYP" =~ ^[Yy]$ ]]; then
     if [[ "$nvidia" == "Y" ]]; then
         echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
         systemctl reboot
     else
         systemctl reboot
-    
     fi    
 fi
 
