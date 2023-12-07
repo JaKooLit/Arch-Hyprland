@@ -32,6 +32,7 @@ polkit-gnome
 python-requests
 python-pywal 
 qt5ct
+qt6ct
 qt6-svg
 rofi-lbonn-wayland-git 
 slurp 
