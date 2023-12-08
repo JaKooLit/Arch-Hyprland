@@ -35,6 +35,9 @@
 - Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/7.-CHANGELOGS) 
 - Since the Hyprland-Dots are evolving, some of the screenshots maybe old
 
+### 🆕  Prerequisites
+- install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script DOES not include uninstallation of packages as it may break your system due to shared packages / libraries.
+- This install script is intended for atleast Server type / Minimal Arch Linux installed.
 
 ### 🔘 Pipewire and Pipewire audio
 - This script will install pipewire and will also disable or will uninstall pulseaudio. If you dont want it, you can simply just delete pipewire.sh in install-scripts folder before installing. 
