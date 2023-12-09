@@ -56,7 +56,8 @@ cava
 eog
 gnome-system-monitor
 mousepad 
-mpv 
+mpv
+mpv-mpris 
 nvtop
 nwg-look-bin
 pacman-contrib
