@@ -58,7 +58,7 @@ chmod +x install.sh
 ./install.sh
 ```
 ### ✨ for ZSH and OH-MY-ZSH installation
-> do this once installed and script completed; do the following to change the default shell zsh
+> installer should auto change your default shell to zsh. However, if it does not, do this
 ```bash
 chsh -s $(which zsh)
 zsh
@@ -78,7 +78,7 @@ source ~/.zshrc
 - Head over to wiki Link [`WIKI`](🏴https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
 ### 🛣️ Roadmap:
-- [ ] Install zsh and oh-my-zsh without necessary steps above
+- ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - [ ] possibly adding gruvbox themes, cursors, icons
 
 ### ⚠️ some known issues

@@ -15,6 +15,17 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_zsh.log"
 
+
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+
+# Determine the directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Change the working directory to the parent directory of the script
+PARENT_DIR="$SCRIPT_DIR/.."
+cd "$PARENT_DIR" || exit 1
+
+
 ISAUR=$(command -v yay || command -v paru)
 
 # Set the script to exit on error
@@ -61,6 +72,10 @@ if [[ $zsh =~ ^[Yy]$ ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
   cp -r 'assets/.zshrc' ~/
+  cp -r 'assets/.zprofile' ~/
+
+  printf "${NOTE} changing default shell to zsh.....\n"
+  chsh -s $(which zsh) 
 else
   printf "${NOTE} ZSH wont be installed.\n"
 fi
