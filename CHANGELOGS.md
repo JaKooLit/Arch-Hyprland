@@ -3,6 +3,8 @@
 ## 11 Dec 2023
 - Changing over to zsh automatically if user opted
 - If chose to install zsh and have no login manager, zsh auto login will auto start Hyprland
+- added as optional, with zsh, pokemon colorscripts
+- improved zsh install scripts, so even the existing zsh users of can still opt for zsh and oh-my-zsh installation :)
 
 ## 03 Dec 2023
 - Added kvantum for qt apps theming
