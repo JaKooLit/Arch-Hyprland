@@ -50,34 +50,40 @@ install_package() {
     fi
   fi
 }
-# zsh and oh-my-zsh
-printf "${WARN} #### IF YOU HAVE ALREADY ZSH AND OH MY ZSH, YOU SHOULD CHOOSE NO HERE #########\n"
-printf "${WARN} ### --------------------------------------------------------------------########\n"
-printf "${NOTE} ## CHECK OUT README FOR ADDITIONAL STEPS REQUIRED ONCE ZSH AND OH-MY-ZSH INSTALLED ##\n"
-printf "\n\n"
-read -rp "${CAT} OPTIONAL - Would you like to install zsh and oh-my-zsh and use as default shell? (y/n) " zsh
-echo
 
-if [[ $zsh =~ ^[Yy]$ ]]; then
-  for ZSH in zsh zsh-completions; do
-    install_package "$ZSH" 2>&1 | tee -a "$LOG"
-    if [ $? -ne 0 ]; then
-      echo -e "\e[1A\e[K${ERROR} - $ZSH install had failed, please check the install.log"
-    fi
-  done
 
-  # Oh-my-zsh plus zsh-autosuggestions and zsh-syntax-highlighting
-  printf "${NOTE} Installing oh-my-zsh and plugins.\n"
-  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
-  cp -r 'assets/.zshrc' ~/
-  cp -r 'assets/.zprofile' ~/
+# Check if the oh-my-zsh directory exists
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    printf "${NOTE} Oh My Zsh found. Creating a backup before uninstalling...${RESET}\n"
+    # Perform backup using cp -r and create a backup directory with -backup suffix
+    mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh-backup"
+    mv "$HOME/.zshrc" "$HOME/.zshrc-backup"
 
-  printf "${NOTE} changing default shell to zsh.....\n"
-  chsh -s $(which zsh) 
-else
-  printf "${NOTE} ZSH wont be installed.\n"
+    printf "${NOTE} Backup created....${RESET}\n"
+fi
+
+
+# Installing zsh packages
+printf "${NOTE} Installing core zsh packages...${RESET}\n"
+for ZSH in zsh zsh-completions pokemon-colorscripts-git; do
+  install_package "$ZSH" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+     echo -e "\e[1A\e[K${ERROR} - $ZSH install had failed, please check the install.log"
+  fi
+done
+
+
+# Install Oh My Zsh, plugins, and set zsh as default shell
+if command -v zsh >/dev/null; then
+    printf "${NOTE} Installing Oh My Zsh and plugins...\n"
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
+    cp -r 'assets/.zshrc' ~/
+    cp -r 'assets/.zprofile' ~/
+
+    printf "${NOTE} Changing default shell to zsh...\n"
+    chsh -s $(which zsh) || true 2>&1 | tee -a "$LOG"
 fi
 
 clear
