@@ -73,17 +73,36 @@ for ZSH in zsh zsh-completions pokemon-colorscripts-git; do
 done
 
 
-# Install Oh My Zsh, plugins, and set zsh as default shell
+## Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then
     printf "${NOTE} Installing Oh My Zsh and plugins...\n"
-    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
+	# Check if the directories exist before cloning the repositories
+	if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || true
+	else
+    	echo "Directory zsh-autosuggestions already exists. Skipping cloning."
+	fi
+
+	if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
+	else
+    	echo "Directory zsh-syntax-highlighting already exists. Skipping cloning."
+	fi
+
     cp -r 'assets/.zshrc' ~/
     cp -r 'assets/.zprofile' ~/
 
     printf "${NOTE} Changing default shell to zsh...\n"
-    chsh -s $(which zsh) || true 2>&1 | tee -a "$LOG"
+
+	while ! chsh -s $(which zsh); do
+    	echo "${ERROR} Authentication failed. Please enter the correct password."
+    	sleep 1
+	done
+	printf "${NOTE} Shell changed successfully to zsh.\n" 2>&1 | tee -a "$LOG"
+
 fi
+  printf "\n\n\n\n"
+  
 
 clear
