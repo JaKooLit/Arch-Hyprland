@@ -82,13 +82,13 @@ if command -v zsh >/dev/null; then
 		echo "Directory .oh-my-zsh already exists. Skipping re-installation."
 	fi
 	# Check if the directories exist before cloning the repositories
-	if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+	if [ ! -d "$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
     	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || true
 	else
     	echo "Directory zsh-autosuggestions already exists. Skipping cloning."
 	fi
 
-	if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+	if [ ! -d "$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
     	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
 	else
     	echo "Directory zsh-syntax-highlighting already exists. Skipping cloning."
