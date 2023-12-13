@@ -36,7 +36,7 @@
 - Since the Hyprland-Dots are evolving, some of the screenshots maybe old
 
 ### 🆕  Prerequisites
-- install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script DOES not include uninstallation of packages as it may break your system due to shared packages / libraries.
+#### 💬 install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script does NOT include uninstallation of packages as it may break your system due to shared packages / libraries.
 - This install script is intended for atleast Server type / Minimal Arch Linux installed.
 
 ### 🔘 Pipewire and Pipewire audio
