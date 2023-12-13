@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 13 Dec 2023
+- switched hyprland to Extra Repo hyprland (both nvidia and non-nvidia). Seeing they are updating all the time :)
+
 ## 11 Dec 2023
 - Changing over to zsh automatically if user opted
 - If chose to install zsh and have no login manager, zsh auto login will auto start Hyprland

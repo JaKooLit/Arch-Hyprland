@@ -8,6 +8,10 @@ nvidia_pkg=(
   libva-nvidia-driver-git
 )
 
+hypr=(
+  hyprland
+)
+
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 
 # Set some colors for output messages
@@ -52,16 +56,17 @@ install_package() {
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
 if pacman -Qs hyprland > /dev/null; then
   printf "${YELLOW} Hyprland detected. uninstalling to install Hyprland-git...${RESET}\n"
-    for hyprnvi in hyprland hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
+    for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
     done
 fi
 
-# install hyprland-git
-printf "${YELLOW}Installing Hyprland-git...${RESET}\n"
-for PKG1 in hyprland-git; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-done
+# Hyprland
+printf "${NOTE} Installing Hyprland......\n"
+ for HYPR in "${hypr[@]}"; do
+   install_package "$HYPR" 2>&1 | tee -a "$LOG"
+   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR install had failed, please check the install.log"; exit 1; }
+  done
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing addition Nvidia packages...\n"
