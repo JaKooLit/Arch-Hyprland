@@ -49,73 +49,86 @@ install_package() {
 
 # SDDM
 
-  # Check if SDDM is already installed
-  if pacman -Qs sddm > /dev/null; then
-    # Prompt user to manually install sddm-git to remove SDDM
-    read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
-    echo
-    if [[ $manual_install_sddm =~ ^[Yy]$ ]]; then
-      $ISAUR -S sddm-git 2>&1 | tee -a "$LOG"
-    fi
+# Check if SDDM is already installed
+if pacman -Qs sddm > /dev/null; then
+  # Prompt user to manually install sddm-git to remove SDDM
+  read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
+  echo
+  if [[ $manual_install_sddm =~ ^[Yy]$ ]]; then
+    $ISAUR -S sddm-git 2>&1 | tee -a "$LOG"
   fi
+fi
 
-  # Install SDDM and Catppuccin theme
-  printf "${NOTE} Installing SDDM-git........\n"
+# Install SDDM and SDDM theme
+printf "${NOTE} Installing SDDM-git........\n"
   for package in sddm-git; do
-    install_package "$package" 2>&1 | tee -a "$LOG"
-    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
-  done 
+  install_package "$package" 2>&1 | tee -a "$LOG"
+  [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
+ done 
 
-  # Check if other login managers installed and disabling its service before enabling sddm
-  for login_manager in lightdm gdm lxdm lxdm-gtk3; do
-    if pacman -Qs "$login_manager" > /dev/null; then
-      echo "disabling $login_manager..."
-      sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
-    fi
-  done
-
-  printf " Activating sddm service........\n"
-  sudo systemctl enable sddm
-
-  # Set up SDDM
-  echo -e "${NOTE} Setting up the login screen."
-  sddm_conf_dir=/etc/sddm.conf.d
-  [ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
-
-  wayland_sessions_dir=/usr/share/wayland-sessions
-  [ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
-  sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
-    
-  # SDDM-themes
-  read -n1 -rep "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
-  if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
-    while true; do
-      read -rp "${CAT} Which SDDM Theme you want to install? Catpuccin or Tokyo Night 'c' or 't': " choice 
-      case "$choice" in
-        c|C)
-          printf "\n%s - Installing Catpuccin SDDM Theme\n" "${NOTE}"
-          for sddm_theme in sddm-catppuccin-git; do
-            install_package "$sddm_theme" 2>&1 | tee -a "$LOG"
-            [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $sddm_theme install has failed, please check the install.log"; }
-          done
-          echo -e "[Theme]\nCurrent=catppuccin" | sudo tee -a "$sddm_conf_dir/10-theme.conf" 2>&1 | tee -a "$LOG"                		
-          break
-          ;;
-        t|T)
-          printf "\n%s - Installing Tokyo SDDM Theme\n" "${NOTE}"
-          for sddm_theme in sddm-theme-tokyo-night; do
-            install_package "$sddm_theme" 2>&1 | tee -a "$LOG"
-            [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $sddm_theme install has failed, please check the install.log"; }
-          done	
-          echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee -a "$sddm_conf_dir/10-theme.conf" 2>&1 | tee -a "$LOG"                		
-          break
-          ;;                		
-        *)
-          printf "%s - Invalid choice. Please enter 'c' or 't'\n" "${ERROR}"
-          continue
-          ;;
-      esac
-    done
+# Check if other login managers installed and disabling its service before enabling sddm
+for login_manager in lightdm gdm lxdm lxdm-gtk3; do
+  if pacman -Qs "$login_manager" > /dev/null; then
+    echo "disabling $login_manager..."
+    sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
   fi
+done
 
-  clear
+printf " Activating sddm service........\n"
+sudo systemctl enable sddm
+
+# Set up SDDM
+echo -e "${NOTE} Setting up the login screen."
+sddm_conf_dir=/etc/sddm.conf.d
+[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
+
+wayland_sessions_dir=/usr/share/wayland-sessions
+[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
+sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
+    
+# SDDM-themes
+valid_input=false
+while [ "$valid_input" != true ]; do
+  read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+  if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
+    printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
+
+    # Check if /usr/share/sddm/themes/simple-sddm exists and remove if it does
+    if [ -d "/usr/share/sddm/themes/simple-sddm" ]; then
+      sudo rm -rf "/usr/share/sddm/themes/simple-sddm"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory." 2>&1 | tee -a "$LOG"
+    fi
+
+    # Check if simple-sddm directory exists in the current directory and remove if it does
+    if [ -d "simple-sddm" ]; then
+      rm -rf "simple-sddm"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory from the current location." 2>&1 | tee -a "$LOG"
+    fi
+
+    if git clone https://github.com/JaKooLit/simple-sddm.git 2>&1 | tee -a "$LOG"; then
+      while [ ! -d "simple-sddm" ]; do
+        sleep 1
+      done
+
+      if [ ! -d "/usr/share/sddm/themes" ]; then
+        sudo mkdir -p /usr/share/sddm/themes
+        echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
+      fi
+
+      sudo mv simple-sddm /usr/share/sddm/themes/
+      echo -e "[Theme]\nCurrent=simple-sddm" | sudo tee -a "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
+    else
+      echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection or repository availability." | tee -a "$LOG" >&2
+    fi
+    valid_input=true
+  elif [[ $install_sddm_theme =~ ^[Nn]$ ]]; then
+    printf "\n%s - No SDDM themes will be installed.\n" "${NOTE}" 2>&1 | tee -a "$LOG"
+    valid_input=true
+  else
+    printf "\n%s - Invalid input. Please enter 'y' for Yes or 'n' for No.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
+  fi
+done
+
+
+
+clear
