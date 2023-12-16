@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 16 Dec 2023
+- zsh theme switched to `agnoster` theme by default
+- pywal tty color change disabled by default
+
 ## 13 Dec 2023
 - switched hyprland to Extra Repo hyprland (both nvidia and non-nvidia). Seeing they are updating all the time :)
 

@@ -3,7 +3,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="mikeh"
+ZSH_THEME="agnoster"
 
 plugins=( 
     git
@@ -27,11 +27,11 @@ pokemon-colorscripts --no-title -s -r
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
 # Not supported in the "fish" shell.
-(cat ~/.cache/wal/sequences &)
+#(cat ~/.cache/wal/sequences &)
 
 # Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
+#cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
+#source ~/.cache/wal/colors-tty.sh
 

@@ -65,7 +65,7 @@ zsh
 source ~/.zshrc
 ```
 - reboot or logout
-- by default mikeh theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+- by default agnoster theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 - to change the theme, edit ~/.zshrc . Look for ZSH_THEME="desired theme"
 
 ### ✨ TO DO once installation done and dotfiles copied
