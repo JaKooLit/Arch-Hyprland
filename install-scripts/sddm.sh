@@ -116,7 +116,7 @@ while [ "$valid_input" != true ]; do
       fi
 
       sudo mv simple-sddm /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm" | sudo tee -a "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
+      echo -e "[Theme]\nCurrent=simple-sddm" | sudo tee "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection or repository availability." | tee -a "$LOG" >&2
     fi

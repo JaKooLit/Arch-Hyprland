@@ -57,16 +57,22 @@ for PKG1 in unzip; do
   fi
 done
 
-# Themes and cursors
-printf "${NOTE} Installing Tokyo Theme GTK packages...\n"
-if wget https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2; then
-  mkdir -p ~/.icons
-  tar -xvjf TokyoNight-SE.tar.bz2 -C ~/.icons
-  mkdir -p ~/.themes
-  unzip -q "assets/tokyo-themes/Tokyonight-Dark-B.zip" -d ~/.themes || true
-  unzip -q "assets/tokyo-themes/Tokyonight-Light-B.zip" -d ~/.themes || true
+# Check if the directory exists and delete it if present
+if [ -d "GTK-themes-icons" ]; then
+    echo "$NOTE Tokyo Theme GTK themes and Icons folder exist..deleting..." 2>&1 | tee -a "$LOG"
+    rm -rf "GTK-themes-icons" 2>&1 | tee -a "$LOG"
+fi
+
+echo "$NOTE Cloning Tokyo Theme GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
+if git clone https://github.com/JaKooLit/GTK-themes-icons.git 2>&1 | tee -a "$LOG"; then
+    mkdir -p ~/.icons
+    mkdir -p ~/.themes
+    unzip -qo "GTK-themes-icons/theme/Tokyonight-Dark-BL-LB.zip" -d ~/.themes 2>&1 | tee -a "$LOG"
+    unzip -qo "GTK-themes-icons/theme/Tokyonight-Light-B-LB.zip" -d ~/.themes 2>&1 | tee -a "$LOG"
+    unzip -qo "GTK-themes-icons/icon/Tokyonight-Dark-Icons.zip" -d ~/.icons 2>&1 | tee -a "$LOG"
+    unzip -qo "GTK-themes-icons/icon/Tokyonight-Light-Icons.zip" -d ~/.icons 2>&1 | tee -a "$LOG"
 else
-  echo -e "${ERROR} Download failed for Tokyo Theme GTK packages."
+    echo "$ERROR Download failed for Tokyo Theme GTK themes and Icons.." 2>&1 | tee -a "$LOG"
 fi
 
 tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 2>&1 | tee -a "$LOG"
