@@ -1,5 +1,12 @@
 #!/bin/bash
 
+sddm=(
+  qt5-graphicaleffects
+  qt5-quickcontrols2
+  qt5-svg
+  sddm-git
+)
+
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 
 # Determine the directory where the script is located
@@ -60,8 +67,8 @@ if pacman -Qs sddm > /dev/null; then
 fi
 
 # Install SDDM and SDDM theme
-printf "${NOTE} Installing SDDM-git........\n"
-  for package in sddm-git; do
+printf "${NOTE} Installing SDDM-git and dependencies........\n"
+  for package in "${sddm[@]}"; do
   install_package "$package" 2>&1 | tee -a "$LOG"
   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
  done 
