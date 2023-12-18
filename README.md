@@ -46,6 +46,10 @@
 - inside the install-scripts folder, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
+### 💫 SDDM and GTK Themes offered
+- If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
+- If you opted to install GTK Themes, Icons and Cursor offered are Tokyo Nights. [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice 
+
 ### 👀 NVidia GPU Owners.
 - By default, nvidia-dkms will be installed. and only supports GTX 900 and newer. If required to install older driver, edit the nvidia.sh in scripts-folder
 
@@ -75,7 +79,7 @@ source ~/.zshrc
 - Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/5.-TIPS)
 
 ### 🏴‍☠️🏴‍☠️🏴‍☠️ Got a questions regarding the Hyprland Dots?
-- Head over to wiki Link [`WIKI`](🏴https://github.com/JaKooLit/Hyprland-Dots/wiki)
+- Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
 ### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
