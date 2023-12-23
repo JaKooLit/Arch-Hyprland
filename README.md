@@ -110,7 +110,6 @@ log into your account
 
 ### 👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
-- shout out to CooSee from Gentoo forums for the nice rainbow borders
 
 ## 💖 Support
 - a Star on my Github repos would be nice 🌟
