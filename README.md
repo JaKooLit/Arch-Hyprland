@@ -58,9 +58,9 @@
 > If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
 
 #### ✨ to run
-> clone this repo by using git. Change directory, make executable and run the script
+> clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
-git clone https://github.com/JaKooLit/Arch-Hyprland.git
+git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git
 cd Arch-Hyprland
 chmod +x install.sh
 ./install.sh
