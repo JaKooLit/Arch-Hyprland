@@ -44,7 +44,8 @@ waybar
 wget
 wl-clipboard
 wlogout
-xdg-user-dirs 
+xdg-user-dirs
+xdg-utils 
 yad
 )
 
