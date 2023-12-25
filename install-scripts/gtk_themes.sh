@@ -1,6 +1,7 @@
 #!/bin/bash
 
 engine=(
+    unzip
     gtk-engine-murrine
 )
 
