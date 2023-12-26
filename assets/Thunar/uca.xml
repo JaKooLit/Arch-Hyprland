@@ -15,9 +15,9 @@
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
-	<unique-id>1488955845049151-1</unique-id>
-	<command>for f in %F; do exo-open --working-directory &quot;$f&quot; --launch TerminalEmulator; done</command>
-	<description></description>
+	<unique-id>1703572977408169-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Launch TerminalEmulator</description>
 	<range></range>
 	<patterns>*</patterns>
 	<startup-notify/>
@@ -28,7 +28,7 @@
 	<name>Check sha1sum</name>
 	<submenu></submenu>
 	<unique-id>1526633271260079-26</unique-id>
-	<command>zenity --info --title=&quot;Check sha1 for %n&quot; --text=&quot;$(sha1sum %f)&quot;</command>
+	<command>yad --info --title=&quot;Check sha1 for %n&quot; --text=&quot;$(sha1sum %f)&quot;</command>
 	<description>Check sha1sum</description>
 	<range></range>
 	<patterns>*.iso;*.ISO</patterns>
@@ -39,7 +39,7 @@
 	<name>Check sha256sum</name>
 	<submenu></submenu>
 	<unique-id>1577688162350307-1</unique-id>
-	<command>zenity --info --title=&quot;Check sha256 for %n&quot; --text=&quot;$(sha256sum %f)&quot;</command>
+	<command>yad --info --title=&quot;Check sha256 for %n&quot; --text=&quot;$(sha256sum %f)&quot;</command>
 	<description>Check sha256sum</description>
 	<range></range>
 	<patterns>*.iso;*.ISO</patterns>
@@ -50,7 +50,7 @@
 	<name>Check md5sum</name>
 	<submenu></submenu>
 	<unique-id>1526736788575383-2</unique-id>
-	<command>zenity --info --title=&quot;Check md5 for %n&quot; --text=&quot;$(md5sum %f)&quot;</command>
+	<command>yad --info --title=&quot;Check md5 for %n&quot; --text=&quot;$(md5sum %f)&quot;</command>
 	<description>Check md5sum</description>
 	<range></range>
 	<patterns>*.iso;*.ISO;*.tar.gz;*.TAR.GZ;*.zip;*.ZIP</patterns>
