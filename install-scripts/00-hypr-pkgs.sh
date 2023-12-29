@@ -13,8 +13,7 @@ Extra=(
 
 hypr_package=( 
 cliphist
-curl
-dunst 
+curl 
 grim 
 gvfs 
 gvfs-mtp
@@ -38,7 +37,8 @@ rofi-lbonn-wayland-git
 slurp 
 swappy 
 swayidle 
-swaylock-effects-git 
+swaylock-effects-git
+swaync 
 swww 
 waybar
 wget
@@ -77,6 +77,11 @@ ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd 
 )
 
+# List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
+uninstall=(
+  dunst
+  mako
+)
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 
@@ -118,15 +123,44 @@ install_package() {
   fi
 }
 
+# Function for uninstalling packages
+uninstall_package() {
+  # Checking if package is installed
+  if pacman -Qi "$1" &>> /dev/null ; then
+    # Package is installed
+    echo -e "${NOTE} Uninstalling $1 ..."
+    sudo pacman -Rns --noconfirm "$1" 2>&1 | tee -a "$LOG"
+    # Making sure package is uninstalled
+    if ! pacman -Qi "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
+    else
+      # Something went wrong, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
+      exit 1
+    fi
+  fi
+}
+
 # Installation of main components
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${fonts[@]}" "${Extra[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the log"
+    exit 1
+  fi
+done
+
+printf "\n%s - Checking if mako or dunst are installed and removing for swaync to work properly \n" "${NOTE}"
+
+for PKG in "${uninstall[@]}"; do
+  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
     exit 1
   fi
 done
 
 clear
+
