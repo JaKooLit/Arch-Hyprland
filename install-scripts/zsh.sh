@@ -1,11 +1,10 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# zsh and oh my zsh #
+# zsh and oh my zsh including pokemon-color-scripts#
 
 zsh=(
 zsh
 zsh-completions
-pokemon-colorscripts-git
 )
 
 
@@ -21,6 +20,25 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh.log"
+
+## Optional Pokemon color scripts
+while true; do
+    read -p "${CAT} OPTIONAL - Do you want to add Pokemon color scripts? (y/n): " choice
+    case "$choice" in
+        [Yy]*)
+            zsh+=('pokemon-colorscripts-git')
+            sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc
+            break
+            ;;
+        [Nn]*)
+            echo "${NOTE}Skipping Pokemon color scripts installation.${RESET}" 2>&1 | tee -a "$LOG"
+            break
+            ;;
+        *)
+            echo "${WARN}Please enter 'y' for yes or 'n' for no.${RESET}"
+            ;;
+    esac
+done
 
 # Installing zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
@@ -52,7 +70,17 @@ if command -v zsh >/dev/null; then
 	else
     	echo "Directory zsh-syntax-highlighting already exists. Skipping cloning." 2>&1 | tee -a "$LOG"
 	fi
+	
+	# Check if ~/.zshrc and .zprofile exists, create a backup, and copy the new configuration
+	if [ -f "$HOME/.zshrc" ]; then
+    	cp -b "$HOME/.zshrc" "$HOME/.zshrc-backup" || true
+	fi
 
+	if [ -f "$HOME/.zprofile" ]; then
+    	cp -b "$HOME/.zprofile" "$HOME/.zprofile-backup" || true
+	fi
+	
+	# Copying the preconfigured zsh themes and profile
     cp -r 'assets/.zshrc' ~/
     cp -r 'assets/.zprofile' ~/
 
