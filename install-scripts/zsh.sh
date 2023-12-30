@@ -1,6 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Yay AUR Helper #
+# zsh and oh my zsh #
 
 zsh=(
 zsh
