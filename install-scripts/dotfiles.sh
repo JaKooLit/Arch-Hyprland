@@ -1,16 +1,10 @@
 #!/bin/bash
+# 💫 https://github.com/JaKooLit 💫 #
+# Hyprland-Dots to download from Releases #
 
-############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
-# Set some colors for output messages
-OK="$(tput setaf 2)[OK]$(tput sgr0)"
-ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
-NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
-CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 166)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 printf "${NOTE} Downloading / Checking for existing Hyprland-Dots.tar.gz...\n"
 
@@ -36,14 +30,14 @@ if [ -f Hyprland-Dots.tar.gz ]; then
     echo -e "${WARN} Hyprland-Dots.tar.gz is outdated (Existing version: $existing_version, Latest version: $latest_version)."
     read -p "Do you want to upgrade to the latest version? (y/n): " upgrade_choice
     if [ "$upgrade_choice" = "y" ]; then
-		echo -e "${NOTE} Proceeding to download the latest release."
+		echo -e "${NOTE} Proceeding to download the latest release." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
 		
 		# Delete existing directories starting with JaKooLit-Hyprland-Dots
       find . -type d -name 'JaKooLit-Hyprland-Dots*' -exec rm -rf {} +
       rm -f Hyprland-Dots.tar.gz
       printf "${WARN} Removed existing Hyprland-Dots.tar.gz.\n"
     else
-      echo -e "${NOTE} User chose not to upgrade. Exiting..."
+      echo -e "${NOTE} User chose not to upgrade. Exiting..." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
       exit 0
     fi
   fi
@@ -56,7 +50,7 @@ latest_tag=$(curl -s https://api.github.com/repos/JaKooLit/Hyprland-Dots/release
 
 # Check if the tag is obtained successfully
 if [ -z "$latest_tag" ]; then
-  echo -e "${ERROR} Unable to fetch the latest tag information."
+  echo -e "${ERROR} Unable to fetch the latest tag information." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
   exit 1
 fi
 
@@ -65,7 +59,7 @@ latest_tarball_url=$(curl -s https://api.github.com/repos/JaKooLit/Hyprland-Dots
 
 # Check if the URL is obtained successfully
 if [ -z "$latest_tarball_url" ]; then
-  echo -e "${ERROR} Unable to fetch the tarball URL for the latest release."
+  echo -e "${ERROR} Unable to fetch the tarball URL for the latest release." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
   exit 1
 fi
 
@@ -90,10 +84,12 @@ if curl -L "$latest_tarball_url" -o "$file_name"; then
 
   # Set execute permission for copy.sh and execute it
   chmod +x copy.sh
-  ./copy.sh 2>&1 | tee -a "../install-$(date +'%d-%H%M%S')_dots.log"
+  ./copy.sh 
 
-  echo -e "${OK} Latest source code release downloaded, extracted, and processed successfully."
+  echo -e "${OK} Latest Dotfiles release downloaded, extracted, and processed successfully. Check JaKooLit-Hyprland-Dots folder for more detailed install logs" 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
 else
-  echo -e "${ERROR} Failed to download the latest source code release."
+  echo -e "${ERROR} Failed to download the latest Dotfiles release." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
   exit 1
 fi
+
+clear

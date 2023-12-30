@@ -1,4 +1,6 @@
 #!/bin/bash
+# 💫 https://github.com/JaKooLit 💫 #
+# Nvidia Stuffs #
 
 nvidia_pkg=(
   nvidia-dkms
@@ -12,45 +14,19 @@ hypr=(
   hyprland
 )
 
-############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
+# Determine the directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Set some colors for output messages
-OK="$(tput setaf 2)[OK]$(tput sgr0)"
-ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
-NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
-CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 166)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+# Change the working directory to the parent directory of the script
+PARENT_DIR="$SCRIPT_DIR/.."
+cd "$PARENT_DIR" || exit 1
+
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +%d-%H%M%S)_nvidia.log"
+LOG="Install-Logs/install-$(date +%d-%H%M%S)_nvidia.log"
 
-ISAUR=$(command -v yay || command -v paru)
-
-# Set the script to exit on error
-set -e
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry, I have tried :("
-      exit 1
-    fi
-  fi
-}
 
 # nvidia stuff
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
@@ -108,9 +84,9 @@ if [ -f /etc/default/grub ]; then
         sudo sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 nvidia-drm.modeset=1"/' /etc/default/grub
         # Regenerate GRUB configuration
         sudo grub-mkconfig -o /boot/grub/grub.cfg
-        echo "nvidia-drm.modeset=1 added to /etc/default/grub"
+        echo "nvidia-drm.modeset=1 added to /etc/default/grub" 2>&1 | tee -a "$LOG"
     else
-        echo "nvidia-drm.modeset=1 is already present in /etc/default/grub"
+        echo "nvidia-drm.modeset=1 is already present in /etc/default/grub" 2>&1 | tee -a "$LOG"
     fi
 else
     echo "/etc/default/grub does not exist"
@@ -137,7 +113,7 @@ if [[ $response =~ ^[Yy]$ ]]; then
     fi
   fi
 else
-  printf "${NOTE} Skipping nouveau blacklisting.\n"
+  printf "${NOTE} Skipping nouveau blacklisting.\n" 2>&1 | tee -a "$LOG"
 fi
 
 clear

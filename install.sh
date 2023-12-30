@@ -32,6 +32,10 @@ if [ "$proceed" != "y" ]; then
 fi
 
 
+# Create Directory for Install Logs
+if [ ! -d Install-Logs ]; then
+    mkdir Install-Logs
+fi
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -42,6 +46,7 @@ CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
+
 
 # Function to colorize prompts
 colorize_prompt() {
@@ -195,7 +200,6 @@ if [ "$dots" == "Y" ]; then
 
 fi
 
-clear
 
 printf "\n${OK} Yey! Installation Completed.\n"
 printf "\n"
