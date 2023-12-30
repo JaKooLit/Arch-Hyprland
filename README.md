@@ -94,6 +94,10 @@ source ~/.zshrc
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
 
+#### 🔧 Proper way to re-installing a particular script from install-scripts folder
+- CD into Arch-Hyprland Folder and then ran the below command. 
+- i.e. `./install-scripts/gtk-themes` - For reinstall GTK Themes.
+
 #### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - [ ] possibly adding gruvbox themes, cursors, icons

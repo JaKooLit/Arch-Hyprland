@@ -1,6 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# GTK Themes. Sourcing from a different Repo #
+# GTK Themes & ICONS and  Sourcing from a different Repo #
 
 engine=(
     unzip

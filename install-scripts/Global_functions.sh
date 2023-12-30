@@ -14,6 +14,12 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
+
+# Create Directory for Install Logs
+if [ ! -d Install-Logs ]; then
+    mkdir Install-Logs
+fi
+
 # Function for installing packages
 install_package_pacman() {
   # Checking if package is already installed

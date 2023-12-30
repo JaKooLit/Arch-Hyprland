@@ -29,11 +29,13 @@ for xdgs in "${xdg[@]}"; do
     exit 1
     fi
 done
+
+printf "\n"
     
 printf "${NOTE} Checking for other XDG-Desktop-Portal-Implementations....\n"
 sleep 1
 printf "\n"
-printf "${NOTE} XDG-desktop-portal-KDE (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
+printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
 while true; do
     read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
     echo
@@ -44,10 +46,6 @@ while true; do
             # Clean out other portals
             printf "${NOTE} Clearing any other xdg-desktop-portal implementations...\n"
             # Check if packages are installed and uninstall if present
-            if pacman -Qs xdg-desktop-portal-gnome > /dev/null ; then
-                echo "Removing xdg-desktop-portal-gnome..."
-                sudo pacman -R --noconfirm xdg-desktop-portal-gnome 2>&1 | tee -a "$LOG"
-            fi
             if pacman -Qs xdg-desktop-portal-wlr > /dev/null ; then
                 echo "Removing xdg-desktop-portal-wlr..."
                 sudo pacman -R --noconfirm xdg-desktop-portal-wlr 2>&1 | tee -a "$LOG"
