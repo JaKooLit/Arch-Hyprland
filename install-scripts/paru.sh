@@ -6,7 +6,7 @@
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_paru.log"
+LOG="install-$(date +%d-%H%M%S)_paru.log"
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -24,6 +24,10 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
+if [ ! -d paru-bin ]; then
+    rm -rf paru-bin 2>&1 | tee -a "$LOG"
+fi
+
 # Check for AUR helper and install if not found
 ISAUR=$(command -v yay || command -v paru)
 
@@ -35,6 +39,10 @@ else
   git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone paru from AUR\n" "${ERROR}"; exit 1; }
   cd paru-bin || { printf "%s - Failed to enter paru-bin directory\n" "${ERROR}"; exit 1; }
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install paru from AUR\n" "${ERROR}"; exit 1; }
+  
+  # moving install logs in to Install-Logs folder
+  mv $LOG ../Install-Logs/ || true   
+  cd ..
 fi
 
 # Update system before proceeding
