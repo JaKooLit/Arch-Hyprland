@@ -31,7 +31,10 @@ if [ "$proceed" != "y" ]; then
     exit 1
 fi
 
-
+# Create Directory for Install Logs
+if [ ! -d Install-Logs ]; then
+    mkdir Install-Logs
+fi
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -42,6 +45,7 @@ CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
+
 
 # Function to colorize prompts
 colorize_prompt() {
@@ -116,7 +120,7 @@ execute_script() {
 printf "\n"
 ask_custom_option "-Type AUR helper" "paru or yay" aur_helper
 printf "\n"
-ask_yes_no "-Do you have nvidia gpu?" nvidia
+ask_yes_no "-Do you have any nvidia gpu in your system?" nvidia
 printf "\n"
 ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
 printf "\n"
@@ -124,22 +128,25 @@ ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
-ask_yes_no "-Installing in Asus ROG Laptops?" rog
-printf "\n"
-ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
+ask_yes_no "-Install & configure SDDM log-in Manager w/ (Optional) SDDM Theme?" sddm
 printf "\n"
 ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
 printf "\n"
-ask_yes_no "-Install zsh, oh-my-zsh & pokemon-colorscripts?" zsh
+ask_yes_no "-Install zsh, oh-my-zsh & (Optional) pokemon-colorscripts?" zsh
 printf "\n"
-ask_yes_no "-Do you want to copy Hyprland dotfiles?" dots
+ask_yes_no "-Installing in a Asus ROG Laptops?" rog
 printf "\n"
+ask_yes_no "-Do you want to download pre-configured Hyprland dotfiles?" dots
+printf "\n"
+
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
-
-# Execute AUR helper script based on user choice
+sleep 0.5
+# Ensuring base-devel is installed
 execute_script "00-base.sh"
-
+sleep 0.5
+execute_script "pacman.sh"
+# Execute AUR helper script based on user choice
 if [ "$aur_helper" == "paru" ]; then
     execute_script "paru.sh"
 elif [ "$aur_helper" == "yay" ]; then
@@ -172,10 +179,6 @@ if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
 
-if [ "$rog" == "Y" ]; then
-    execute_script "rog.sh"
-fi
-
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
 fi
@@ -190,12 +193,15 @@ fi
 
 execute_script "InputGroup.sh"
 
+if [ "$rog" == "Y" ]; then
+    execute_script "rog.sh"
+fi
+
 if [ "$dots" == "Y" ]; then
     execute_script "dotfiles.sh"
 
 fi
 
-clear
 
 printf "\n${OK} Yey! Installation Completed.\n"
 printf "\n"

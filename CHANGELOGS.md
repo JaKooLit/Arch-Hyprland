@@ -1,5 +1,12 @@
 ## Changelogs
 
+## 01 Jan 2024
+- Re-coded complete and test
+- Added to spice up pacman.conf including adding of ILoveCandy on it :)
+
+## 30 Dec 2023
+- Install scripts reconstructed
+
 ## 29 December 2023
 - Remove dunst in favor of swaync. NOTE: Part of the script is to also uninstall mako and dunst (if installed) as on my experience, dunst is sometimes taking over the notification even if it is not set to start
 

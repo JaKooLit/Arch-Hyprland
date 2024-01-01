@@ -68,7 +68,7 @@ chmod +x install.sh
 ```
 
 <p align="center">
-    <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/Arch-Installer.png" />
+    <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/Installer.png" />
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -93,6 +93,10 @@ source ~/.zshrc
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
+
+#### 🔧 Proper way to re-installing a particular script from install-scripts folder
+- CD into Arch-Hyprland Folder and then ran the below command. 
+- i.e. `./install-scripts/gtk-themes` - For reinstall GTK Themes.
 
 #### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
