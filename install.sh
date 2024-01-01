@@ -31,8 +31,6 @@ if [ "$proceed" != "y" ]; then
     exit 1
 fi
 
-source install-scripts/Global_functions.sh
-
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
