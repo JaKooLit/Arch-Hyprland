@@ -24,7 +24,7 @@ if [ ! -d Install-Logs ]; then
 fi
 
 # Check Existing yay-bin
-if [ ! -d yay-bin ]; then
+if [ -d yay-bin ]; then
     rm -rf yay-bin 2>&1 | tee -a "$LOG"
 fi
 

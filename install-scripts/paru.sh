@@ -24,7 +24,8 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-if [ ! -d paru-bin ]; then
+# checking if paru-bin exist and removing if it is
+if [ -d paru-bin ]; then
     rm -rf paru-bin 2>&1 | tee -a "$LOG"
 fi
 

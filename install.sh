@@ -142,6 +142,7 @@ printf "\n"
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
 
+sleep 1
 # Ensuring base-devel is installed
 execute_script "00-base.sh"
 
