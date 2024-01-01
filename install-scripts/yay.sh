@@ -8,8 +8,6 @@
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_yay.log"
 
-set -e
-
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -20,7 +18,6 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
-
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
@@ -28,7 +25,6 @@ fi
 
 # Check for AUR helper and install if not found
 ISAUR=$(command -v yay || command -v paru)
-
 if [ -n "$ISAUR" ]; then
   printf "\n%s - AUR helper already installed, moving on.\n" "${OK}"
 else
