@@ -1,9 +1,6 @@
 #!/bin/bash
-# 💫 https://github.com/JaKooLit 💫 #
-# Adding users into input group #
 
-
-## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -11,10 +8,18 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR" || exit 1
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
+# Set some colors for output messages
+OK="$(tput setaf 2)[OK]$(tput sgr0)"
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
+ORANGE=$(tput setaf 166)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
 
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
+LOG="install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
     echo "${WARN} This script will add or remove your user from the 'input' group."
@@ -31,7 +36,7 @@ while true; do
             sudo groupadd input
 
             # Log the creation of the 'input' group
-            echo "'input' group created" >> "$LOG"
+            echo "$(date '+%Y-%m-%d %H:%M:%S') - 'input' group created" >> "$LOG"
         fi
 
         # Add the user to the input group
@@ -39,7 +44,7 @@ while true; do
         echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
 
         # Log the addition of the user to the 'input' group
-        echo "User added to 'input' group" >> "$LOG"
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - User added to 'input' group" >> "$LOG"
         break  # Break out of the loop if 'yes' is chosen
     elif [[ $choice == "n" || $choice == "N" ]]; then
         echo "${NOTE} No changes made. Exiting the script."
@@ -48,5 +53,3 @@ while true; do
         echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
     fi
 done
-
-clear
