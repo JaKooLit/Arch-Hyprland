@@ -40,7 +40,7 @@ else
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n" "${ERROR}"; exit 1; }
 
   # moving install logs in to Install-Logs folder
-  mv $LOG ../Install-Logs/ || true   
+  mv install*.log ../Install-Logs/ || true   
   cd ..
 fi
 

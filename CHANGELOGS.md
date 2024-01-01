@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 01 Jan 2024
+- Re-coded complete and test
+- Added to spice up pacman.conf including adding of ILoveCandy on it :)
+
 ## 30 Dec 2023
 - Install scripts reconstructed
 
