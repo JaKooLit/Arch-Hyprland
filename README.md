@@ -36,7 +36,7 @@
 - Since the Hyprland-Dots are evolving, some of the screenshots maybe old
 - the wallpaper offered to be downloaded towards the end is from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
-> [❗!IMPORTANT]
+> [!IMPORTANT]
 > install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script does NOT include uninstallation of packages
 
 > [!NOTICE]
