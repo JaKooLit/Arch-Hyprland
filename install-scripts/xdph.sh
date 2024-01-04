@@ -1,6 +1,9 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # XDG-Desktop-Portals #
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 xdg=(
 xdg-desktop-portal-hyprland
@@ -37,7 +40,9 @@ sleep 1
 printf "\n"
 printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
 while true; do
-    read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
+    if [[ -z $XDPH1 ]]; then
+      read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
+    fi
     echo
     sleep 1
 

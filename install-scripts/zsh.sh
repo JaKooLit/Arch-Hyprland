@@ -1,6 +1,9 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # zsh and oh my zsh including pokemon-color-scripts#
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 zsh=(
 zsh
@@ -23,8 +26,10 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh.log"
 
 ## Optional Pokemon color scripts
 while true; do
-    read -p "${CAT} OPTIONAL - Do you want to add Pokemon color scripts? (y/n): " choice
-    case "$choice" in
+    if [[ -z $pokemon_choice ]]; then
+       read -p "${CAT} OPTIONAL - Do you want to add Pokemon color scripts? (y/n): " pokemon_choice
+    fi
+    case "$pokemon_choice" in
         [Yy]*)
             zsh+=('pokemon-colorscripts-git')
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc

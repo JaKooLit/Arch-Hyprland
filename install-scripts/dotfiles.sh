@@ -1,6 +1,9 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # Hyprland-Dots to download from Releases #
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
@@ -28,7 +31,9 @@ if [ -f Hyprland-Dots.tar.gz ]; then
     exit 0
   else
     echo -e "${WARN} Hyprland-Dots.tar.gz is outdated (Existing version: $existing_version, Latest version: $latest_version)."
-    read -p "Do you want to upgrade to the latest version? (y/n): " upgrade_choice
+    if [[ -z $upgrade_choice ]]; then
+      read -p "Do you want to upgrade to the latest version? (y/n): " upgrade_choice
+    fi
     if [ "$upgrade_choice" = "y" ]; then
 		echo -e "${NOTE} Proceeding to download the latest release." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
 		
