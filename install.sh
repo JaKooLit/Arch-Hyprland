@@ -25,6 +25,7 @@ echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D ac
 echo
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
+
 printf "\n%.0s" {1..2}
 echo "$(tput bold)$(tput setaf 7)Choose Y to use preset ONLY once you reviewed, updated or updated the preset.sh $(tput sgr0)" 
 echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, choose N in the "Use Preset Settings" question $(tput sgr0)"
@@ -38,21 +39,12 @@ if [ "$proceed" != "y" ]; then
     exit 1
 fi
 
-if [[ $use_preset = [Yy] ]]; then
-  source ./preset.sh
-fi
-
-
-
-
-
-
-
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
+# Use of Preset Settings
 if [[ $use_preset = [Yy] ]]; then
   source ./preset.sh
 fi
