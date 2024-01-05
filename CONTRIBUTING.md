@@ -58,7 +58,7 @@ Thank you for your interest in contributing to Community Standards! We welcome a
   - [bug_report.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) - Use this template to create a report to help us improve.
   - [feature_request.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) - Use this template to suggest a feature for this project.
   - [documentation_update.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/.github/ISSUE_TEMPLATE/documentation_update.md) - Use this template to propose a change to the documentation.
-  - [custom.md](https://github.comJaKooLit/Arch-Hyprland/blob/main/.github/ISSUE_TEMPLATE/custom.md) - Use this template to submit a custom issue.
+  - [custom.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/.github/ISSUE_TEMPLATE/custom.md) - Use this template to submit a custom issue.
   - [PULL_REQUEST_TEMPLATE.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/.github/PULL_REQUEST_TEMPLATE.md) - Use this template to submit a pull request.
   - [COMMIT_MESSAGE_GUIDELINES.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/COMMIT_MESSAGE_GUIDELINES.md) - Read this file to learn about the commit message guidelines.
   - [CONTRIBUTING.md](https://github.com/JaKooLit/Arch-Hyprland/blob/main/CONTRIBUTING.md) - Read this file to learn about the contributing guidelines.
