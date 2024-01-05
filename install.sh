@@ -36,6 +36,10 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
+if [[ $use_preset = [Yy] ]]; then
+  source ./preset.sh
+fi
+
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
