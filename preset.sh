@@ -17,11 +17,11 @@ sddm="Y"
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
 xdph="Y"
 ###-Install zsh, oh-my-zsh & (Optional) pokemon-colorscripts?
-zsh="N"
+zsh="Y"
 ###-Installing in a Asus ROG Laptops?
 rog="N"
 ###-Do you want to download pre-configured Hyprland dotfiles?
-dots="N"
+dots="Y"
 
 ### Would you like to blacklist nouveau? (y/n)
 blacklist_nouveau="Y"
@@ -37,4 +37,4 @@ install_sddm_theme="Y"
 ### " Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
 input_group_choid="Y"
 ### OPTIONAL - Do you want to add Pokemon color scripts? (y/n): 
-pokemon_choice="N"
+pokemon_choice="Y"
