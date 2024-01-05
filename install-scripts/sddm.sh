@@ -1,6 +1,9 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # SDDM Log-in Manager #
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 sddm=(
   qt5-graphicaleffects
@@ -28,7 +31,9 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 # Check if SDDM is already installed
 if pacman -Qs sddm > /dev/null; then
   # Prompt user to manually install sddm-git to remove SDDM
-  read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
+    if [[ -z $manual_install_sddm ]]; then
+      read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
+    fi
   echo
   if [[ $manual_install_sddm =~ ^[Yy]$ ]]; then
     $ISAUR -S sddm-git 2>&1 | tee -a "$LOG"
@@ -65,7 +70,9 @@ sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 # SDDM-themes
 valid_input=false
 while [ "$valid_input" != true ]; do
-  read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+    if [[ -z $install_sddm_theme ]]; then
+      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+    fi
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
     printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
 

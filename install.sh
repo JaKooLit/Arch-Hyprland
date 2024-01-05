@@ -38,6 +38,9 @@ if [ "$proceed" != "y" ]; then
     exit 1
 fi
 
+if [[ $use_preset = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 
 
@@ -76,22 +79,32 @@ colorize_prompt() {
 LOG="install-$(date +%d-%H%M%S).log"
 
 # Initialize variables to store user responses
-aur_helper=""
-bluetooth=""
-dots=""
-gtk_themes=""
-nvidia=""
-rog=""
-sddm=""
-thunar=""
-xdph=""
-zsh=""
+# aur_helper=""
+# bluetooth=""
+# dots=""
+# gtk_themes=""
+# nvidia=""
+# rog=""
+# sddm=""
+# thunar=""
+# xdph=""
+# zsh=""
 
 # Define the directory where your scripts are located
 script_directory=install-scripts
 
 # Function to ask a yes/no question and set the response in a variable
 ask_yes_no() {
+  if [[ ! -z "${!2}" ]]; then
+    echo "$(colorize_prompt "$CAT"  "$1 (Preset): ${!2}")" 
+    if [[ "${!2}" = [Yy] ]]; then
+      return 0
+    else
+      return 1
+    fi
+  else
+    eval "$2=''" 
+  fi
     while true; do
         read -p "$(colorize_prompt "$CAT"  "$1 (y/n): ")" choice
         case "$choice" in
@@ -107,6 +120,12 @@ ask_custom_option() {
     local prompt="$1"
     local valid_options="$2"
     local response_var="$3"
+
+    if [[ ! -z "${!3}" ]]; then
+      return 0
+    else
+     eval "$3=''" 
+    fi
 
     while true; do
         read -p "$(colorize_prompt "$CAT"  "$prompt ($valid_options): ")" choice
@@ -125,7 +144,7 @@ execute_script() {
     if [ -f "$script_path" ]; then
         chmod +x "$script_path"
         if [ -x "$script_path" ]; then
-            "$script_path"
+            env USE_PRESET=$use_preset  "$script_path"
         else
             echo "Failed to make script '$script' executable."
         fi
@@ -145,8 +164,6 @@ printf "\n"
 ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
-printf "\n"
-ask_yes_no "-Install & configure SDDM log-in Manager w/ (Optional) SDDM Theme?" sddm
 printf "\n"
 ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
 printf "\n"
