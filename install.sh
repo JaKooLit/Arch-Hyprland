@@ -25,8 +25,13 @@ echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D ac
 echo
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
-read -p "$(tput setaf 6)Would you like to preset? (y/n): $(tput sgr0)" use_preset
+printf "\n%.0s" {1..2}
+echo "$(tput bold)$(tput setaf 7)Choose Y to use preset ONLY once you reviewed, updated or updated the preset.sh $(tput sgr0)" 
+echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, choose N in the "Use Preset Settings" question $(tput sgr0)"
+printf "\n%.0s" {1..1}
+read -p "$(tput setaf 6)Would you like to Use Preset Settings? (y/n): $(tput sgr0)" use_preset
 
+printf "\n%.0s" {1..3}
 
 if [ "$proceed" != "y" ]; then
     echo "Installation aborted."
