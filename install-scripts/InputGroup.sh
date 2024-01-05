@@ -20,7 +20,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
-    echo "${WARN} This script will add or remove your user from the 'input' group."
+    echo "${WARN} This script will add your user to the 'input' group."
     echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
 
     if [[ -z $input_group_choid ]]; then
