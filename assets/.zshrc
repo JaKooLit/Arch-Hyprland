@@ -18,7 +18,7 @@ source $ZSH/oh-my-zsh.sh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/archlinux
 
 
-# Display Pokemon-colorscripts
+Display Pokemon-colorscripts
 # Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
 #pokemon-colorscripts --no-title -s -r
 
@@ -34,5 +34,5 @@ source $ZSH/oh-my-zsh.sh
 #cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
-#source ~/.cache/wal/colors-tty.sh
+source ~/.cache/wal/colors-tty.sh
 
