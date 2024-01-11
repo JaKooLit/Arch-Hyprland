@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 11 Jan 2024
+- dropped wlsunset
+
 ## 01 Jan 2024
 - Re-coded complete and test
 - Added to spice up pacman.conf including adding of ILoveCandy on it :)
