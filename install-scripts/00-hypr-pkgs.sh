@@ -45,7 +45,8 @@ wget
 wl-clipboard
 wlogout
 xdg-user-dirs
-xdg-utils 
+xdg-utils
+xorg-xhost
 yad
 )
 
