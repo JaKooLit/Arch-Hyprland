@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 1 Mar 2024
+- replaced sddm-git with sddm
+
 ## 11 Jan 2024
 - dropped wlsunset
 

@@ -9,7 +9,7 @@ sddm=(
   qt5-graphicaleffects
   qt5-quickcontrols2
   qt5-svg
-  sddm-git
+  sddm
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -26,22 +26,9 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 
-# SDDM
-
-# Check if SDDM is already installed
-if pacman -Qs sddm > /dev/null; then
-  # Prompt user to manually install sddm-git to remove SDDM
-    if [[ -z $manual_install_sddm ]]; then
-      read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
-    fi
-  echo
-  if [[ $manual_install_sddm =~ ^[Yy]$ ]]; then
-    $ISAUR -S sddm-git 2>&1 | tee -a "$LOG"
-  fi
-fi
 
 # Install SDDM and SDDM theme
-printf "${NOTE} Installing SDDM-git and dependencies........\n"
+printf "${NOTE} Installing sddm and dependencies........\n"
   for package in "${sddm[@]}"; do
   install_package "$package" 2>&1 | tee -a "$LOG"
   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
