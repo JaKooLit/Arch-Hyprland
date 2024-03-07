@@ -96,6 +96,7 @@ while [ "$valid_input" != true ]; do
     valid_input=true
   else
     printf "\n%s - Invalid input. Please enter 'y' for Yes or 'n' for No.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
+    install_sddm_theme=""
   fi
 done
 
