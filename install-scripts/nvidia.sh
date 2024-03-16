@@ -15,6 +15,7 @@ nvidia_pkg=(
 
 hypr=(
   hyprland
+  hyprcursor
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
