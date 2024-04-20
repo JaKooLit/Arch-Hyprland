@@ -1,5 +1,11 @@
 ## Changelogs
 
+## 20 Apr 2024
+- Change default Oh-my-zsh theme to xiong-chiamiov-plus
+
+## 16 Mar 2024
+- added hyprcursor
+
 ## 1 Mar 2024
 - replaced sddm-git with sddm
 
