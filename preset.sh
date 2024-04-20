@@ -18,7 +18,7 @@ gtk_themes="Y"
 bluetooth="Y"
 ###-Do you want to install Thunar file manager?
 thunar="Y"
-###-Do you want to install Thunar file manager?
+###-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?
 sddm="Y"
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
 xdph="Y"
@@ -29,18 +29,20 @@ rog="N"
 ###-Do you want to download pre-configured Hyprland dotfiles?
 dots="Y"
 
+### These are the sub-questions of the above choices
 ### Would you like to blacklist nouveau? (y/n)
 blacklist_nouveau="Y"
-### Do you want to upgrade to the latest version? (y/n): 
-upgrade_choice="Y"
+### XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! Script cant remove nor disable it.
 ### Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) 
 XDPH1="Y"
 ### SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)
 manual_install_sddm="N"
 ### OPTIONAL - Would you like to install SDDM themes? (y/n)
 install_sddm_theme="Y"
-### " This script will add or remove your user from the 'input' group."
+### " This script will add your user to the 'input' group."
 ### " Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
 input_group_choid="Y"
 ### OPTIONAL - Do you want to add Pokemon color scripts? (y/n): 
 pokemon_choice="Y"
+### Do you want to upgrade to the latest version? (y/n) - This is for the dotfiles
+upgrade_choice="Y"
