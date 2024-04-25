@@ -17,6 +17,8 @@ curl
 grim 
 gvfs 
 gvfs-mtp
+hypridle
+hyprlock
 imagemagick 
 jq
 kitty
@@ -36,8 +38,6 @@ qt6-svg
 rofi-lbonn-wayland-git 
 slurp 
 swappy 
-swayidle 
-swaylock-effects-git
 swaync 
 swww 
 waybar
