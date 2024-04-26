@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 26 Apr 2024
+- Updated sddm.sh for Qt6 variant
+
 ## 23 Apr 2024
 - Dropping swayidle and swaylock in favor of hypridle and hyprlock
 

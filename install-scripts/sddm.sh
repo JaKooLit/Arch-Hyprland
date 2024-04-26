@@ -6,11 +6,11 @@ if [[ $USE_PRESET = [Yy] ]]; then
 fi
 
 sddm=(
-  qt5-graphicaleffects
-  qt5-quickcontrols2
-  qt5-svg
+  qt6-5compat 
+  qt6-declarative 
+  qt6-svg  
   sddm
-)
+) 
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
@@ -57,27 +57,25 @@ sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 # SDDM-themes
 valid_input=false
 while [ "$valid_input" != true ]; do
-    if [[ -z $install_sddm_theme ]]; then
-      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
-    fi
+  read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
     printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
 
     # Check if /usr/share/sddm/themes/simple-sddm exists and remove if it does
-    if [ -d "/usr/share/sddm/themes/simple-sddm" ]; then
-      sudo rm -rf "/usr/share/sddm/themes/simple-sddm"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory." 2>&1 | tee -a "$LOG"
+    if [ -d "/usr/share/sddm/themes/simple-sddm-2" ]; then
+      sudo rm -rf "/usr/share/sddm/themes/simple-sddm-2"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory." 2>&1 | tee -a "$LOG"
     fi
 
     # Check if simple-sddm directory exists in the current directory and remove if it does
-    if [ -d "simple-sddm" ]; then
-      rm -rf "simple-sddm"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory from the current location." 2>&1 | tee -a "$LOG"
+    if [ -d "simple-sddm-2" ]; then
+      rm -rf "simple-sddm-2"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory from the current location." 2>&1 | tee -a "$LOG"
     fi
 
-    if git clone https://github.com/JaKooLit/simple-sddm.git; then
-      while [ ! -d "simple-sddm" ]; do
-        sleep 1
+    if git clone https://github.com/JaKooLit/simple-sddm-2.git; then
+      while [ ! -d "simple-sddm-2" ]; do
+      sleep 1
       done
 
       if [ ! -d "/usr/share/sddm/themes" ]; then
@@ -85,8 +83,8 @@ while [ "$valid_input" != true ]; do
         echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
       fi
 
-      sudo mv simple-sddm /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm" | sudo tee "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
+      sudo mv simple-sddm-2 /usr/share/sddm/themes/
+      echo -e "[Theme]\nCurrent=simple-sddm-2" | sudo tee "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection" | tee -a "$LOG" >&2
     fi
