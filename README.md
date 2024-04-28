@@ -42,6 +42,9 @@
 > [!NOTE]
 > Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
 
+> [!WARNING] 
+> Download this script on a directory where you have write permissions. ie. HOME. Or any directory within your home directory. Else script will fail
+
 #### 🆕  Prerequisites
 - This install script is intended for atleast Server type / Minimal Arch Linux installed.
 
@@ -64,8 +67,8 @@
 #### ✨ to run
 > clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git
-cd Arch-Hyprland
+git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git ~/Arch-Hyprland
+cd ~/Arch-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
