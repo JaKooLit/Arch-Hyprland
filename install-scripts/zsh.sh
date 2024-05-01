@@ -50,7 +50,7 @@ printf "${NOTE} Installing core zsh packages...${RESET}\n"
 for ZSH in "${zsh[@]}"; do
   install_package "$ZSH" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-     echo -e "\e[1A\e[K${ERROR} - $ZSH install had failed, please check the install.log"
+     echo -e "\e[1A\e[K${ERROR} - $ZSH Package installation failed, Please check the installation logs"
   fi
 done
 

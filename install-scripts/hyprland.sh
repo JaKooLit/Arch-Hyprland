@@ -34,7 +34,7 @@ fi
 printf "${NOTE} Installing Hyprland .......\n"
  for HYPR in "${hypr[@]}"; do
    install_package "$HYPR" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR install had failed, please check the install.log"; exit 1; }
+   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"; exit 1; }
 done
 
 clear

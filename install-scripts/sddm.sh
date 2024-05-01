@@ -31,7 +31,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 printf "${NOTE} Installing sddm and dependencies........\n"
   for package in "${sddm[@]}"; do
   install_package "$package" 2>&1 | tee -a "$LOG"
-  [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
+  [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package Package installation failed, Please check the installation logs"; exit 1; }
  done 
 
 # Check if other login managers installed and disabling its service before enabling sddm

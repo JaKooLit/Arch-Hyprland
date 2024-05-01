@@ -21,7 +21,7 @@ printf " Installing ASUS ROG packages...\n"
 for ASUS in asusctl supergfxctl rog-control-center; do
 install_package  "$ASUS" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-  echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
+  echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
   exit 1
   fi
 done

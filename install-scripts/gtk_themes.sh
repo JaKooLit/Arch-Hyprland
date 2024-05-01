@@ -26,7 +26,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_themes.log"
 for PKG1 in "${engine[@]}"; do
     install_package "$PKG1" 2>&1 | tee -a "$LOG"
     if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 install had failed, please check the install.log"
+        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
         exit 1
     fi
 done

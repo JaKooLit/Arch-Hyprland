@@ -39,7 +39,7 @@ systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>/dev/null 
 printf "${NOTE} Installing Pipewire Packages...\n"
 for PIPEWIRE in "${pipewire[@]}"; do
     install_package "$PIPEWIRE" 2>&1 | tee -a "$LOG"
-    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $PIPEWIRE install had failed. Please check the install.log"; exit 1; }
+    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $PIPEWIRE Package installation failed, Please check the installation logs"; exit 1; }
 done
 
 printf "Activating Pipewire Services...\n"
