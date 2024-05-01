@@ -28,7 +28,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 for xdgs in "${xdg[@]}"; do
   install_package "$xdgs" 2>&1 | tee -a "$LOG"
     if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $xdph install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $xdph Package installation failed, Please check the installation logs"
     exit 1
     fi
 done

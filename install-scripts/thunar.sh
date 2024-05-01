@@ -28,7 +28,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 printf "${NOTE} Installing Thunar Packages...\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" 2>&1 | tee -a "$LOG"
-    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR install had failed, please check the install.log"; exit 1; }
+    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"; exit 1; }
   done
 
  # Check for existing configs and copy if does not exist

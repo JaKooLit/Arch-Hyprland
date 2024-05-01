@@ -102,7 +102,7 @@ printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${fonts[@]}" "${Extra[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
@@ -112,7 +112,7 @@ printf "\n%s - Checking if mako or dunst are installed and removing for swaync t
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation failed, please check the log"
     exit 1
   fi
 done

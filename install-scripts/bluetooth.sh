@@ -25,7 +25,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
 printf "${NOTE} Installing Bluetooth Packages...\n"
  for BLUE in "${blue[@]}"; do
    install_package "$BLUE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $BLUE install had failed, please check the install.log"; exit 1; }
+   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $BLUE Package installation failed, Please check the installation logs"; exit 1; }
   done
 
 printf " Activating Bluetooth Services...\n"
