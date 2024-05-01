@@ -13,11 +13,6 @@ nvidia_pkg=(
   libva-nvidia-driver-git
 )
 
-hypr=(
-  hyprland
-  hyprcursor
-)
-
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -40,13 +35,6 @@ if pacman -Qs hyprland > /dev/null; then
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
     done
 fi
-
-# Hyprland
-printf "${NOTE} Installing Hyprland......\n"
- for HYPR in "${hypr[@]}"; do
-   install_package "$HYPR" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR install had failed, please check the install.log"; exit 1; }
-  done
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing addition Nvidia packages...\n"

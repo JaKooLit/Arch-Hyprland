@@ -188,12 +188,11 @@ execute_script "00-hypr-pkgs.sh"
 # Install pipewire and pipewire-audio
 execute_script "pipewire.sh"
 
+# Install hyprland
+execute_script "hyprland.sh"
+
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
-fi
-
-if [ "$nvidia" == "N" ]; then
-    execute_script "hyprland.sh"
 fi
 
 if [ "$gtk_themes" == "Y" ]; then
