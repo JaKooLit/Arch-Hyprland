@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 02 May 2024
+- Added pyprland (hyprland plugin)
+
 ## 26 Apr 2024
 - Updated sddm.sh for Qt6 variant
 

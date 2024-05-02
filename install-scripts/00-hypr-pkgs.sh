@@ -31,7 +31,8 @@ pipewire-alsa
 playerctl
 polkit-gnome
 python-requests
-python-pywal 
+python-pywal
+pyprland 
 qt5ct
 qt6ct
 qt6-svg
