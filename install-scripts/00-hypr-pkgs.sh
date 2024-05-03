@@ -32,6 +32,7 @@ playerctl
 polkit-gnome
 python-requests
 python-pywal
+python-pyquery
 pyprland 
 qt5ct
 qt6ct
