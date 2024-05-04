@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 05 May 2024
+- switched to rofi-wayland Extra Repo
+
 ## 04 May 2024
 - separated fonts installation script for easy debugging
 

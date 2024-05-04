@@ -37,7 +37,7 @@ pyprland
 qt5ct
 qt6ct
 qt6-svg
-rofi-lbonn-wayland-git 
+rofi-wayland
 slurp 
 swappy 
 swaync 
