@@ -1,5 +1,14 @@
 ## Changelogs
 
+## 04 May 2024
+- separated fonts installation script for easy debugging
+
+## 03 May 2024
+- added python3-pyquery for new weather-waybar python based on Hyprland-Dots
+
+## 02 May 2024
+- Added pyprland (hyprland plugin)
+
 ## 26 Apr 2024
 - Updated sddm.sh for Qt6 variant
 

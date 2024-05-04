@@ -188,6 +188,9 @@ execute_script "00-hypr-pkgs.sh"
 # Install pipewire and pipewire-audio
 execute_script "pipewire.sh"
 
+# Install necessary fonts
+execute_script "fonts.sh"
+
 # Install hyprland
 execute_script "hyprland.sh"
 
