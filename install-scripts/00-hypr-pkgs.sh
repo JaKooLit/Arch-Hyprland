@@ -42,7 +42,6 @@ slurp
 swappy 
 swaync 
 swww 
-waybar
 wget
 wl-clipboard
 wlogout

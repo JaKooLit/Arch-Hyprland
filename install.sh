@@ -194,6 +194,9 @@ execute_script "fonts.sh"
 # Install hyprland
 execute_script "hyprland.sh"
 
+# Install waybar
+execute_script "waybar-git.sh"
+
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi
