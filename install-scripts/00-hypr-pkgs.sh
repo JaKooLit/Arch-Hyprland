@@ -37,7 +37,7 @@ pyprland
 qt5ct
 qt6ct
 qt6-svg
-rofi-lbonn-wayland-git 
+rofi-wayland
 slurp 
 swappy 
 swaync 
@@ -55,7 +55,7 @@ yad
 hypr_package_2=(
 brightnessctl 
 btop
-cava-git
+cava
 eog
 gnome-system-monitor
 mousepad 
