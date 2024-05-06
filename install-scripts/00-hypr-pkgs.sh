@@ -55,7 +55,7 @@ yad
 hypr_package_2=(
 brightnessctl 
 btop
-cava-git
+cava
 eog
 gnome-system-monitor
 mousepad 

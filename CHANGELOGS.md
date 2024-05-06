@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 07 May 2024
+- Minor typo change on nvidia.sh
+- switch back to cava since installing cava-git keep it hanging (see known-issue on readme)
+
 ## 05 May 2024
 - switched to rofi-wayland Extra Repo
 
