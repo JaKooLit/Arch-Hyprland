@@ -27,22 +27,19 @@ echo
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
 printf "\n%.0s" {1..2}
-echo "$(tput bold)$(tput setaf 7)Choose Y to use preset ONLY once you reviewed, updated or updated the preset.sh $(tput sgr0)" 
-echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, choose N in the "Use Preset Settings" question $(tput sgr0)"
-printf "\n%.0s" {1..1}
-read -p "$(tput setaf 6)Would you like to Use Preset Settings? (y/n): $(tput sgr0)" use_preset
-
-printf "\n%.0s" {1..3}
 
 if [ "$proceed" != "y" ]; then
     echo "Installation aborted."
+	printf "\n%.0s" {1..2}
     exit 1
 fi
 
-# Create Directory for Install Logs
-if [ ! -d Install-Logs ]; then
-    mkdir Install-Logs
-fi
+printf "\n%.0s" {1..2}
+
+echo "$(tput bold)$(tput setaf 166)ATTENTION: Choose Y to use preset ONLY once you reviewed, updated or updated the preset.sh $(tput sgr0)" 
+echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, choose N in the Use Preset Settings $(tput sgr0)"
+printf "\n%.0s" {1..1}
+read -p "$(tput setaf 6)Would you like to Use Preset Settings? (y/n): $(tput sgr0)" use_preset
 
 # Use of Preset Settings
 if [[ $use_preset = [Yy] ]]; then
@@ -81,6 +78,11 @@ LOG="install-$(date +%d-%H%M%S).log"
 # thunar=""
 # xdph=""
 # zsh=""
+
+# Create Directory for Install Logs
+if [ ! -d Install-Logs ]; then
+    mkdir Install-Logs
+fi
 
 # Define the directory where your scripts are located
 script_directory=install-scripts
