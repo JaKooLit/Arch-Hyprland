@@ -8,9 +8,9 @@ fi
 sddm=(
   qt6-5compat 
   qt6-declarative 
-  qt6-svg  
+  qt6-svg
   sddm
-) 
+)
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
@@ -57,25 +57,27 @@ sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 # SDDM-themes
 valid_input=false
 while [ "$valid_input" != true ]; do
-  read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+    if [[ -z $install_sddm_theme ]]; then
+      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+    fi
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
     printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
 
-    # Check if /usr/share/sddm/themes/simple-sddm exists and remove if it does
+    # Check if /usr/share/sddm/themes/simple-sddm-2 exists and remove if it does
     if [ -d "/usr/share/sddm/themes/simple-sddm-2" ]; then
       sudo rm -rf "/usr/share/sddm/themes/simple-sddm-2"
       echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory." 2>&1 | tee -a "$LOG"
     fi
 
-    # Check if simple-sddm directory exists in the current directory and remove if it does
+    # Check if simple-sddm-2 directory exists in the current directory and remove if it does
     if [ -d "simple-sddm-2" ]; then
       rm -rf "simple-sddm-2"
       echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory from the current location." 2>&1 | tee -a "$LOG"
     fi
 
-    if git clone https://github.com/JaKooLit/simple-sddm-2.git; then
+    if git clone --depth 1 https://github.com/JaKooLit/simple-sddm-2.git; then
       while [ ! -d "simple-sddm-2" ]; do
-      sleep 1
+        sleep 1
       done
 
       if [ ! -d "/usr/share/sddm/themes" ]; then

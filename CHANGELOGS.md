@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 08 May 2024
+- Adjusted sddm.sh since it does not respect preset.sh
+- install.sh have been rearranged so it quits if user choose not to proceed
+
 ## 07 May 2024
 - Minor typo change on nvidia.sh
 - switch back to cava since installing cava-git keep it hanging (see known-issue on readme)
