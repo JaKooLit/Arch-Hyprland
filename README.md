@@ -40,7 +40,7 @@ https://github.com/JaKooLit/Arch-Hyprland/assets/85185940/84e3948f-edbf-45b8-9e3
 
 #### 📽️ youtube video showcase: [`Link`](https://youtu.be/W2UFwkgdwNo)
 
-<details>
+</details>
     
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
