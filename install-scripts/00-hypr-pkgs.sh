@@ -32,7 +32,6 @@ pipewire-alsa
 playerctl
 polkit-gnome
 python-requests
-python-pywal
 python-pyquery
 pyprland 
 qt5ct
@@ -42,7 +41,8 @@ rofi-wayland
 slurp 
 swappy 
 swaync 
-swww 
+swww
+wallust-git 
 waybar
 wget
 wl-clipboard

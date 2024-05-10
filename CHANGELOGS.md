@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 10 May 2024
+- added wallust-git and remove python-pywal for migration to wallust on Hyprland-Dots v2.2.11
+
 ## 08 May 2024
 - Adjusted sddm.sh since it does not respect preset.sh
 - install.sh have been rearranged so it quits if user choose not to proceed
