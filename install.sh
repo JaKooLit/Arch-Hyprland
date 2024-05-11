@@ -36,10 +36,10 @@ fi
 
 printf "\n%.0s" {1..2}
 
-echo "$(tput bold)$(tput setaf 166)ATTENTION: Choose Y to use preset ONLY once you reviewed, updated or updated the preset.sh $(tput sgr0)" 
-echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, choose N in the Use Preset Settings $(tput sgr0)"
-printf "\n%.0s" {1..1}
-read -p "$(tput setaf 6)Would you like to Use Preset Settings? (y/n): $(tput sgr0)" use_preset
+echo "$(tput bold)$(tput setaf 166)ATTENTION: Choosing Y on use preset question will install also nvidia stuff! $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 3)CTRL C to cancel and edit the file preset.sh $(tput sgr0)"  
+echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, answer N in here $(tput sgr0)"
+read -p "$(tput setaf 6)Would you like to Use Preset Settings (See note above)? (y/n): $(tput sgr0)" use_preset
 
 # Use of Preset Settings
 if [[ $use_preset = [Yy] ]]; then
