@@ -1,6 +1,6 @@
 <div align="center">
 
-## 💌 ** JaKooLit's Arch Hyprland Install Script ** 💌
+## 💌 ** Arch Hyprland Install Script ** 💌
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Arch-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7)
 
