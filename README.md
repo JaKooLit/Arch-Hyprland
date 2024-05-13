@@ -8,7 +8,18 @@
 <br/>
 </div>
 
-#### Hyprland-Dots-showcase 
+#### Hyprland-Dots-showcase
+
+
+
+https://github.com/JaKooLit/Arch-Hyprland/assets/85185940/84e3948f-edbf-45b8-9e3f-1f6699e3830a
+
+
+### Gallery and Videos
+<details>
+<summary>
+📷 Screenshots
+</summary>
 <p align="center">
     <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch-v2/Arch-Default-Layout.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/dark-theme.png" />   
    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/Light-theme.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-ScreenShots/Arch-v2/Another-Screenshot.png"" /> 
@@ -29,7 +40,8 @@
 
 #### 📽️ youtube video showcase: [`Link`](https://youtu.be/W2UFwkgdwNo)
 
-
+</details>
+    
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
 - Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
@@ -48,8 +60,9 @@
 #### 🆕  Prerequisites
 - This install script is intended for atleast Server type / Minimal Arch Linux installed.
 
-#### 🔘 Pipewire and Pipewire audio
-- This script will install pipewire and will also disable or will uninstall pulseaudio. If you dont want it, you can simply just delete pipewire.sh in install-scripts folder before installing. 
+> [!NOTE]
+> 🔘 Pipewire and Pipewire audio
+- This script will install pipewire and will also disable or will uninstall pulseaudio. If you dont want it, edit install.sh, about line 191 and comment the line  `execute_script "pipewire.sh"` or you can simply just delete pipewire.sh in install-scripts folder before installing. 
 
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts folder, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
