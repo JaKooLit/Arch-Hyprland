@@ -123,6 +123,8 @@ source ~/.zshrc
 - [ ] possibly adding gruvbox themes, cursors, icons
 
 #### ⚠️ some known issues
+- if you install this script on a system or has an old rofi installed, make sure to install rofi-wayland to replace rofi. Else you will have issues with rofi
+
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
 ```  
  while in sddm press ctrl+alt+F2 or F3
