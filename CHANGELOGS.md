@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 19 May 2024
+- Disabled the auto-login in .zprofile as it causes auto-login to Hyprland if any wayland was chosen. Can enabled if only using hyprland
+
 ## 10 May 2024
 - added wallust-git and remove python-pywal for migration to wallust on Hyprland-Dots v2.2.11
 
