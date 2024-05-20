@@ -8,10 +8,17 @@
 <br/>
 </div>
 
-### Kool Hyprland-Dots Showcase
+<h3 align="center">
+	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
+	KooL Hyprland-Dotfiles Showcase 
+	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
+</h3>
 
-https://github.com/JaKooLit/Arch-Hyprland/assets/85185940/84e3948f-edbf-45b8-9e3f-1f6699e3830a
+<div align="center">
 
+https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-9913-76039e84a2cd
+
+</div>
 
 ### Gallery and Videos
 <details>
