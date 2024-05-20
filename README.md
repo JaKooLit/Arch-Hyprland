@@ -8,9 +8,7 @@
 <br/>
 </div>
 
-#### Hyprland-Dots-showcase
-
-
+### Kool Hyprland-Dots Showcase
 
 https://github.com/JaKooLit/Arch-Hyprland/assets/85185940/84e3948f-edbf-45b8-9e3f-1f6699e3830a
 
