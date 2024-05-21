@@ -6,7 +6,8 @@ thunar=(
 thunar 
 thunar-volman 
 tumbler
-ffmpegthumbnailer 
+ffmpegthumbnailer
+file-roller 
 thunar-archive-plugin
 )
 
