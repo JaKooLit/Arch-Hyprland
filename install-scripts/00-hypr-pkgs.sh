@@ -63,7 +63,7 @@ mousepad
 mpv
 mpv-mpris 
 nvtop
-nwg-look-bin
+nwg-look
 pacman-contrib
 vim
 yt-dlp

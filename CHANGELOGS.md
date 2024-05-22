@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 22 May 2024
+- nwg-look is now in extra repo so replaced with nwg-look from nwg-look-bin
+
 ## 19 May 2024
 - Disabled the auto-login in .zprofile as it causes auto-login to Hyprland if any wayland was chosen. Can enabled if only using hyprland
 
