@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 23 May 2024
+- added qalculate-gtk to work with rofi-calc. Default keybinds (SUPER ALT C)
+
 ## 19 May 2024
 - Disabled the auto-login in .zprofile as it causes auto-login to Hyprland if any wayland was chosen. Can enabled if only using hyprland
 
