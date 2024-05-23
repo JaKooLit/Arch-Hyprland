@@ -18,7 +18,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 ### Install software for Asus ROG laptops ###
 
 printf " Installing ASUS ROG packages...\n"
-for ASUS in asusctl supergfxctl rog-control-center; do
+for ASUS in power-profiles-daemon asusctl supergfxctl rog-control-center; do
 install_package  "$ASUS" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
   echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
@@ -27,7 +27,10 @@ install_package  "$ASUS" 2>&1 | tee -a "$LOG"
 done
 
 printf " Activating ROG services...\n"
-sudo systemctl enable --now supergfxd 2>&1 | tee -a "$LOG"
+sudo systemctl enable supergfxd 2>&1 | tee -a "$LOG"
+
+printf " enabling power-profiles-daemon...\n"
+sudo systemctl enable power-profiles-daemon 2>&1 | tee -a "$LOG"
 
 clear
 
