@@ -66,7 +66,6 @@ mpv-mpris
 nvtop
 nwg-look
 pacman-contrib
-qalculate-gtk
 vim
 yt-dlp
 )
