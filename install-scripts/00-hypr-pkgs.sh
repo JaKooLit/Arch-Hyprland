@@ -58,6 +58,7 @@ brightnessctl
 btop
 cava
 eog
+fastfetch
 gnome-system-monitor
 mousepad 
 mpv

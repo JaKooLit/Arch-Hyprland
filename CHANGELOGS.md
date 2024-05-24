@@ -1,5 +1,10 @@
 ## Changelogs
 
+## 23 May 2024
+- added qalculate-gtk to work with rofi-calc. Default keybinds (SUPER ALT C)
+- added power-profiles-daemon for ROG laptops. Note, I cant add to all since it conflicts with TLP, CPU-Auto-frequency etc.
+- added fastfetch
+
 ## 22 May 2024
 - nwg-look is now in extra repo so replaced with nwg-look from nwg-look-bin
 - change the sddm theme destination to /etc/sddm.conf.d/10-theme.conf to theme.conf.user
