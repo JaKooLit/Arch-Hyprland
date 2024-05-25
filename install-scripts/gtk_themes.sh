@@ -33,11 +33,11 @@ done
 
 # Check if the directory exists and delete it if present
 if [ -d "GTK-themes-icons" ]; then
-    echo "$NOTE Tokyo Theme GTK themes and Icons folder exist..deleting..." 2>&1 | tee -a "$LOG"
+    echo "$NOTE GTK themes and Icons folder exist..deleting..." 2>&1 | tee -a "$LOG"
     rm -rf "GTK-themes-icons" 2>&1 | tee -a "$LOG"
 fi
 
-echo "$NOTE Cloning Tokyo Theme GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
+echo "$NOTE Cloning GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
 if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh
@@ -45,7 +45,7 @@ if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd ..
     echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes folders" 2>&1 | tee -a "$LOG"
 else
-    echo "$ERROR Download failed for Tokyo Theme GTK themes and Icons.." 2>&1 | tee -a "$LOG"
+    echo "$ERROR Download failed for GTK themes and Icons.." 2>&1 | tee -a "$LOG"
 fi
 
 tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 2>&1 | tee -a "$LOG"
