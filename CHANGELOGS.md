@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 26 May 2024
+- Added fzf for zsh (CTRL R to invoke FZF history)
+
 ## 23 May 2024
 - added qalculate-gtk to work with rofi-calc. Default keybinds (SUPER ALT C)
 - added power-profiles-daemon for ROG laptops. Note, I cant add to all since it conflicts with TLP, CPU-Auto-frequency etc.
