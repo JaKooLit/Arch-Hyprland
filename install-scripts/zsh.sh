@@ -8,6 +8,7 @@ fi
 zsh=(
 zsh
 zsh-completions
+fzf
 )
 
 
