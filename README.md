@@ -111,8 +111,12 @@ source ~/.zshrc
 - SUPER H for HINT or click on the waybar HINT! Button 
 - Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
 
+
 #### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
@@ -157,6 +161,7 @@ log into your account
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.gg/V2SJ92vbEN)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
+
 
 
 #### ⏩ Contributing
