@@ -16,7 +16,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_base.log"
 printf "\n%s - Installing base-devel \n" "${NOTE}"
 
 for PKG1 in "${base[@]}"; do
-  install_package_pacman "$PKG1" | tee -a "$LOG"
+  sudo pacman -S --noconfirm "$PKG1" | tee -a "$LOG"
 done
 
 clear

@@ -20,7 +20,8 @@ gvfs
 gvfs-mtp
 hypridle
 hyprlock
-imagemagick 
+imagemagick
+inxi 
 jq
 kitty
 kvantum

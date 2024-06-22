@@ -1,12 +1,33 @@
 <div align="center">
+<br>
+  <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
+  <a href="#-to-use-this-script"><kbd> <br> How to use this script <br> </kbd></a>&ensp;&ensp;
+  <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
+ </div><br>
+
+<div align="center">
 
 ## 💌 ** JaKooLit's Arch Hyprland Install Script ** 💌
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Arch-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/V2SJ92vbEN"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%2V2SJ92vbEN"> </a>
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Arch-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Arch-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
 
 <br/>
 </div>
+
+<div align="center">
+#### 👇 KOOL's Hyprland-Dots related Links 👇
+<br/>
+</div>
+<div align="center">
+<br>
+  <a href="https://github.com/JaKooLit/Hyprland-Dots"><kbd> <br> Hyprland-Dots repo <br> </kbd></a>&ensp;&ensp;
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
+  <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
+</div><br>
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
@@ -82,7 +103,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 > If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
-#### ✨ to run
+## ✨ to use this script
 > clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git ~/Arch-Hyprland
@@ -111,8 +132,12 @@ source ~/.zshrc
 - SUPER H for HINT or click on the waybar HINT! Button 
 - Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
 
+
 #### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
@@ -126,9 +151,7 @@ source ~/.zshrc
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - [ ] possibly adding gruvbox themes, cursors, icons
 
-#### ⚠️ some known issues
-- if you install this script on a system or has an old rofi installed, make sure to install rofi-wayland to replace rofi. Else you will have issues with rofi
-
+#### ❗ some known issues for nvidia
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
 ```  
  while in sddm press ctrl+alt+F2 or F3
@@ -138,13 +161,20 @@ log into your account
 `ls -l /dev/dri/by-path` to check where the symlink points to 
 )
 ```
-- add "env = WLR_DRM_DEVICES,/dev/dri/cardX" to the ENVvariables config (.config/hypr/UserConfigs/ENVariables.conf)  ; X being where the symlink of the gpu points to
+- add "env = WLR_DRM_DEVICES,/dev/dri/cardX" to the ENVvariables config `~/.config/hypr/UserConfigs/ENVariables.conf`  ; X being where the symlink of the gpu points to
 
 - more info from the hyprland wiki [`Hyprland Wiki Link`](https://wiki.hyprland.org/FAQ/#my-external-monitor-is-blank--doesnt-render--receives-no-signal-laptop)
 
 
-- installing of cava-git on a newly installed Arch makes the install keep hanging. Switched back to cava. After booting and logged in, if cava dont work, replace it cava-git `yay -S cava-git` or `paru -S cava-git` 
+- reports from a member of discord for Nvidia for additional env's
+- remove # from the following env's on 
+```
+env = GBM_BACKEND,nvidia-drm
+env = WLR_RENDERER_ALLOW_SOFTWARE,1
+```
 
+#### ❗ other known issues
+- installing of cava-git on a newly installed Arch makes the install keep hanging. Switched back to cava. After booting and logged in, if cava dont work, replace it cava-git `yay -S cava-git` or `paru -S cava-git` 
 > [!NOTE]
 > Auto start of Hyprland after login (no SDDM or GDM or any login managers)
 - This was disabled a few days ago. (19 May 2024). This was because some users, after they used the Distro-Hyprland scripts with other DE (gnome-wayland or plasma-wayland), if they choose to login into gnome-wayland for example, Hyprland is starting. 
@@ -155,8 +185,9 @@ log into your account
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
 #### 📒 Final Notes
-- join my discord channel [`Discord`](https://discord.gg/V2SJ92vbEN)
+- join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
+
 
 
 #### ⏩ Contributing
