@@ -16,7 +16,7 @@
 </div>
 
 <div align="center">
-#### 👇 KOOL's Hyprland-Dots related Links 👇
+👇 KOOL's Hyprland-Dots related Links 👇
 <br/>
 </div>
 <div align="center">
