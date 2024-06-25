@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 25 Jun 2024
+- added fbdev=1 for nvidia.sh on `/etc/modprobe.d/nvidia.conf`. see here `https://wiki.hyprland.org/Nvidia/#drm-kernel-mode-setting`
+
 ## 26 May 2024
 - Added fzf for zsh (CTRL R to invoke FZF history)
 
