@@ -6,9 +6,10 @@ if [[ $USE_PRESET = [Yy] ]]; then
 fi
 
 zsh=(
-zsh
-zsh-completions
-fzf
+	eza
+	zsh
+	zsh-completions
+	fzf
 )
 
 
