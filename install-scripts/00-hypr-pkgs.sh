@@ -59,6 +59,7 @@ brightnessctl
 btop
 cava
 eog
+eza
 fastfetch
 gnome-system-monitor
 mousepad 
