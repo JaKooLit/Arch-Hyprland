@@ -10,6 +10,8 @@ zsh=(
 	zsh
 	zsh-completions
 	fzf
+	oh-my-posh-bin
+	ttf-meslo-nerd
 )
 
 
@@ -77,7 +79,7 @@ if command -v zsh >/dev/null; then
 	else
     	echo "Directory zsh-syntax-highlighting already exists. Skipping cloning." 2>&1 | tee -a "$LOG"
 	fi
-	
+
 	# Check if ~/.zshrc and .zprofile exists, create a backup, and copy the new configuration
 	if [ -f "$HOME/.zshrc" ]; then
     	cp -b "$HOME/.zshrc" "$HOME/.zshrc-backup" || true
@@ -86,7 +88,7 @@ if command -v zsh >/dev/null; then
 	if [ -f "$HOME/.zprofile" ]; then
     	cp -b "$HOME/.zprofile" "$HOME/.zprofile-backup" || true
 	fi
-	
+
 	# Copying the preconfigured zsh themes and profile
     cp -r 'assets/.zshrc' ~/
     cp -r 'assets/.zprofile' ~/
@@ -99,6 +101,8 @@ if command -v zsh >/dev/null; then
 	done
 	printf "${NOTE} Shell changed successfully to zsh.\n" 2>&1 | tee -a "$LOG"
 
+	# Copying the preconfigured oh-my-posh theme
+    cp -r 'assets/.oh-my-posh' ~/
 fi
 
 clear
