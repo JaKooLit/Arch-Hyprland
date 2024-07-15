@@ -47,7 +47,7 @@ wallust-git
 waybar
 wget
 wl-clipboard
-wlogout
+wlogout-git
 xdg-user-dirs
 xdg-utils 
 yad
