@@ -172,12 +172,12 @@ printf "\n"
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
-sleep 0.5
+sleep 1
 # Ensuring base-devel is installed
 execute_script "00-base.sh"
-sleep 0.5
+sleep 1
 execute_script "pacman.sh"
-sleep 0.5
+sleep 1
 # Execute AUR helper script based on user choice
 if [ "$aur_helper" == "paru" ]; then
     execute_script "paru.sh"
