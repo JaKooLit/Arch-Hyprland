@@ -93,7 +93,7 @@ if command -v zsh >/dev/null; then
 
     printf "${NOTE} Changing default shell to zsh...\n"
 
-	while ! chsh -s $(which zsh); do
+	while ! chsh -s $(chsh -l | grep zsh | head -n 1); do
     	echo "${ERROR} Authentication failed. Please enter the correct password." 2>&1 | tee -a "$LOG"
     	sleep 1
 	done
