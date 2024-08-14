@@ -1,7 +1,7 @@
 ## Changelogs
 
 ## 14 Aug 2024
-- added archlunux-keyring on base.sh
+- added archlinux-keyring on base.sh
 
 ## 08 Aug 2024
 - Increased to 1 sec delay for installing base-devel [commit](https://github.com/JaKooLit/Arch-Hyprland/commit/7ebfa06c3b186f9bec0bcf268fae401ba67dfc2a)
