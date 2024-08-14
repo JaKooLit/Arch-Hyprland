@@ -1,9 +1,10 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# base devel #
+# base devel + archlinux-keyring #
 
 base=( 
   base-devel
+  archlinux-keyring
 )
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
