@@ -2,6 +2,7 @@
 
 ## 26 Aug 2024
 - Set to uninstall rofi as conflicts with rofi-wayland
+- added nvidia_drm.fbdev=1 for grub
 
 ## 14 Aug 2024
 - added archlinux-keyring on base.sh
