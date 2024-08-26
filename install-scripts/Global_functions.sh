@@ -69,7 +69,7 @@ uninstall_package() {
   if pacman -Qi "$1" &>> /dev/null ; then
     # Package is installed
     echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 2>&1 | tee -a "$LOG"
+    sudo pacman -R --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is uninstalled
     if ! pacman -Qi "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was uninstalled."
