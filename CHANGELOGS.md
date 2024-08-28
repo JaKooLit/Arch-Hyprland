@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 28 Aug 2024
+- Added final check if hyprland is installed and will give an error to user
+
 ## 26 Aug 2024
 - Set to uninstall rofi as conflicts with rofi-wayland
 - added nvidia_drm.fbdev=1 for grub

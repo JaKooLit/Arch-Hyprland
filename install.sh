@@ -9,6 +9,23 @@ fi
 
 clear
 
+# Check if base-devel is installed
+if pacman -Q base-devel &> /dev/null; then
+    echo "base-devel is already installed."
+else
+    echo "Install base-devel.........."
+
+    if sudo pacman -S --noconfirm --needed base-devel; then
+        echo "base-devel has been installed successfully."
+    else
+        echo "Error: base-devel not found nor cannot be installed."
+        echo "Please install base-devel manually before running this script... Exiting"
+        exit 1
+    fi
+fi
+
+clear
+
 printf "\n%.0s" {1..3}                            
 echo "   |  _.   |/  _   _  |  o _|_ "
 echo " \_| (_| o |\ (_) (_) |_ |  |_ "
@@ -237,21 +254,27 @@ if [ "$dots" == "Y" ]; then
 fi
 
 
-printf "\n${OK} Yey! Installation Completed.\n"
-printf "\n"
-sleep 2
-printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-printf "\n"
-printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+# Check if hyprland or hyprland-git is installed
+if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
+    printf "\n${OK} Yey! Installation Completed.\n"
+    sleep 2 
+    printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n"
+    printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
 
-read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+    # Prompt user to reboot
+    read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-if [[ "$HYP" =~ ^[Yy]$ ]]; then
-    if [[ "$nvidia" == "Y" ]]; then
-        echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
-        systemctl reboot
-    else
-        systemctl reboot
-    fi    
+    if [[ "$HYP" =~ ^[Yy]$ ]]; then
+        if [[ "$nvidia" == "Y" ]]; then
+            echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
+            systemctl reboot
+        else
+            systemctl reboot
+        fi    
+    fi
+else
+    # Print error message if neither package is installed
+    printf "\n${NOTE} Hyprland failed to install. Please check Install-Logs...\n\n"
+    exit 1
 fi
-
