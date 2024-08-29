@@ -12,63 +12,60 @@ Extra=(
 )
 
 hypr_package=( 
-aylurs-gtk-shell
-cliphist
-curl 
-grim 
-gvfs 
-gvfs-mtp
-hypridle
-hyprlock
-imagemagick
-inxi 
-jq
-kitty
-kvantum
-nano  
-network-manager-applet 
-pamixer 
-pavucontrol
-pipewire-alsa 
-playerctl
-polkit-gnome
-python-requests
-python-pyquery
-pyprland 
-qt5ct
-qt6ct
-qt6-svg
-rofi-wayland
-slurp 
-swappy 
-swaync 
-swww
-wallust-git 
-waybar
-wget
-wl-clipboard
-wlogout
-xdg-user-dirs
-xdg-utils 
-yad
+  aylurs-gtk-shell
+  cliphist
+  curl 
+  grim 
+  gvfs 
+  gvfs-mtp
+  imagemagick
+  inxi 
+  jq
+  kitty
+  kvantum
+  nano  
+  network-manager-applet 
+  pamixer 
+  pavucontrol
+  pipewire-alsa 
+  playerctl
+  polkit-gnome
+  python-requests
+  python-pyquery
+  qt5ct
+  qt6ct
+  qt6-svg
+  rofi-wayland
+  slurp 
+  swappy 
+  swaync 
+  swww
+  wallust-git 
+  waybar
+  wget
+  wl-clipboard
+  wlogout
+  xdg-user-dirs
+  xdg-utils 
+  yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
 hypr_package_2=(
-brightnessctl 
-btop
-cava
-eog
-fastfetch
-gnome-system-monitor
-mousepad 
-mpv
-mpv-mpris 
-nvtop
-nwg-look
-pacman-contrib
-vim
-yt-dlp
+  brightnessctl 
+  btop
+  cava
+  eog
+  fastfetch
+  gnome-system-monitor
+  mousepad 
+  mpv
+  mpv-mpris 
+  nvtop
+  nwg-look
+  pacman-contrib
+  vim
+  yt-dlp
 )
 
 # List of packages to uninstall as it conflicts with swaync and rofi-wayland
