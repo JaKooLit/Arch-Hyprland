@@ -6,8 +6,8 @@ if [[ $USE_PRESET = [Yy] ]]; then
 fi
 
 xdg=(
-xdg-desktop-portal-hyprland
-xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

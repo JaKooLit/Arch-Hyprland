@@ -40,7 +40,7 @@ hypr_package=(
   swappy 
   swaync 
   swww
-  wallust-git 
+  wallust 
   waybar
   wget
   wl-clipboard
