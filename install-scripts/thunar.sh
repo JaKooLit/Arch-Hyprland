@@ -3,12 +3,12 @@
 # Thunar #
 
 thunar=(
-thunar 
-thunar-volman 
-tumbler
-ffmpegthumbnailer
-file-roller 
-thunar-archive-plugin
+  thunar 
+  thunar-volman 
+  tumbler
+  ffmpegthumbnailer
+  file-roller 
+  thunar-archive-plugin
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

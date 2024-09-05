@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 29 Aug 2024
+- switched over to non-git wallust package
+- improved indentions on some install scripts
+
 ## 28 Aug 2024
 - Added final check if hyprland is installed and will give an error to user
 

@@ -275,6 +275,6 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${NOTE} Hyprland failed to install. Please check Install-Logs...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...\n\n"
     exit 1
 fi
