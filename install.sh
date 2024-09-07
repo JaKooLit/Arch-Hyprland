@@ -1,25 +1,42 @@
 #!/bin/bash
 # https://github.com/JaKooLit
 
+# Set some colors for output messages
+OK="$(tput setaf 2)[OK]$(tput sgr0)"
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
+ORANGE=$(tput setaf 166)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
+
+
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
+    echo "$ERROR This script should not be executed as root! Exiting......."
     exit 1
 fi
 
 clear
 
+# Check if PulseAudio package is installed
+if pacman -Qq pulseaudio >/dev/null 2>&1; then
+    echo "$ERROR PulseAudio is installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
+    exit 1
+fi
+
 # Check if base-devel is installed
 if pacman -Q base-devel &> /dev/null; then
     echo "base-devel is already installed."
 else
-    echo "Install base-devel.........."
+    echo "$NOTE Install base-devel.........."
 
     if sudo pacman -S --noconfirm --needed base-devel; then
-        echo "base-devel has been installed successfully."
+        echo "$OK base-devel has been installed successfully."
     else
-        echo "Error: base-devel not found nor cannot be installed."
-        echo "Please install base-devel manually before running this script... Exiting"
+        echo "$ERROR base-devel not found nor cannot be installed."
+        echo "$ACTION Please install base-devel manually before running this script... Exiting"
         exit 1
     fi
 fi
@@ -62,17 +79,6 @@ read -p "$(tput setaf 6)Would you like to Use Preset Settings (See note above)? 
 if [[ $use_preset = [Yy] ]]; then
   source ./preset.sh
 fi
-
-# Set some colors for output messages
-OK="$(tput setaf 2)[OK]$(tput sgr0)"
-ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
-NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
-CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 166)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
-
 
 # Function to colorize prompts
 colorize_prompt() {
