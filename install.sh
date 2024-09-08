@@ -21,8 +21,8 @@ fi
 clear
 
 # Check if PulseAudio package is installed
-if pacman -Qq pulseaudio >/dev/null 2>&1; then
-    echo "$ERROR PulseAudio is installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
+if pacman -Qq | grep -qw pulseaudio; then
+    echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
     exit 1
 fi
 
@@ -259,6 +259,8 @@ if [ "$dots" == "Y" ]; then
 
 fi
 
+printf "\n%.0s" {1..3}
+
 # Error-checking section
 LOG_DIR="Install-Logs"
 ERROR_FILE="$LOG_DIR/00-Error.log"
@@ -282,7 +284,7 @@ if [ -d "$LOG_DIR" ]; then
 
     # Check if the error file has any content
     if [ -s "$ERROR_FILE" ]; then
-        echo "${ERROR} Errors were found. See $ERROR_FILE for details."
+        echo "${ERROR} Errors encountered during Installation. See $ERROR_FILE for details."
     else
         echo "${OK} No errors were found."
         # Optionally remove the error file if it's empty
