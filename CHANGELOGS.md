@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 08 Sep 2024
+- Added final error checks on install-logs
+
 ## 07 Sep 2024
 - added pulseaudio check
 - added sof-firmware

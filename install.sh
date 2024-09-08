@@ -259,6 +259,8 @@ if [ "$dots" == "Y" ]; then
 
 fi
 
+clear
+
 printf "\n%.0s" {1..3}
 
 # Error-checking section
@@ -287,8 +289,6 @@ if [ -d "$LOG_DIR" ]; then
         echo "${ERROR} Errors encountered during Installation. See $ERROR_FILE for details."
     else
         echo "${OK} No errors were found."
-        # Optionally remove the error file if it's empty
-        rm "$ERROR_FILE"
     fi
 else
     echo "Directory $LOG_DIR does not exist or could not be found."
