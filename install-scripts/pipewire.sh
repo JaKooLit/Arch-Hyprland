@@ -8,6 +8,7 @@ pipewire=(
     pipewire-audio
     pipewire-alsa
     pipewire-pulse
+    sof-firmware
 )
 
 ############## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##############
