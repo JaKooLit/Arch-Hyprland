@@ -3,9 +3,9 @@
 # Bluetooth Stuff #
 
 blue=(
-bluez
-bluez-utils
-blueman
+  bluez
+  bluez-utils
+  blueman
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

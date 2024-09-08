@@ -73,6 +73,7 @@ uninstall=(
   dunst
   mako
   rofi
+  wallust-git
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
