@@ -21,8 +21,8 @@ fi
 clear
 
 # Check if PulseAudio package is installed
-if pacman -Qq pulseaudio >/dev/null 2>&1; then
-    echo "$ERROR PulseAudio is installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
+if pacman -Qq | grep -qw pulseaudio; then
+    echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
     exit 1
 fi
 
