@@ -259,14 +259,49 @@ if [ "$dots" == "Y" ]; then
 
 fi
 
+# Error-checking section
+LOG_DIR="Install-Logs"
+ERROR_FILE="$LOG_DIR/00-Error.log"
+
+# Create or clear the error file
+: > "$ERROR_FILE"
+
+# Check if the Install-Logs directory exists
+if [ -d "$LOG_DIR" ]; then
+    # Iterate through each file in the Install-Logs directory
+    for log_file in "$LOG_DIR"/*; do
+        # Check if it's a file
+        if [ -f "$log_file" ]; then
+            # Search for lines containing the word "error" (case-insensitive) in the log file
+            if grep -i "error" "$log_file" > /dev/null; then
+                # If errors are found, add the filename to the error file
+                echo "${WARN} Errors found in file: $(basename "$log_file")" >> "$ERROR_FILE"
+            fi
+        fi
+    done
+
+    # Check if the error file has any content
+    if [ -s "$ERROR_FILE" ]; then
+        echo "${ERROR} Errors were found. See $ERROR_FILE for details."
+    else
+        echo "${OK} No errors were found."
+        # Optionally remove the error file if it's empty
+        rm "$ERROR_FILE"
+    fi
+else
+    echo "Directory $LOG_DIR does not exist or could not be found."
+fi
+
+printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Yey! Installation Completed.\n"
+    printf "\n${OK} Hyprland is installed. However, there may some errors during installation "
+    printf "\n${CAT} Please see the errors in Install-Logs as stated above\n"
     sleep 2 
     printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n"
-    printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+    printf "\n${NOTE} However, It is highly recommended to reboot your system.\n\n"
 
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
@@ -281,6 +316,6 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check Error Log and Install-Logs directory...\n\n"
     exit 1
 fi
