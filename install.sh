@@ -268,8 +268,8 @@ printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed."
-    printf "\n${CAT} Please see above. Simply ignore this message if it states 'All packages are installed.'\n"
+    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
+    printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
     sleep 2
     printf "\n${NOTE} You can start Hyprland by typing 'Hyprland' (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n${NOTE} However, it is highly recommended to reboot your system.\n\n"
