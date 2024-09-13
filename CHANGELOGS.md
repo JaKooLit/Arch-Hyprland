@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 14 Sep 2024
+- remove the final error checks instead, introduced a final check of essential packages to ran Hyprland
+
 ## 08 Sep 2024
 - Added final error checks on install-logs
 
