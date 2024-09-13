@@ -8,6 +8,7 @@ packages=(
   cliphist
   kvantum
   rofi-wayland
+  imagemagick
   swaync
   swww
   wallust

@@ -27,12 +27,6 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_pipewire.log"
 
 ISAUR=$(command -v yay || command -v paru)
 
-# Removal of pulseaudio
-printf "${YELLOW}Removing pulseaudio stuff...${RESET}\n"
-for pulseaudio in pulseaudio pulseaudio-alsa pulseaudio-bluetooth; do
-    sudo pacman -R --noconfirm "$pulseaudio" 2>/dev/null | tee -a "$LOG" || true
-done
-
 # Disabling pulseaudio to avoid conflicts
 systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>/dev/null && tee -a "$LOG"
 
