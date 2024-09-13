@@ -50,7 +50,7 @@ done
 
 # Check if the missing array is empty or not
 if [ ${#missing[@]} -eq 0 ]; then
-    echo "${OK} All packages are installed." | tee -a "$LOG"
+    echo "${OK} All essential packages are installed." | tee -a "$LOG"
 else
     # Message to user on missing packages
     echo "${WARN} The following packages are missing and will be logged:"
