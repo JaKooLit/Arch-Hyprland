@@ -92,6 +92,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 # uninstalling conflicting packages
 # Initialize a variable to track overall errors
 overall_failed=0
+
 printf "\n%s - Removing Mako, Dunst, and rofi as they conflict with swaync and rofi-wayland \n" "${NOTE}"
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
@@ -101,7 +102,6 @@ for PKG in "${uninstall[@]}"; do
   fi
 done
 
-# Report if any uninstallation failed, but do not exit the script
 if [ $overall_failed -ne 0 ]; then
   echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
 fi
