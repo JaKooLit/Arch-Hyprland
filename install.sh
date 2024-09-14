@@ -209,7 +209,7 @@ elif [ "$aur_helper" == "yay" ]; then
 fi
 
 # Install hyprland packages
-execute_script "00-hypr-pkgs.sh"
+execute_script "01-hypr-pkgs.sh"
 
 # Install pipewire and pipewire-audio
 execute_script "pipewire.sh"
@@ -262,7 +262,7 @@ fi
 clear
 
 # final check essential packages if it is installed
-execute_script "01-Final-Check.sh"
+execute_script "02-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
