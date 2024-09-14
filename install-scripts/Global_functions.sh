@@ -65,18 +65,23 @@ install_package() {
 
 # Function for uninstalling packages
 uninstall_package() {
+  local pkg="$1"
+
   # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
+  if pacman -Qi "$pkg" &>> /dev/null ; then
     # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -R --noconfirm "$1" 2>&1 | tee -a "$LOG"
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo pacman -R --noconfirm "$pkg" 2>&1 | grep -v "error: target not found" | tee -a "$LOG"
     # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
+    if ! pacman -Qi "$pkg" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
     else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
+      # Log the failure but continue
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1  
     fi
+  else    # Package is not installed
+    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
   fi
+  return 0 
 }
