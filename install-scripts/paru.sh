@@ -24,9 +24,9 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# checking if paru-bin exist and removing if it is
-if [ -d paru-bin ]; then
-    rm -rf paru-bin 2>&1 | tee -a "$LOG"
+# checking if paru exist and removing if it is
+if [ -d paru ]; then
+    rm -rf paru 2>&1 | tee -a "$LOG"
 fi
 
 # Check for AUR helper and install if not found
@@ -37,8 +37,8 @@ if [ -n "$ISAUR" ]; then
 else
   printf "\n%s - AUR helper was NOT located\n" "$WARN"
   printf "\n%s - Installing paru from AUR\n" "${NOTE}"
-  git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone paru from AUR\n" "${ERROR}"; exit 1; }
-  cd paru-bin || { printf "%s - Failed to enter paru-bin directory\n" "${ERROR}"; exit 1; }
+  git clone https://aur.archlinux.org/paru.git || { printf "%s - Failed to clone paru from AUR\n" "${ERROR}"; exit 1; }
+  cd paru || { printf "%s - Failed to enter paru directory\n" "${ERROR}"; exit 1; }
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install paru from AUR\n" "${ERROR}"; exit 1; }
   
   # moving install logs in to Install-Logs folder
