@@ -255,7 +255,7 @@ if [ "$rog" == "Y" ]; then
 fi
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh"
+    execute_script "dotfiles-main.sh"
 
 fi
 

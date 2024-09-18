@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 18 Sep 2024
+- dotfiles will now be downloaded from main or master branch instead of from the releases version.
+
 ## 14 Sep 2024
 - remove the final error checks instead, introduced a final check of essential packages to ran Hyprland
 
