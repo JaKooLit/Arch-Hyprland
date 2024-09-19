@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 19 Sep 2024
+- Added fastfetch on tty. However, will be disabled if user decided to install pokemon colorscripts
+
 ## 18 Sep 2024
 - dotfiles will now be downloaded from main or master branch instead of from the releases version.
 

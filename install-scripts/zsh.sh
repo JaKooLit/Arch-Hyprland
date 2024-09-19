@@ -35,6 +35,10 @@ while true; do
         [Yy]*)
             zsh+=('pokemon-colorscripts-git')
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc
+
+			# commenting out fastfetch since pokemon was chosen to install
+            sed -i '/^fastfetch -c \$HOME\/.config\/fastfetch\/config-compact.jsonc$/s/^/#/' assets/.zshrc
+			
             break
             ;;
         [Nn]*)
