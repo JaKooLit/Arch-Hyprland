@@ -34,7 +34,7 @@ dots="Y"
 blacklist_nouveau="Y"
 # Ask the user if they want to use Thunar as the default file manager
 # Do you want to set Thunar as the default file manager? (y/n): "
-choice="Y"
+thunar_default="Y"
 ### XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! Script cant remove nor disable it.
 ### Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) 
 XDPH1="Y"

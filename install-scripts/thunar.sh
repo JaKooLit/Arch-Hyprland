@@ -35,9 +35,9 @@ printf "${NOTE} Installing Thunar Packages...\n"
 printf "\n%.0s" {1..2}
 
 # Ask the user if they want to use Thunar as the default file manager
-read -p "${CAT} Do you want to set Thunar as the default file manager? (y/n): " choice
+read -p "${CAT} Do you want to set Thunar as the default file manager? (y/n): " thunar_default
 
-if [[ "$choice" == [Yy] ]]; then
+if [[ "$thunar_default" == [Yy] ]]; then
     # Setting Thunar as the default file manager
     xdg-mime default thunar.desktop inode/directory
     xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
