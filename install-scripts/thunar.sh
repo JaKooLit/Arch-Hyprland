@@ -2,6 +2,10 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Thunar #
 
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
+
 thunar=(
   thunar 
   thunar-volman 
