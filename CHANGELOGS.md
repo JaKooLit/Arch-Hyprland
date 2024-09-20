@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 20 Sep 2024
+- User will be ask if they want to set Thunar as default file manager if they decided to install it
+
 ## 19 Sep 2024
 - Added fastfetch on tty. However, will be disabled if user decided to install pokemon colorscripts
 
