@@ -34,10 +34,10 @@ while true; do
     case "$pokemon_choice" in
         [Yy]*)
             zsh+=('pokemon-colorscripts-git')
-            sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc
+            sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
 
 			# commenting out fastfetch since pokemon was chosen to install
-            sed -i '/^fastfetch -c \$HOME\/.config\/fastfetch\/config-compact.jsonc$/s/^/#/' assets/.zshrc
+            sed -i '/^fastfetch -c $HOME\/.config\/fastfetch\/config-compact.jsonc/s/^/#/' assets/.zshrc >> "$LOG" 2>&1
 			
             break
             ;;
