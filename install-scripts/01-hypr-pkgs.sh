@@ -64,6 +64,7 @@ hypr_package_2=(
   nvtop
   nwg-look
   pacman-contrib
+  qalculate-gtk
   vim
   yt-dlp
 )
