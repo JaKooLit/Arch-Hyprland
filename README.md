@@ -80,7 +80,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 > [!NOTE]
 > Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
 
-> [!WARNING] 
+> [!CAUTION] 
 > Download this script on a directory where you have write permissions. ie. HOME. Or any directory within your home directory. Else script will fail
 
 #### 🆕  Prerequisites
