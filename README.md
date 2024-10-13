@@ -90,7 +90,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 > 🔘 Pipewire and Pipewire audio
 - This script will install pipewire and will also disable or will uninstall pulseaudio. If you dont want it, edit install.sh, about line 191 and comment the line  `execute_script "pipewire.sh"` or you can simply just delete pipewire.sh in install-scripts directory before installing. 
 
-#### ✨ Costumize the packages to be installed
+#### ✨ Customize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
 
 #### 💫 SDDM and GTK Themes offered
