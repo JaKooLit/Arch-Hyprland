@@ -69,8 +69,9 @@ hypr_package_2=(
   yt-dlp
 )
 
-# List of packages to uninstall as it conflicts with swaync and rofi-wayland
+# List of packages to uninstall as it conflicts some packages
 uninstall=(
+  aylurs-gtk-shell
   dunst
   mako
   rofi
