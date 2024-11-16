@@ -220,6 +220,9 @@ execute_script "fonts.sh"
 # Install hyprland
 execute_script "hyprland.sh"
 
+# Install AGS from source (older version)
+execute_script "ags.sh"
+
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi

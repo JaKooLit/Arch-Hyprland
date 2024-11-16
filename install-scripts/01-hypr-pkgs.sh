@@ -12,7 +12,7 @@ Extra=(
 )
 
 hypr_package=( 
-  aylurs-gtk-shell
+  #aylurs-gtk-shell
   cliphist
   curl 
   grim 
