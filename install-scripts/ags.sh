@@ -6,6 +6,7 @@ ags=(
     typescript
     npm
     meson
+    glib2-devel
     gjs 
     gtk3 
     gtk-layer-shell 
