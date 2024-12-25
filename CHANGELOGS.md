@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 26 Dec 2024
+- Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
+- integrated hyprcursor in Bibata Ice Cursor
+
 ## 15 Nov 2024
 - revert Aylurs GTK Shell (AGS) to install older version
 - added aylurs-gtk-shell to uninstall
