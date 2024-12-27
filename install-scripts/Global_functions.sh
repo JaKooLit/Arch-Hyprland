@@ -31,7 +31,7 @@ install_package_pacman() {
     sudo pacman -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
+      echo -e "${OK} Package ${!YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
