@@ -31,7 +31,7 @@ install_package_pacman() {
     sudo pacman -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} Package ${!YELLOW}$1${RESET} has been successfully installed!"
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
@@ -54,7 +54,7 @@ install_package() {
     $ISAUR -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
