@@ -3,7 +3,7 @@ description: Something is not working right
 title: "[Bug]: "
 labels: ["bug"]
 assignees:
-  - Ja.KooLit
+  - JaKooLit
 
 body:
   - type: checkboxes
@@ -23,6 +23,7 @@ body:
       options:
         - "Yes"
         - "No"
+        - "Not sure"
     validations:
       required: true
 
@@ -31,11 +32,32 @@ body:
     attributes:
       label: System Info and Version
       description: |
-        Paste the output of `inxi -CGIsSMnr` here.
-        install inxi if command not found
+        Paste the output of `inxi --full` here.
+        install inxi if command not found.
+      value: "<details>
+        <summary>System/Version info</summary>
+
+
+        ```
+
+        <Paste the output of the command here, without removing any formatting around this>
+
+        ```
+
+
+        </details>"
     validations:
       required: true
       
+  - type: textarea
+    id: dots
+    attributes:
+      label: KooL's Dots version
+      description: |
+        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;` 
+        This is just KooL's Hyprland Dots version.
+    validations:
+      required: true
 
   - type: textarea
     id: desc
@@ -59,9 +81,3 @@ body:
       label: install logs, images or videos
       description: |
         Anything that can help. Please always ATTACH and not paste them.
-
-
-
-
-
-
