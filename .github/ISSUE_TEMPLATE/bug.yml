@@ -1,0 +1,67 @@
+name: Bug Report
+description: Something is not working right
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - Ja.KooLit
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Already reported ? *
+      description: Before opening a new bug report, please take a moment to search through the current open and closed issues to check if it already exists.
+      options:
+      - label: I have searched the existing open and closed issues.
+        required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Regression?
+      description: |
+        Regression means that something used to work but no longer does.
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ver
+    attributes:
+      label: System Info and Version
+      description: |
+        Paste the output of `inxi -CGIsSMnr` here.
+        install inxi if command not found
+    validations:
+      required: true
+      
+
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "What went wrong? What exactly happened?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: "How can someone else reproduce the issue?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: install logs, images or videos
+      description: |
+        Anything that can help. Please always ATTACH and not paste them.
+
+
+
+
+
+

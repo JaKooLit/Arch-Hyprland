@@ -1,0 +1,38 @@
+name: Feature Request
+description: I'd like to propose some changes and enhancements
+title: "[Enhancement]: "
+labels: ["enhancement"]
+assignees:
+  - Ja.KooLit
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Already reported ? *
+      description: Before opening a new feature request, please take a moment to search through the current open and closed issues / request to check if it already exists.
+      options:
+      - label: I have searched the existing open and closed request.
+        required: true
+
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "Describe your idea?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Proposed Solution
+      description: "describe if you have a specific solution in mind"
+    validations:
+      required: true
+
+
+
+
+
+
+
