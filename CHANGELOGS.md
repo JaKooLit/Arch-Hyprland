@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 06 Jan 2025
+- added copying of modified fastfetch-compact for Arch
+
 ## 26 Dec 2024
 - Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
 - integrated hyprcursor in Bibata Ice Cursor
