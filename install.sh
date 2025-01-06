@@ -266,7 +266,7 @@ clear
 
 # copy fastfetch config if arch.png is not present
 if [ ! -f "$HOME/.config/fastfetch/arch.png" ]; then
-    cp -r assets/fastfetch "$HOME/.config/fastfetch"
+    cp -r assets/fastfetch "$HOME/.config/"
 fi
 
 # final check essential packages if it is installed
