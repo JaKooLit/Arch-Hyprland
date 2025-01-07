@@ -12,7 +12,7 @@ LOG="install-$(date +%d-%H%M%S)_paru.log"
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -24,7 +24,7 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# checking if paru-bin exist and removing if it is
+# checking if paru exist and removing if it is
 if [ -d paru-bin ]; then
     rm -rf paru-bin 2>&1 | tee -a "$LOG"
 fi
@@ -36,10 +36,10 @@ if [ -n "$ISAUR" ]; then
   printf "\n%s - AUR helper already installed, moving on..\n" "${OK}"
 else
   printf "\n%s - AUR helper was NOT located\n" "$WARN"
-  printf "\n%s - Installing paru from AUR\n" "${NOTE}"
-  git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone paru from AUR\n" "${ERROR}"; exit 1; }
-  cd paru-bin || { printf "%s - Failed to enter paru-bin directory\n" "${ERROR}"; exit 1; }
-  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install paru from AUR\n" "${ERROR}"; exit 1; }
+  printf "\n%s - Installing paru-bin from AUR\n" "${NOTE}"
+  git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone paru-bin from AUR\n" "${ERROR}"; exit 1; }
+  cd paru-bin || { printf "%s - Failed to enter paru directory\n" "${ERROR}"; exit 1; }
+  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install paru-bin from AUR\n" "${ERROR}"; exit 1; }
   
   # moving install logs in to Install-Logs folder
   mv install*.log ../Install-Logs/ || true  

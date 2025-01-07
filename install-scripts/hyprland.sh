@@ -9,13 +9,14 @@ hypr=(
   hypridle
   hyprlock
   hyprland
-  pyprland 
+  pyprland
+  hyprland-qtutils
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
 # Determine the directory where the script is located
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
@@ -28,18 +29,21 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Removing other Hyprland to avoid conflict
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
-if pacman -Qs hyprland > /dev/null; then
+if pacman -Qs hyprland >/dev/null; then
   printf "${YELLOW} Hyprland detected. uninstalling to install Hyprland-git...${RESET}\n"
-    for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
+  for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
-    done
+  done
 fi
 
 # Hyprland
 printf "${NOTE} Installing Hyprland .......\n"
- for HYPR in "${hypr[@]}"; do
-   install_package "$HYPR" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"; exit 1; }
+for HYPR in "${hypr[@]}"; do
+  install_package "$HYPR" 2>&1 | tee -a "$LOG"
+  [ $? -ne 0 ] && {
+    echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"
+    exit 1
+  }
 done
 
 clear

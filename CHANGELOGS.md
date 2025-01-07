@@ -1,5 +1,29 @@
 ## Changelogs
 
+## 06 Jan 2025
+- added copying of modified fastfetch-compact for Arch
+- default theme for oh my zsh theme is now "funky" 
+
+## 26 Dec 2024
+- Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
+- integrated hyprcursor in Bibata Ice Cursor
+
+## 15 Nov 2024
+- revert Aylurs GTK Shell (AGS) to install older version
+- added aylurs-gtk-shell to uninstall
+ 
+## 20 Sep 2024
+- User will be ask if they want to set Thunar as default file manager if they decided to install it
+
+## 19 Sep 2024
+- Added fastfetch on tty. However, will be disabled if user decided to install pokemon colorscripts
+
+## 18 Sep 2024
+- dotfiles will now be downloaded from main or master branch instead of from the releases version.
+
+## 14 Sep 2024
+- remove the final error checks instead, introduced a final check of essential packages to ran Hyprland
+
 ## 08 Sep 2024
 - Added final error checks on install-logs
 

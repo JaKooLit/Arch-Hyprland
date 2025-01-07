@@ -32,14 +32,13 @@ for xdgs in "${xdg[@]}"; do
     exit 1
     fi
 done
-
-printf "\n"
     
 printf "${NOTE} Checking for other XDG-Desktop-Portal-Implementations....\n"
 sleep 1
 printf "\n"
 printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
 while true; do
+    printf "\n%.0s" {1..2}
     if [[ -z $XDPH1 ]]; then
       read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
     fi

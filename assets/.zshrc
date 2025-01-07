@@ -3,7 +3,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="xiong-chiamiov-plus"
+ZSH_THEME="funky"
 
 plugins=(
     git
@@ -20,6 +20,9 @@ source $ZSH/oh-my-zsh.sh
 # Display Pokemon-colorscripts
 # Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
 #pokemon-colorscripts --no-title -s -r
+
+# fastfetch. Will be disabled if above colorscript was chosen to install
+fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
 
 # Set-up icons for files/folders in terminal
 alias ls='eza -a --icons'

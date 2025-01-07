@@ -32,11 +32,12 @@ dots="Y"
 ### These are the sub-questions of the above choices
 ### Would you like to blacklist nouveau? (y/n)
 blacklist_nouveau="Y"
+# Ask the user if they want to use Thunar as the default file manager
+# Do you want to set Thunar as the default file manager? (y/n): "
+thunar_default="Y"
 ### XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! Script cant remove nor disable it.
 ### Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) 
 XDPH1="Y"
-### SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)
-manual_install_sddm="N"
 ### OPTIONAL - Would you like to install SDDM themes? (y/n)
 install_sddm_theme="Y"
 ### " This script will add your user to the 'input' group."

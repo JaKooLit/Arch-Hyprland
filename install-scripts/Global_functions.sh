@@ -8,7 +8,7 @@ set -e
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -31,7 +31,7 @@ install_package_pacman() {
     sudo pacman -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
@@ -54,7 +54,7 @@ install_package() {
     $ISAUR -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
@@ -65,18 +65,22 @@ install_package() {
 
 # Function for uninstalling packages
 uninstall_package() {
+  local pkg="$1"
+
   # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
+  if pacman -Qi "$pkg" &>> /dev/null ; then
     # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -R --noconfirm "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
+    # Check if the package was uninstalled
+    if ! pacman -Qi "$pkg" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
     else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1 
     fi
+  else
+    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
   fi
+  return 0 
 }

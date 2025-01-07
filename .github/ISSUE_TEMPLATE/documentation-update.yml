@@ -1,0 +1,30 @@
+name: Documentation update
+description: Propose a change to the project documentation wiki
+title: "[Documentation update]: "
+labels: ["documentation_update"]
+assignees:
+  - JaKooLit
+
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "Provide a clear and concise description of the documentation update"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Proposed Solution
+      description: "Provide a clear and concise description of the updated documentation that you'd like to see added"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: install links, images or videos
+      description: |
+        Add any other information about the documentation update here. For example, you might include links to similar documentation in other projects, or screenshots or diagrams to help explain your idea

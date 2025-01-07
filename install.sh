@@ -5,7 +5,7 @@
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -21,7 +21,7 @@ fi
 clear
 
 # Check if PulseAudio package is installed
-if pacman -Qq | grep -qw pulseaudio; then
+if pacman -Qq | grep -qw '^pulseaudio$'; then
     echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
     exit 1
 fi
@@ -209,7 +209,7 @@ elif [ "$aur_helper" == "yay" ]; then
 fi
 
 # Install hyprland packages
-execute_script "00-hypr-pkgs.sh"
+execute_script "01-hypr-pkgs.sh"
 
 # Install pipewire and pipewire-audio
 execute_script "pipewire.sh"
@@ -219,6 +219,9 @@ execute_script "fonts.sh"
 
 # Install hyprland
 execute_script "hyprland.sh"
+
+# Install AGS from source (older version)
+execute_script "ags.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
@@ -255,69 +258,43 @@ if [ "$rog" == "Y" ]; then
 fi
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh"
+    execute_script "dotfiles-main.sh"
 
 fi
 
 clear
 
-printf "\n%.0s" {1..3}
-
-# Error-checking section
-LOG_DIR="Install-Logs"
-ERROR_FILE="$LOG_DIR/00-Error.log"
-
-# Create or clear the error file
-: > "$ERROR_FILE"
-
-# Check if the Install-Logs directory exists
-if [ -d "$LOG_DIR" ]; then
-    # Iterate through each file in the Install-Logs directory
-    for log_file in "$LOG_DIR"/*; do
-        # Check if it's a file
-        if [ -f "$log_file" ]; then
-            # Search for lines containing the word "error" (case-insensitive) in the log file
-            if grep -i "error" "$log_file" > /dev/null; then
-                # If errors are found, add the filename to the error file
-                echo "${WARN} Errors found in file: $(basename "$log_file")" >> "$ERROR_FILE"
-            fi
-        fi
-    done
-
-    # Check if the error file has any content
-    if [ -s "$ERROR_FILE" ]; then
-        echo "${ERROR} Errors encountered during Installation. See $ERROR_FILE for details."
-    else
-        echo "${OK} No errors were found."
-    fi
-else
-    echo "Directory $LOG_DIR does not exist or could not be found."
+# copy fastfetch config if arch.png is not present
+if [ ! -f "$HOME/.config/fastfetch/arch.png" ]; then
+    cp -r assets/fastfetch "$HOME/.config/"
 fi
+
+# final check essential packages if it is installed
+execute_script "02-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, there may some errors during installation "
-    printf "\n${CAT} Please see the errors in Install-Logs as stated above\n"
-    sleep 2 
-    printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-    printf "\n"
-    printf "\n${NOTE} However, It is highly recommended to reboot your system.\n\n"
+    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
+    printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
+    sleep 2
+    printf "\n${NOTE} You can start Hyprland by typing 'Hyprland' (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} However, it is highly recommended to reboot your system.\n\n"
 
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
+    # Check if the user answered 'y' or 'Y'
     if [[ "$HYP" =~ ^[Yy]$ ]]; then
         if [[ "$nvidia" == "Y" ]]; then
             echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
-            systemctl reboot
-        else
-            systemctl reboot
-        fi    
+        fi
+        systemctl reboot
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check Error Log and Install-Logs directory...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files Install-Logs/ directory...\n\n"
     exit 1
 fi
+

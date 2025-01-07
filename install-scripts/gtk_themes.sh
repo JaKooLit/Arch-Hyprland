@@ -38,7 +38,7 @@ if [ -d "GTK-themes-icons" ]; then
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
-if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
+if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh
@@ -47,8 +47,5 @@ if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
 else
     echo "$ERROR Download failed for GTK themes and Icons.." 2>&1 | tee -a "$LOG"
 fi
-
-tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 2>&1 | tee -a "$LOG"
-echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 2>&1 | tee -a "$LOG"
 
 clear

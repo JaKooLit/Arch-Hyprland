@@ -1,0 +1,83 @@
+name: Bug Report
+description: Something is not working right
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - JaKooLit
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Already reported ? *
+      description: Before opening a new bug report, please take a moment to search through the current open and closed issues to check if it already exists.
+      options:
+      - label: I have searched the existing open and closed issues.
+        required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Regression?
+      description: |
+        Regression means that something used to work but no longer does.
+      options:
+        - "Yes"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ver
+    attributes:
+      label: System Info and Version
+      description: |
+        Paste the output of `inxi --full` here.
+        install inxi if command not found.
+      value: "<details>
+        <summary>System/Version info</summary>
+
+
+        ```
+
+        <Paste the output of the command here, without removing any formatting around this>
+
+        ```
+
+
+        </details>"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: dots
+    attributes:
+      label: KooL's Dots version
+      description: |
+        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;` 
+        This is just KooL's Hyprland Dots version.
+    validations:
+      required: true
+
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "What went wrong? What exactly happened?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: "How can someone else reproduce the issue?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: install logs, images or videos
+      description: |
+        Anything that can help. Please always ATTACH and not paste them.
