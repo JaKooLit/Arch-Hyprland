@@ -10,9 +10,9 @@ thunar=(
   thunar 
   thunar-volman 
   tumbler
-  ffmpegthumbnailer
-  file-roller 
+  ffmpegthumbnailer 
   thunar-archive-plugin
+  xarchiver
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
