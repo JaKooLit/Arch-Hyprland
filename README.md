@@ -129,8 +129,9 @@ zsh
 source ~/.zshrc
 ```
 - reboot or logout
-- by default agnoster theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
-- to change the theme, edit ~/.zshrc . Look for ZSH_THEME="desired theme"
+- by default `funky` theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+- to change the theme, `SUPER SHIFT O` , choose  desired theme, and close and open terminal. 
+- or manually edit `~/.zshrc` . Look for ZSH_THEME="desired theme"
 
 #### ✨ TO DO once installation done and dotfiles copied
 - ~~if you opted to install gtk themes, to apply the theme and icon, press the dark/light button (beside the padlock). To apply Bibata modern ice cursor, launch nwg-look (GTK Settings) through rofi.~~ Hyprland-Dots v2.1.18, initial boot file will attempt to apply GTK themes,cursor, and icons. You can tweak more using nwg-look (GTK-Settings) utility

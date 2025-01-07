@@ -2,6 +2,7 @@
 
 ## 06 Jan 2025
 - added copying of modified fastfetch-compact for Arch
+- default theme for oh my zsh theme is now "funky" 
 
 ## 26 Dec 2024
 - Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
