@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 11 Jan 2025
+- added cachyos-hyprland-settings to uninstall
+
 ## 06 Jan 2025
 - added copying of modified fastfetch-compact for Arch
 - default theme for oh my zsh theme is now "funky" 
