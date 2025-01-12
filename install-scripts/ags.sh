@@ -17,7 +17,7 @@ ags=(
 )
 
 # specific tags to download
-ags_tag="v1.8.2"
+ags_tag="v1.9.0"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -49,7 +49,7 @@ done
 
 printf "\n%.0s" {1..1}
 # ags
-printf "${NOTE} Install and Compiling Aylurs GTK shell v1.8.2..\n"
+printf "${NOTE} Install and Compiling Aylurs GTK shell $ags_tag..\n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
