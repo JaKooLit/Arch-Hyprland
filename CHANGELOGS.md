@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 13 Jan 2025
+- replaced polkit-gnome with hyprpolkitagent
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 
