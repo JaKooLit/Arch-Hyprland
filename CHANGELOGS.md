@@ -1,5 +1,14 @@
 ## Changelogs
 
+## 13 Jan 2025
+- replaced polkit-gnome with hyprpolkitagent
+
+## 12 Jan 2025
+- switch to final version of aylurs-gtk-shell-v1
+
+## 11 Jan 2025
+- added cachyos-hyprland-settings to uninstall
+
 ## 06 Jan 2025
 - added copying of modified fastfetch-compact for Arch
 - default theme for oh my zsh theme is now "funky" 

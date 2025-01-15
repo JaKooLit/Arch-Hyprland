@@ -19,6 +19,10 @@
   <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
+</p>
+
 <div align="center">
 👇 KOOL's Hyprland-Dots related Links 👇
 <br/>
@@ -32,6 +36,10 @@
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
   <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
+</p>
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />

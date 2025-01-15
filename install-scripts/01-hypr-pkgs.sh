@@ -18,6 +18,7 @@ hypr_package=(
   grim 
   gvfs 
   gvfs-mtp
+  hyprpolkitagent
   imagemagick
   inxi 
   jq
@@ -29,7 +30,6 @@ hypr_package=(
   pavucontrol
   pipewire-alsa 
   playerctl
-  polkit-gnome
   python-requests
   python-pyquery
   qt5ct
@@ -74,6 +74,7 @@ uninstall=(
   aylurs-gtk-shell
   dunst
   mako
+  cachyos-hyprland-settings
   rofi
   wallust-git
 )
