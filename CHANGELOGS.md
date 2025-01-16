@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 16 Jan 2025
+- updated nvidia.sh to install non-git libva-nvidia-driver 
+
 ## 13 Jan 2025
 - replaced polkit-gnome with hyprpolkitagent
 
