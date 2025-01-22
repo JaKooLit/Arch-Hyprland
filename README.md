@@ -54,6 +54,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 </div>
 
 ### Gallery and Videos
+
+- latest Ksk royal's [youtube video](https://youtu.be/lR7EtbVYWuc?si=eNHVSbStKS1eNVly) installation
+  
 <details>
 <summary>
 📷 Screenshots
