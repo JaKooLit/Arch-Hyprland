@@ -3,14 +3,11 @@
 # Main Hyprland Package #
 
 hypr=(
-  hyprcursor
-  hyprutils
-  aquamarine
+  hyprland
   hypridle
   hyprlock
-  hyprland
   pyprland
-  hyprland-qtutils
+  libspng
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
