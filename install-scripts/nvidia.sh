@@ -102,13 +102,14 @@ if [ -f /boot/loader/loader.conf ]; then
     find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf; do
       # Backup conf
       sudo cp "$imgconf" "$imgconf.bak"
+      echo "loader backed up" 2>&1 | tee -a "$LOG"
       
       # Clean up options and update with NVIDIA settings
       sdopt=$(grep -w "^options" "$imgconf" | sed 's/\b nvidia-drm.modeset=[^ ]*\b//g' | sed 's/\b nvidia_drm.fbdev=[^ ]*\b//g')
-      sudo sed -i "/^options/c${sdopt} nvidia-drm.modeset=1 nvidia_drm.fbdev=1" "$imgconf"
+      sudo sed -i "/^options/c${sdopt} nvidia-drm.modeset=1 nvidia_drm.fbdev=1" "$imgconf" 2>&1 | tee -a "$LOG"
     done
   else
-    echo "systemd-boot is already configured..."
+    echo "systemd-boot is already configured..." 2>&1 | tee -a "$LOG"
   fi
 fi
 
