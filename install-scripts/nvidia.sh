@@ -10,8 +10,9 @@ nvidia_pkg=(
   nvidia-settings
   nvidia-utils
   libva
-  libva-nvidia-driver-git
+  libva-nvidia-driver
 )
+
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -37,7 +38,7 @@ if pacman -Qs hyprland > /dev/null; then
 fi
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing addition Nvidia packages...\n"
+printf "${YELLOW} Installing Nvidia Packages and Linux headers...\n"
 for krnl in $(cat /usr/lib/modules/*/pkgbase); do
   for NVIDIA in "${krnl}-headers" "${nvidia_pkg[@]}"; do
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
@@ -53,12 +54,13 @@ else
 fi
 
 sudo mkinitcpio -P 2>&1 | tee -a "$LOG"
-printf "\n\n\n"
+
+printf "\n%.0s" {1..3}
 
 # Additional Nvidia steps
 NVEA="/etc/modprobe.d/nvidia.conf"
 if [ -f "$NVEA" ]; then
-  printf "${OK} Seems like nvidia-drm modeset=1 is already added in your system..moving on.\n"
+  printf "${OK} Seems like nvidia-drm modeset=1 is already added in your system..moving on."
   printf "\n"
 else
   printf "\n"
@@ -72,19 +74,17 @@ fi
 if [ -f /etc/default/grub ]; then
     # Check if nvidia-drm.modeset=1 is present
     if ! sudo grep -q "nvidia-drm.modeset=1" /etc/default/grub; then
-        # Add nvidia-drm.modeset=1 to GRUB_CMDLINE_LINUX_DEFAULT
         sudo sed -i -e 's/\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 nvidia-drm.modeset=1"/' /etc/default/grub
         echo "nvidia-drm.modeset=1 added to /etc/default/grub" 2>&1 | tee -a "$LOG"
     fi
 
     # Check if nvidia_drm.fbdev=1 is present
     if ! sudo grep -q "nvidia_drm.fbdev=1" /etc/default/grub; then
-        # Add nvidia_drm.fbdev=1 to GRUB_CMDLINE_LINUX_DEFAULT
         sudo sed -i -e 's/\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 nvidia_drm.fbdev=1"/' /etc/default/grub
         echo "nvidia_drm.fbdev=1 added to /etc/default/grub" 2>&1 | tee -a "$LOG"
     fi
 
-    # Regenerate GRUB configuration if any changes were made
+    # Regenerate GRUB configuration 
     if sudo grep -q "nvidia-drm.modeset=1" /etc/default/grub || sudo grep -q "nvidia_drm.fbdev=1" /etc/default/grub; then
         sudo grub-mkconfig -o /boot/grub/grub.cfg
     fi
@@ -103,7 +103,6 @@ if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
   if [ -f "$NOUVEAU" ]; then
     printf "${OK} Seems like nouveau is already blacklisted..moving on.\n"
   else
-    printf "\n"
     echo "blacklist nouveau" | sudo tee -a "$NOUVEAU" 2>&1 | tee -a "$LOG"
     printf "${NOTE} has been added to $NOUVEAU.\n"
     printf "\n"
@@ -116,7 +115,7 @@ if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
     fi
   fi
 else
-  printf "${NOTE} Skipping nouveau blacklisting.\n" 2>&1 | tee -a "$LOG"
+  printf "${NOTE} Skipping nouveau blacklisting..." 2>&1 | tee -a "$LOG"
 fi
 
 clear
