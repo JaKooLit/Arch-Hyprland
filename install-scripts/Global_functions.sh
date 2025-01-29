@@ -28,7 +28,7 @@ install_package_pacman() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
+    sudo pacman -S --noconfirm --needed "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if pacman -Q "$1" &>/dev/null ; then
       echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
@@ -51,7 +51,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
+    $ISAUR -S --noconfirm --needed "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"

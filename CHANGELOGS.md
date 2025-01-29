@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 29 Jan 2025
+- enhanced nvidia.sh to add additional systemd-bootloader entries for nvidia
+
 ## 16 Jan 2025
 - updated nvidia.sh to install non-git libva-nvidia-driver 
 
