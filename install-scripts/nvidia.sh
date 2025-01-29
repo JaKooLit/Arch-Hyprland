@@ -93,6 +93,25 @@ else
     echo "/etc/default/grub does not exist"
 fi
 
+# Additional for systemd-boot users
+if [ -f /boot/loader/loader.conf ]; then
+  backup_count=$(find /boot/loader/entries/ -type f -name "*.conf.bak" | wc -l)
+  conf_count=$(find /boot/loader/entries/ -type f -name "*.conf" | wc -l)
+  
+  if [ "$backup_count" -ne "$conf_count" ]; then
+    find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf; do
+      # Backup conf
+      sudo cp "$imgconf" "$imgconf.bak"
+      
+      # Clean up options and update with NVIDIA settings
+      sdopt=$(grep -w "^options" "$imgconf" | sed 's/\b nvidia-drm.modeset=[^ ]*\b//g' | sed 's/\b nvidia_drm.fbdev=[^ ]*\b//g')
+      sudo sed -i "/^options/c${sdopt} nvidia-drm.modeset=1 nvidia_drm.fbdev=1" "$imgconf"
+    done
+  else
+    echo "systemd-boot is already configured..."
+  fi
+fi
+
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
       read -n1 -rep "${CAT} Would you like to blacklist nouveau? (y/n)" blacklist_nouveau
