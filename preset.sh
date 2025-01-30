@@ -18,6 +18,8 @@ gtk_themes="Y"
 bluetooth="Y"
 ###-Do you want to install Thunar file manager?
 thunar="Y"
+###-Install AGS (aylur's gtk shell) v1 for Desktop Like Overview?" ags
+ags="Y"
 ###-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?
 sddm="Y"
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)

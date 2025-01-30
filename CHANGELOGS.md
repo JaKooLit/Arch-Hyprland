@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 30 Jan 2025
+- separate AGS v1 installation separate
+
 ## 29 Jan 2025
 - enhanced nvidia.sh to add additional systemd-bootloader entries for nvidia
 

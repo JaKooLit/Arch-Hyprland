@@ -1,6 +1,11 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Aylur's GTK Shell v 1.8.2#
+# Aylur's GTK Shell v 1.9.0#
+# for desktop overview
+
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 ags=(
     typescript
@@ -10,7 +15,8 @@ ags=(
     gjs 
     gtk3 
     gtk-layer-shell 
-    upower networkmanager 
+    upower
+    networkmanager 
     gobject-introspection 
     libdbusmenu-gtk3 
     libsoup3
