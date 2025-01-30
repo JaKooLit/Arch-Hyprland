@@ -174,6 +174,9 @@ source ~/.zshrc
 > [!IMPORTANT]
 > DO NOT cd into install-scripts directory as script will most likely to fail
 
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://www.youtube.com/watch?v=ir9NfMcZBzA)
+
 #### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - [ ] possibly adding gruvbox themes, cursors, icons
@@ -214,8 +217,6 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
-#### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [LINK](https://github.com/JaKooLit/screenshots/blob/raw/Demo/AGS-Overview-demo.mp4)
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
