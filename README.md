@@ -171,11 +171,12 @@ source ~/.zshrc
 - CD into Arch-Hyprland directory and then ran the below command. 
 - i.e. `./install-scripts/gtk-themes.sh` - For reinstall GTK Themes or
 - `./install-scripts/sddm.sh` - For reinstall sddm
+
 > [!IMPORTANT]
 > DO NOT cd into install-scripts directory as script will most likely to fail
 
 #### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://www.youtube.com/watch?v=ir9NfMcZBzA)
+- in case you wonder, here is a short demo of AGS overview [Youtube Link](https://youtu.be/zY5SLNPBJTs)
 
 #### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
