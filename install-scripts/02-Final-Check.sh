@@ -23,7 +23,7 @@ packages=(
 
 # Local packages that should be in /usr/local/bin/
 local_pkgs_installed=(
-  ags
+
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
