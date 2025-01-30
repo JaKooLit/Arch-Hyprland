@@ -214,6 +214,9 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [LINK](https://github.com/JaKooLit/screenshots/blob/raw/Demo/AGS-Overview-demo.mp4)
+
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
