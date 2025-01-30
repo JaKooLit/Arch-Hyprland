@@ -176,7 +176,7 @@ source ~/.zshrc
 > DO NOT cd into install-scripts directory as script will most likely to fail
 
 #### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube Link](https://youtu.be/zY5SLNPBJTs)
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### 🛣️ Roadmap:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
