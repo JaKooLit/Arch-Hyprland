@@ -29,7 +29,8 @@ fi
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("●○○○" "○●○○" "○○●○" "○○○●" "○○●○" "○●○○")  # Dots Growing & Shrinking
+    local spin_chars=("●○○○○○" "○●○○○○" "○○●○○○" "○○○●○○" "○○○○●○" "○○○○○●" \
+                      "○○○○●○" "○○○●○○" "○○●○○○" "○●○○○○")  # Growing & Shrinking Dots
     local i=0
 
     tput civis  # Hide cursor
@@ -37,14 +38,13 @@ show_progress() {
 
     while ps -p $pid &> /dev/null; do
         printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
-        i=$(( (i + 1) % 6 ))
-        sleep 0.2
+        i=$(( (i + 1) % 10 ))  # Cycle through 10 animation frames
+        sleep 0.3  # Slower animation
     done
 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
     tput cnorm  # Show cursor again
 }
-
 
 
 # Function to install packages with pacman
