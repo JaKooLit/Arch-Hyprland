@@ -29,19 +29,20 @@ fi
 show_progress() {
     local pid=$1
     local package_name=$2
-    local dots=""
-    
-    # Print initial message only once
-    echo -ne "${NOTE} Installing ${YELLOW}$package_name${RESET} ..."
+    local spin_chars=("|" "/" "-" "\\")  # Classic spinner
+    local i=0
 
-    # Loop until the process is running
+    tput civis  # Hide cursor
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
+
     while ps -p $pid &> /dev/null; do
-        dots+="."
-        printf "\r%-80s" "${NOTE} Installing ${YELLOW}$package_name${RESET} ...$dots"  
-        sleep 1
+        printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
+        i=$(( (i + 1) % 4 ))
+        sleep 0.2  # Faster animation
     done
-    
-    printf "\r%-80s\n" "${NOTE} Installing ${YELLOW}$package_name${RESET} ... Done!" 
+
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
+    tput cnorm  # Show cursor again
 }
 
 
@@ -50,6 +51,7 @@ install_package_pacman() {
   # Check if package is already installed
   if pacman -Q "$1" &>/dev/null ; then
     echo -e "${OK} ${MAGENTA}$1${RESET} is already installed. Skipping..."
+    printf "\n%.0s" {1..1}
   else
     # Run pacman and redirect all output to a log file
     (
@@ -75,6 +77,7 @@ install_package() {
   # Checking if package is already installed
   if $ISAUR -Q "$1" &>> /dev/null ; then
     echo -e "${OK} ${MAGENTA}$1${RESET} is already installed. Skipping..."
+    printf "\n%.0s" {1..1}
   else
     # Run yay/paru and redirect all output to a log file
     (

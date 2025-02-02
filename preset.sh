@@ -9,7 +9,6 @@
 ### -Type AUR helper
 ### yay or paru 
 aur_helper="yay"
-############ use : "Y" or "N"
 ###-Do you have any nvidia gpu in your system?
 nvidia="Y"
 ###-Install GTK themes (required for Dark/Light function)?
@@ -34,8 +33,7 @@ dots="Y"
 ### These are the sub-questions of the above choices
 ### Would you like to blacklist nouveau? (y/n)
 blacklist_nouveau="Y"
-# Ask the user if they want to use Thunar as the default file manager
-# Do you want to set Thunar as the default file manager? (y/n): "
+### Do you want to set Thunar as the default file manager? (y/n): "
 thundefault="Y"
 ### OPTIONAL - Would you like to install SDDM themes? (y/n)
 install_sddm_theme="Y"
