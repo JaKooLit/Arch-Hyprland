@@ -178,7 +178,7 @@ execute_script() {
 
 # Collect user responses to all questions
 printf "\n"
-ask_custom_option "-Type AUR helper" "${YELLOW}paru or yay${RESET}" aur_helper
+ask_custom_option "-Type AUR helper" ${YELLOW}"paru or yay"${RESET} aur_helper
 printf "\n"
 ask_yes_no "-Do you have any ${YELLOW}nvidia${RESET} GPU in your system?" nvidia
 printf "\n"
