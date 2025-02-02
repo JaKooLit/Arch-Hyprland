@@ -15,7 +15,9 @@ MAGENTA="$(tput setaf 5)"
 ORANGE="$(tput setaf 214)"
 WARNING="$(tput setaf 1)"
 YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 # Create Directory for Install Logs
@@ -91,4 +93,26 @@ install_package() {
       exit 1
     fi
   fi
+}
+
+# Function for uninstalling packages
+uninstall_package() {
+  local pkg="$1"
+
+  # Checking if package is installed
+  if pacman -Qi "$pkg" &>> /dev/null ; then
+    # Package is installed
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
+    # Check if the package was uninstalled
+    if ! pacman -Qi "$pkg" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
+    else
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1 
+    fi
+  else
+    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
+  fi
+  return 0 
 }

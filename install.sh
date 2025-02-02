@@ -69,14 +69,14 @@ read -p "${SKY_BLUE}Would you like to proceed? (y/n): ${RESET}" proceed
 printf "\n%.0s" {1..2}
 
 if [ "$proceed" != "y" ]; then
-    echo "Installation aborted."
+    echo "${INFO} Installation aborted No changes done! Goodbye!"
 	printf "\n%.0s" {1..2}
     exit 1
 fi
 
 printf "\n%.0s" {1..2}
 
-echo "${NOTE} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages${RESET}!"
+echo "${NOTE} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages!!!${RESET}"
 echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
 echo "If you are not sure what to do, answer N in here"
 read -p "${SKY_BLUE}Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
@@ -96,17 +96,6 @@ colorize_prompt() {
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S).log"
 
-# Initialize variables to store user responses
-# aur_helper=""
-# bluetooth=""
-# dots=""
-# gtk_themes=""
-# nvidia=""
-# rog=""
-# sddm=""
-# thunar=""
-# xdph=""
-# zsh=""
 
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
