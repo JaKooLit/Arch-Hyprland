@@ -219,6 +219,11 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
 
+#### ➕ Added Hyprland install either git or non-git version
+- on assets directory of Arch-Hyprland, you will find install scripts to assist in switching non-git and git version of hyprland
+- pretty straight forward `chmod +x actions.sh` `./actions.sh` and `1 for non-git` and `2 for git version`
+
+
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
