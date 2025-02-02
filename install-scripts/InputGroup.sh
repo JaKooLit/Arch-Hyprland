@@ -20,8 +20,8 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
-    echo "${WARN} This script will add your user to the 'input' group."
-    echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
+    echo "${WARN} This script will add your ${YELLOW}user${RESET} to the ${MAGENTA}input${RESET} group."
+    echo "${NOTE} Please note that adding yourself to the ${MAGENTA}input${RESET} group might be necessary for waybar keyboard-state functionality."
     
     printf "\n%.0s" {1..1}
     
@@ -32,18 +32,17 @@ while true; do
     if [[ $input_group_choid == "y" || $input_group_choid == "Y" ]]; then
         # Check if the 'input' group exists
         if grep -q '^input:' /etc/group; then
-            echo "${OK} 'input' group exists."
+            echo "${OK} ${MAGENTA}input${RESET} group exists."
         else
-            echo "${NOTE} 'input' group doesn't exist. Creating 'input' group..."
+            echo "${NOTE} ${MAGENTA}input${RESET} group doesn't exist. Creating ${MAGENTA}input${RESET} group..."
             sudo groupadd input
 
-            # Log the creation of the 'input' group
-            echo "'input' group created" >> "$LOG"
+            echo "${MAGENTA}input${RESET} group created" >> "$LOG"
         fi
 
         # Add the user to the input group
         sudo usermod -aG input "$(whoami)"
-        echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
+        echo "${OK} ${YELLOW}user${RESET} added to the ${MAGENTA}input${RESET} group. Changes will take effect after you log out and log back in."
 
         # Log the addition of the user to the 'input' group
         echo "User added to 'input' group" >> "$LOG"
@@ -56,4 +55,4 @@ while true; do
     fi
 done
 
-clear
+printf "\n%.0s" {1..2}

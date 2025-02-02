@@ -175,8 +175,7 @@ source ~/.zshrc
 > DO NOT cd into install-scripts directory as script will most likely to fail
 
 #### 🛣️ Roadmap:
-- ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
-- [ ] possibly adding gruvbox themes, cursors, icons
+- [ ] show a progress bar in downloading and compiling part
 
 #### ❗ some known issues for nvidia
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 

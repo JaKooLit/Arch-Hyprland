@@ -14,10 +14,10 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_base.log"
 
 
 # Installation of main components
-printf "\n%s - Installing base-devel \n" "${NOTE}"
+printf "\n%s - Installing ${BLUE}base-devel${RESET} \n" "${NOTE}"
 
 for PKG1 in "${base[@]}"; do
-  sudo pacman -S --noconfirm "$PKG1" | tee -a "$LOG"
+  install_package_pacman "$PKG1" | tee -a "$LOG"
 done
 
-clear
+printf "\n%.0s" {1..2}

@@ -5,9 +5,10 @@
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 166)
+MAGENTA=$(tput setaf 5)
+WARNING=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
@@ -182,6 +183,8 @@ ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
+ask_yes_no "-Install AGS (aylur's gtk shell) v1 for Desktop Like Overview?" ags
+printf "\n"
 ask_yes_no "-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
 printf "\n"
 ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
@@ -220,9 +223,6 @@ execute_script "fonts.sh"
 # Install hyprland
 execute_script "hyprland.sh"
 
-# Install AGS from source (older version)
-execute_script "ags.sh"
-
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi
@@ -237,6 +237,9 @@ fi
 
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
+fi
+if [ "$ags" == "Y" ]; then
+    execute_script "ags.sh"
 fi
 
 if [ "$sddm" == "Y" ]; then
@@ -276,11 +279,11 @@ printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
-    printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
+    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
+    printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
-    printf "\n${NOTE} You can start Hyprland by typing 'Hyprland' (IF SDDM is not installed) (note the capital H!).\n"
-    printf "\n${NOTE} However, it is highly recommended to reboot your system.\n\n"
+    printf "\n${NOTE} You can start Hyprland by typing ${MAGENTA}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
@@ -291,10 +294,15 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
             echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
         fi
         systemctl reboot
+    else
+        echo -e "\n${CAT} Thanks for using ${MAGENTA}KooL's Hyprland Dots${RESET}. Enjoy and Have a good day!"
+        printf "\n%.0s" {1..1}
+        exit 0
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files Install-Logs/ directory...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory...\n\n"
     exit 1
 fi
+
 

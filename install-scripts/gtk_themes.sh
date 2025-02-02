@@ -24,9 +24,8 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_themes.log"
 
 # installing engine needed for gtk themes
 for PKG1 in "${engine[@]}"; do
-    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    install_package "$PKG1" "$LOG"
     if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
         exit 1
     fi
 done
@@ -48,4 +47,4 @@ else
     echo "$ERROR Download failed for GTK themes and Icons.." 2>&1 | tee -a "$LOG"
 fi
 
-clear
+printf "\n%.0s" {1..2}

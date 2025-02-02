@@ -30,19 +30,18 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 
 # Thunar
-printf "${NOTE} Installing Thunar Packages...\n"  
+printf "${NOTE} Installing ${BLUE}Thunar${RESET} Packages...\n\n"  
   for THUNAR in "${thunar[@]}"; do
-    install_package "$THUNAR" 2>&1 | tee -a "$LOG"
+    install_package "$THUNAR" "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"; exit 1; }
   done
 
 printf "\n%.0s" {1..2}
 
-# Ask the user if they want to use Thunar as the default file manager
+# confirm if wanted to set as default
 read -p "${CAT} Do you want to set Thunar as the default file manager? (y/n): " thunar_default
 
 if [[ "$thunar_default" == [Yy] ]]; then
-    # Setting Thunar as the default file manager
     xdg-mime default thunar.desktop inode/directory
     xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
     echo "${OK} Thunar has been set as the default file manager." 2>&1 | tee -a "$LOG"
@@ -63,6 +62,4 @@ for DIR1 in gtk-3.0 Thunar xfce4; do
   fi
 done
 
-clear
-
-
+printf "\n%.0s" {1..2}

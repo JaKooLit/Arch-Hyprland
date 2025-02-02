@@ -8,7 +8,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_pacman.log"
 
-echo -e "${NOTE} Adding Extra Spice in pacman.conf ... ${RESET}" 2>&1 | tee -a "$LOG"
+echo -e "${NOTE} Adding ${MAGENTA}Extra Spice${RESET} in pacman.conf ... ${RESET}" 2>&1 | tee -a "$LOG"
 pacman_conf="/etc/pacman.conf"
 
 # Remove comments '#' from specific lines
@@ -32,14 +32,14 @@ done
 # Add "ILoveCandy" below ParallelDownloads if it doesn't exist
 if grep -q "^ParallelDownloads" "$pacman_conf" && ! grep -q "^ILoveCandy" "$pacman_conf"; then
     sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
-    echo -e "${CAT} Added ILoveCandy below ParallelDownloads. ${RESET}" 2>&1 | tee -a "$LOG"
+    echo -e "${CAT} Added ${MAGENTA}ILoveCandy${RESET} after ${MAGENTA}ParallelDownloads${RESET}. ${RESET}" 2>&1 | tee -a "$LOG"
 else
-    echo -e "${CAT} ILoveCandy already exists ${RESET}" 2>&1 | tee -a "$LOG"
+    echo -e "${CAT} It seems ${YELLOW}ILoveCandy${RESET} already exists ${RESET} moving on.." 2>&1 | tee -a "$LOG"
 fi
 
-echo -e "${CAT} Pacman.conf spicing up completed ${RESET}" 2>&1 | tee -a "$LOG"
+echo -e "${CAT} ${MAGENTA}Pacman.conf${RESET} spicing up completed ${RESET}" 2>&1 | tee -a "$LOG"
 
 # updating pacman.conf
 sudo pacman -Sy
 
-clear
+printf "\n%.0s" {1..2}

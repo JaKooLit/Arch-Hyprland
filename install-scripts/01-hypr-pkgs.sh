@@ -114,12 +114,10 @@ fi
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  install_package "$PKG1" "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
 
-clear
-
+printf "\n%.0s" {1..2}

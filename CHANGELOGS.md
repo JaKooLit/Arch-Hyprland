@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 02 Feb 2025
+- some tweaking on install-scripts except the compiling part. It will not show progress for much cleaner work. 
+
 ## 29 Jan 2025
 - enhanced nvidia.sh to add additional systemd-bootloader entries for nvidia
 

@@ -25,21 +25,20 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_pipewire.log"
 
-ISAUR=$(command -v yay || command -v paru)
-
-# Disabling pulseaudio to avoid conflicts
-systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>/dev/null && tee -a "$LOG"
+# Disabling pulseaudio to avoid conflicts and logging output
+echo -e "${NOTE} Disabling pulseaudio to avoid conflicts..."
+systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>&1 | tee -a "$LOG"
 
 # Pipewire
-printf "${NOTE} Installing Pipewire Packages...\n"
+echo -e "${NOTE} Installing Pipewire Packages..."
 for PIPEWIRE in "${pipewire[@]}"; do
-    install_package "$PIPEWIRE" 2>&1 | tee -a "$LOG"
+    install_package "$PIPEWIRE" "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $PIPEWIRE Package installation failed, Please check the installation logs"; exit 1; }
 done
 
-printf "Activating Pipewire Services...\n"
+echo -e "${NOTE} Activating Pipewire Services..."
+# Redirect systemctl output to log file
 systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service 2>&1 | tee -a "$LOG"
 systemctl --user enable --now pipewire.service 2>&1 | tee -a "$LOG"
 
-
-clear
+echo -e "\n${OK} Pipewire Installation and services setup complete!" 2>&1 | tee -a "$LOG"

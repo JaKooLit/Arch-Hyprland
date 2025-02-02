@@ -38,10 +38,10 @@ if pacman -Qs hyprland > /dev/null; then
 fi
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing Nvidia Packages and Linux headers...\n"
+printf "${YELLOW} Installing ${BLUE}Nvidia Packages and Linux headers${RESET}...\n"
 for krnl in $(cat /usr/lib/modules/*/pkgbase); do
   for NVIDIA in "${krnl}-headers" "${nvidia_pkg[@]}"; do
-    install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
+    install_package "$NVIDIA" "$LOG"
   done
 done
 
@@ -118,6 +118,7 @@ if [ -f /boot/loader/loader.conf ]; then
     fi
 fi
 
+printf "\n%.0s" {1..2}
 
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
@@ -144,4 +145,4 @@ else
   printf "${NOTE} Skipping nouveau blacklisting..." 2>&1 | tee -a "$LOG"
 fi
 
-clear
+printf "\n%.0s" {1..2}

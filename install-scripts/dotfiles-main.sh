@@ -7,7 +7,7 @@
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Check if Hyprland-Dots exists
-printf "${NOTE} Downloading KooL's Hyprland Dots....\n"
+printf "${NOTE} Downloading ${BLUE}KooL's Hyprland Dots${RESET}....\n"
 
 if [ -d Hyprland-Dots ]; then
   cd Hyprland-Dots
@@ -26,4 +26,4 @@ else
   fi
 fi
 
-clear
+printf "\n%.0s" {1..2}

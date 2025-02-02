@@ -1,6 +1,11 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Aylur's GTK Shell v 1.8.2#
+# Aylur's GTK Shell v 1.9.0 #
+# for desktop overview
+
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 ags=(
     typescript
@@ -10,7 +15,8 @@ ags=(
     gjs 
     gtk3 
     gtk-layer-shell 
-    upower networkmanager 
+    upower
+    networkmanager 
     gobject-introspection 
     libdbusmenu-gtk3 
     libsoup3
@@ -40,7 +46,7 @@ printf "\n%s - Installing AGS Dependencies \n" "${NOTE}"
 
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
-    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    install_package "$PKG1" "$LOG"
     if [ $? -ne 0 ]; then
         echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
         exit 1
@@ -48,8 +54,9 @@ for PKG1 in "${ags[@]}"; do
 done
 
 printf "\n%.0s" {1..1}
-# ags
-printf "${NOTE} Install and Compiling Aylurs GTK shell $ags_tag..\n"
+
+# ags v1
+printf "${NOTE} Install and Compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
@@ -57,24 +64,26 @@ if [ -d "ags" ]; then
     rm -rf "ags"
 fi
 
-# Clone nwg-look repository with the specified tag
+printf "\n%.0s" {1..1}
+printf "${INFO} Kindly Standby...cloning and compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
+printf "\n%.0s" {1..1}
+# Clone repository with the specified tag and capture git output into MLOG
 if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
-    # Build and install ags
     npm install
     meson setup build
-    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
-        printf "${OK} ags installed successfully.\n" 2>&1 | tee -a "$MLOG"
-    else
-        echo -e "${ERROR} Installation failed for ags" 2>&1 | tee -a "$MLOG"
-    fi
-
+   if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+    printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+  else
+    echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
+   fi
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
 else
-    echo -e "${ERROR} Failed to download ags Please check your connection" 2>&1 | tee -a "$LOG"
+    echo -e "\n${ERROR} Failed to download ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Please check your connection\n" 2>&1 | tee -a "$LOG"
     mv "$MLOG" ../Install-Logs/ || true
     exit 1
 fi
 
+printf "\n%.0s" {1..2}

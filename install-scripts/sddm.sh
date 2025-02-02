@@ -30,7 +30,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 # Install SDDM and SDDM theme
 printf "${NOTE} Installing sddm and dependencies........\n"
   for package in "${sddm[@]}"; do
-  install_package "$package" 2>&1 | tee -a "$LOG"
+  install_package "$package" "$LOG"
   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package Package installation failed, Please check the installation logs"; exit 1; }
  done 
 
@@ -59,7 +59,7 @@ printf "\n%.0s" {1..2}
 valid_input=false
 while [ "$valid_input" != true ]; do
     if [[ -z $install_sddm_theme ]]; then
-      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
+      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install additional SDDM themes? (y/n)" install_sddm_theme
     fi
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
     printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
@@ -101,4 +101,4 @@ while [ "$valid_input" != true ]; do
   fi
 done
 
-clear
+printf "\n%.0s" {1..2}
