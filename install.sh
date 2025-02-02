@@ -5,12 +5,15 @@
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-MAGENTA=$(tput setaf 5)
-WARNING=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+MAGENTA="$(tput setaf 5)"
+ORANGE="$(tput setaf 214)"
+WARNING="$(tput setaf 1)"
+YELLOW="$(tput setaf 3)"
+BLUE="$(tput setaf 4)"
+RESET="$(tput sgr0)"
 
 
 # Check if running as root. If root, script will exit
@@ -52,14 +55,14 @@ printf "\n%.0s" {1..2}
 # Welcome message
 echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland Install Script!$(tput sgr0)"
 echo
-echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
+echo "$(tput setaf 1)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
 echo
 echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation! $(tput sgr0)"
 echo
 echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
 echo
 
-read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
+read -p "${(tput setaf 6)}Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
 printf "\n%.0s" {1..2}
 
@@ -71,10 +74,10 @@ fi
 
 printf "\n%.0s" {1..2}
 
-echo "$(tput bold)$(tput setaf 166)ATTENTION: Choosing Y on use preset question will install also nvidia stuff! $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 3)CTRL C to cancel and edit the file preset.sh $(tput sgr0)"  
-echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, answer N in here $(tput sgr0)"
-read -p "$(tput setaf 6)Would you like to Use Preset Settings (See note above)? (y/n): $(tput sgr0)" use_preset
+echo "${NOTE} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages${RESET}!"
+echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
+echo "If you are not sure what to do, answer N in here"
+read -p "$(tput setaf 6)Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
 
 # Use of Preset Settings
 if [[ $use_preset = [Yy] ]]; then
