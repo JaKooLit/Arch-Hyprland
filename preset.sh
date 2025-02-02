@@ -18,6 +18,8 @@ gtk_themes="Y"
 bluetooth="Y"
 ###-Do you want to install Thunar file manager?
 thunar="Y"
+### Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" 
+ags="Y"
 ###-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?
 sddm="Y"
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
@@ -34,7 +36,7 @@ dots="Y"
 blacklist_nouveau="Y"
 # Ask the user if they want to use Thunar as the default file manager
 # Do you want to set Thunar as the default file manager? (y/n): "
-thunar_default="Y"
+thundefault="Y"
 ### XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! Script cant remove nor disable it.
 ### Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) 
 XDPH1="Y"
