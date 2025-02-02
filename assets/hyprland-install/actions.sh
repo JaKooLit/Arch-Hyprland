@@ -34,7 +34,7 @@ while true; do
             printf "\n${OK} You chose non-git version of Hyprland....... executing...\n"
             echo -e "${YELLOW} Uninstalling some hyprland packages first...${RESET}"
             ./scripts/uninstall.sh
-            echo -e "${NOTE} Installing non-git version of Hyprland...${RESET}\n"
+            echo -e "${NOTE} Installing non-git version of Hyprland...${RESET}"
             ./scripts/install-hyprland.sh
             break
             ;;
@@ -42,7 +42,7 @@ while true; do
             printf "\n${OK} You chose git version of Hyprland....... executing...\n"
             echo -e "${YELLOW} Uninstalling some hyprland packages....${RESET}"
             ./scripts/uninstall.sh
-            echo -e "${NOTE} Installing git version of Hyprland...${RESET}\n"
+            echo -e "${NOTE} Installing git version of Hyprland...${RESET}"
             ./scripts/install-hyprland-git.sh
             break
             ;;
