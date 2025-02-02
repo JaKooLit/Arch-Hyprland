@@ -39,7 +39,7 @@ printf "${NOTE} Installing ${BLUE}Thunar${RESET} Packages...\n\n"
 printf "\n%.0s" {1..2}
 
 # confirm if wanted to set as default
-read -p "${CAT} Do you want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thundefault
+read -n1 -rep "${CAT} Do you want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thundefault
 
 if [[ "$thundefault" == [Yy] ]]; then
     xdg-mime default thunar.desktop inode/directory
