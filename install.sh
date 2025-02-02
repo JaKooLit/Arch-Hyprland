@@ -178,28 +178,29 @@ execute_script() {
 
 # Collect user responses to all questions
 printf "\n"
-ask_custom_option "-Type AUR helper ${YELLOW}paru or yay${RESET}" aur_helper
+ask_custom_option "-Type AUR helper" "${YELLOW}paru or yay${RESET}" aur_helper
 printf "\n"
-ask_yes_no "-Do you have any ${YELLOW}nvidia${RESET} gpu in your system?" nvidia
+ask_yes_no "-Do you have any ${YELLOW}nvidia${RESET} GPU in your system?" nvidia
 printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
 printf "\n"
-ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET} ?" bluetooth
+ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
 printf "\n"
-ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET} ?" thunar
+ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
 printf "\n"
-ask_yes_no "-Install ${YELLOW}AGS (aylur's gtk shell) v1${RESET} for Desktop Like Overview?" ags
+ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" ags
 printf "\n"
-ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
+ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} login manager, plus (OPTIONAL) SDDM theme?" sddm
 printf "\n"
-ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share ie OBS)" xdph
+ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share, e.g., OBS)" xdph
 printf "\n"
 ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optional) ${YELLOW}pokemon-colorscripts${RESET}?" zsh
 printf "\n"
-ask_yes_no "-Installing in a ${YELLOW}Asus ROG Laptops${RESET}?" rog
+ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
 printf "\n"
 ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL Hyprland dotfiles${RESET}?" dots
 printf "\n"
+
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
