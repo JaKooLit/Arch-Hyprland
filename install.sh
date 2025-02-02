@@ -12,7 +12,9 @@ MAGENTA="$(tput setaf 5)"
 ORANGE="$(tput setaf 214)"
 WARNING="$(tput setaf 1)"
 YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 
@@ -53,16 +55,16 @@ echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}  
 
 # Welcome message
-echo "${CAT}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
+echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
 echo
-echo "${WARN}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
+echo "${WARNING}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
 echo
-echo "${INFO}NOTE: You will be required to answer some questions during the installation! ${RESET}"
+echo "${YELLOW}NOTE: You will be required to answer some questions during the installation! ${RESET}"
 echo
-echo "${INFO}NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! ${RESET}"
+echo "${YELLOW}NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! ${RESET}"
 echo
 
-read -p "${CAT}Would you like to proceed? (y/n): ${RESET}" proceed
+read -p "${SKY_BLUE}Would you like to proceed? (y/n): ${RESET}" proceed
 
 printf "\n%.0s" {1..2}
 
@@ -77,7 +79,7 @@ printf "\n%.0s" {1..2}
 echo "${NOTE} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages${RESET}!"
 echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
 echo "If you are not sure what to do, answer N in here"
-read -p "$(tput setaf 6)Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
+read -p "${SKY_BLUE}Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
 
 # Use of Preset Settings
 if [[ $use_preset = [Yy] ]]; then
