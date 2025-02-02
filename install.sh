@@ -53,16 +53,16 @@ echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}  
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland Install Script!$(tput sgr0)"
+echo "${CAT}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
 echo
-echo "$(tput setaf 1)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
+echo "${WARN}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
 echo
-echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation! $(tput sgr0)"
+echo "${INFO}NOTE: You will be required to answer some questions during the installation! ${RESET}"
 echo
-echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
+echo "${INFO}NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! ${RESET}"
 echo
 
-read -p "${(tput setaf 6)}Would you like to proceed? (y/n): $(tput sgr0)" proceed
+read -p "${CAT}Would you like to proceed? (y/n): ${RESET}" proceed
 
 printf "\n%.0s" {1..2}
 
