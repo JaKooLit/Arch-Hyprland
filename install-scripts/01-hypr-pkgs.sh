@@ -111,7 +111,7 @@ fi
 
 
 # Installation of main components
-printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
+printf "\n%s - Installing ${BLUE}KooL's hyprland necessary packages${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" "$LOG"

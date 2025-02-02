@@ -42,7 +42,7 @@ MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 printf "\n%.0s" {1..1}
 
 # Installation of main components
-printf "\n%s - Installing AGS Dependencies \n" "${NOTE}"
+printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
 
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do

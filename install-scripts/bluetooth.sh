@@ -27,7 +27,7 @@ printf "${NOTE} Installing ${BLUE}Bluetooth${RESET} Packages...\n"
    install_package "$BLUE" "$LOG"
   done
 
-printf " Activating Bluetooth Services...\n"
+printf " Activating ${YELLOW}Bluetooth${RESET} Services...\n"
 sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
 
 printf "\n%.0s" {1..2}

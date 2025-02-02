@@ -21,7 +21,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
     echo "${WARN} This script will add your ${YELLOW}user${RESET} to the ${MAGENTA}input${RESET} group."
-    echo "${NOTE} Please note that adding yourself to the ${MAGENTA}input${RESET} group might be necessary for waybar keyboard-state functionality."
+    echo "${NOTE} Please note that adding yourself to the ${MAGENTA}input${RESET} group might be necessary for ${MAGENTA}waybar keyboard-state functionality${RESET} ."
     
     printf "\n%.0s" {1..1}
     

@@ -38,7 +38,7 @@ if [ -n "$ISAUR" ]; then
   printf "\n%s - AUR helper already installed, moving on.\n" "${OK}"
 else
   printf "\n%s - AUR helper was NOT located\n" "$WARN"
-  printf "\n%s - Installing ${YELLOW}yay${RESET} from AUR\n" "${NOTE}"
+  printf "\n%s - Installing ${BLUE}yay${RESET} from AUR\n" "${NOTE}"
   git clone https://aur.archlinux.org/yay.git || { printf "%s - Failed to clone ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
   cd yay || { printf "%s - Failed to enter yay directory\n" "${ERROR}"; exit 1; }
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }

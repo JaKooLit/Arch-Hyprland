@@ -39,7 +39,7 @@ printf "${NOTE} Installing ${BLUE}Thunar${RESET} Packages...\n\n"
 printf "\n%.0s" {1..2}
 
 # confirm if wanted to set as default
-read -p "${CAT} Do you want to set Thunar as the default file manager? (y/n): " thunar_default
+read -p "${CAT} Do you want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thunar_default
 
 if [[ "$thunar_default" == [Yy] ]]; then
     xdg-mime default thunar.desktop inode/directory
@@ -58,7 +58,7 @@ for DIR1 in gtk-3.0 Thunar xfce4; do
     echo -e "${NOTE} Config for $DIR1 found, no need to copy." 2>&1 | tee -a "$LOG"
   else
     echo -e "${NOTE} Config for $DIR1 not found, copying from assets." 2>&1 | tee -a "$LOG"
-    cp -r assets/$DIR1 ~/.config/ && echo "Copy $DIR1 completed!" || echo "Error: Failed to copy $DIR1 config files." 2>&1 | tee -a "$LOG"
+    cp -r assets/$DIR1 ~/.config/ && echo "${OK} Copy $DIR1 completed!" || echo "${ERROR} Failed to copy $DIR1 config files." 2>&1 | tee -a "$LOG"
   fi
 done
 

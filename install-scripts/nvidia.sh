@@ -60,7 +60,7 @@ printf "\n%.0s" {1..3}
 # Additional Nvidia steps
 NVEA="/etc/modprobe.d/nvidia.conf"
 if [ -f "$NVEA" ]; then
-  printf "${OK} Seems like nvidia-drm modeset=1 is already added in your system..moving on."
+  printf "${OK} Seems like ${YELLOW}nvidia-drm modeset=1${RESET} is already added in your system..moving on."
   printf "\n"
 else
   printf "\n"
@@ -71,7 +71,7 @@ fi
 
 # Additional for GRUB users
 if [ -f /etc/default/grub ]; then
-    printf "GRUB bootloader detected\n" 2>&1 | tee -a "$LOG"
+    printf "${INFO} GRUB bootloader detected\n" 2>&1 | tee -a "$LOG"
     
     # Check if nvidia-drm.modeset=1 is present
     if ! sudo grep -q "nvidia-drm.modeset=1" /etc/default/grub; then
@@ -91,12 +91,12 @@ if [ -f /etc/default/grub ]; then
        printf "GRUB configuration regenerated\n" 2>&1 | tee -a "$LOG"
     fi
   
-    printf "Additional steps for GRUB completed\n" 2>&1 | tee -a "$LOG"
+    printf "${OK} Additional steps for GRUB completed\n" 2>&1 | tee -a "$LOG"
 fi
 
 # Additional for systemd-boot users
 if [ -f /boot/loader/loader.conf ]; then
-    printf "systemd-boot bootloader detected\n" 2>&1 | tee -a "$LOG"
+    printf "${INFO} systemd-boot bootloader detected\n" 2>&1 | tee -a "$LOG"
   
     backup_count=$(find /boot/loader/entries/ -type f -name "*.conf.bak" | wc -l)
     conf_count=$(find /boot/loader/entries/ -type f -name "*.conf" | wc -l)
@@ -112,9 +112,9 @@ if [ -f /boot/loader/loader.conf ]; then
             sudo sed -i "/^options/c${sdopt} nvidia-drm.modeset=1 nvidia_drm.fbdev=1" "$imgconf" 2>&1 | tee -a "$LOG"
         done
 
-        printf "Additional steps for systemd-boot completed\n" 2>&1 | tee -a "$LOG"
+        printf "${OK} Additional steps for systemd-boot completed\n" 2>&1 | tee -a "$LOG"
     else
-        printf "systemd-boot is already configured...\n" 2>&1 | tee -a "$LOG"
+        printf "${NOTE} systemd-boot is already configured...\n" 2>&1 | tee -a "$LOG"
     fi
 fi
 
@@ -122,7 +122,7 @@ printf "\n%.0s" {1..2}
 
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
-      read -n1 -rep "${CAT} Would you like to blacklist nouveau? (y/n)" blacklist_nouveau
+      read -n1 -rep "${CAT} Would you like to ${YELLOW}blacklist nouveau${RESET}? (y/n)" blacklist_nouveau
     fi
 echo
 if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
@@ -142,7 +142,7 @@ if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
     fi
   fi
 else
-  printf "${NOTE} Skipping nouveau blacklisting..." 2>&1 | tee -a "$LOG"
+  printf "${NOTE} Skipping ${YELLOW}nouveau blacklisting${RESET} ..." 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..2}

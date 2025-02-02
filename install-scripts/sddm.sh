@@ -59,10 +59,10 @@ printf "\n%.0s" {1..2}
 valid_input=false
 while [ "$valid_input" != true ]; do
     if [[ -z $install_sddm_theme ]]; then
-      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install additional SDDM themes? (y/n)" install_sddm_theme
+      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install ${YELLOW}additional SDDM themes?${RESET} (y/n)" install_sddm_theme
     fi
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
-    printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
+    printf "\n%s - Installing ${BLUE}Simple SDDM Theme${RESET}\n" "${NOTE}"
 
     # Check if /usr/share/sddm/themes/simple-sddm-2 exists and remove if it does
     if [ -d "/usr/share/sddm/themes/simple-sddm-2" ]; then

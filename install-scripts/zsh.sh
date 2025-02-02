@@ -29,7 +29,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh.log"
 ## Optional Pokemon color scripts
 while true; do
     if [[ -z $pokemon_choice ]]; then
-       read -p "${CAT} OPTIONAL - Do you want to add Pokemon color scripts? (y/n): " pokemon_choice
+       read -p "${CAT} OPTIONAL - Do you want to add ${YELLOW}Pokemon color scripts${RESET}? (y/n): " pokemon_choice
     fi
     case "$pokemon_choice" in
         [Yy]*)
@@ -98,13 +98,13 @@ if command -v zsh >/dev/null; then
   cp -r 'assets/.zshrc' ~/
   cp -r 'assets/.zprofile' ~/
 
-  printf "${NOTE} Changing default shell to zsh...\n"
-
+  printf "${NOTE} Changing default shell to ${MAGENTA}zsh${RESET}..."
+  printf "\n%.0s" {1..2}
   while ! chsh -s $(which zsh); do
       echo "${ERROR} Authentication failed. Please enter the correct password." 2>&1 | tee -a "$LOG"
       sleep 1
   done
-  printf "${NOTE} Shell changed successfully to zsh.\n" 2>&1 | tee -a "$LOG"
+  printf "${NOTE} Shell changed successfully to ${MAGENTA}zsh${RESET}" 2>&1 | tee -a "$LOG"
 
 fi
 

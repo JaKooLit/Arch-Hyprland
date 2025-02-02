@@ -25,24 +25,23 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# Function that would show a progress bar to the user on one line
+# Function that would show a progress bar 
 show_progress() {
     local pid=$1
     local package_name=$2
     local dots=""
     
     # Print initial message only once
-    echo -n "${NOTE} Installing ${YELLOW}$package_name${RESET} ..."
-    
+    echo -ne "${NOTE} Installing ${YELLOW}$package_name${RESET} ..."
+
     # Loop until the process is running
     while ps -p $pid &> /dev/null; do
         dots+="."
-        echo -ne "\r${NOTE} Installing ${YELLOW}$package_name${RESET} ...$dots"  # Update the same line with dots
+        printf "\r%-80s" "${NOTE} Installing ${YELLOW}$package_name${RESET} ...$dots"  
         sleep 1
     done
     
-    # After the process finishes, show "Done!" on the same line
-    echo -ne "\r${NOTE} Installing ${YELLOW}$package_name${RESET} ...$dots Done!"  # Replace dots with Done!
+    printf "\r%-80s\n" "${NOTE} Installing ${YELLOW}$package_name${RESET} ... Done!" 
 }
 
 
@@ -57,7 +56,7 @@ install_package_pacman() {
       stdbuf -oL sudo pacman -S --noconfirm --needed "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
-    show_progress $PID "$1"  # Show progress bar while the process runs
+    show_progress $PID "$1" 
 
     # Double check if package is installed
     if pacman -Q "$1" &>/dev/null ; then
@@ -82,7 +81,7 @@ install_package() {
       stdbuf -oL $ISAUR -S --noconfirm --needed "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
-    show_progress $PID "$1"  # Show progress bar while the process runs
+    show_progress $PID "$1"  
     
     # Double check if package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
@@ -111,8 +110,6 @@ uninstall_package() {
       echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
       return 1 
     fi
-  else
-    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
   fi
   return 0 
 }
