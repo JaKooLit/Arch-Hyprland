@@ -25,11 +25,11 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# Function that would show a progress bar 
+# Function that would show a progress
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("|" "/" "-" "\\")  # Classic spinner
+    local spin_chars=("●○○○" "○●○○" "○○●○" "○○○●" "○○●○" "○●○○")  # Dots Growing & Shrinking
     local i=0
 
     tput civis  # Hide cursor
@@ -37,13 +37,14 @@ show_progress() {
 
     while ps -p $pid &> /dev/null; do
         printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
-        i=$(( (i + 1) % 4 ))
-        sleep 0.2  # Faster animation
+        i=$(( (i + 1) % 6 ))
+        sleep 0.2
     done
 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
     tput cnorm  # Show cursor again
 }
+
 
 
 # Function to install packages with pacman
@@ -62,7 +63,7 @@ install_package_pacman() {
 
     # Double check if package is installed
     if pacman -Q "$1" &>/dev/null ; then
-      echo -e "\n${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
@@ -88,7 +89,7 @@ install_package() {
     
     # Double check if package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\n${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
