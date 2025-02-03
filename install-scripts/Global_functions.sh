@@ -38,12 +38,12 @@ show_progress() {
 
     while ps -p $pid &> /dev/null; do
         printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
-        i=$(( (i + 1) % 10 ))  # Cycle through 10 animation frames
-        sleep 0.3  # Slower animation
+        i=$(( (i + 1) % 10 ))  
+        sleep 0.3  
     done
 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
-    tput cnorm  # Show cursor again
+    tput cnorm  
 }
 
 
