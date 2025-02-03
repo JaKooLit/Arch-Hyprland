@@ -64,20 +64,20 @@ while [ "$valid_input" != true ]; do
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
     printf "\n%s - Installing ${SKY_BLUE}Simple SDDM Theme${RESET}\n" "${NOTE}"
 
-    # Check if /usr/share/sddm/themes/simple-sddm-2 exists and remove if it does
-    if [ -d "/usr/share/sddm/themes/simple-sddm-2" ]; then
-      sudo rm -rf "/usr/share/sddm/themes/simple-sddm-2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory." 2>&1 | tee -a "$LOG"
+    # Check if /usr/share/sddm/themes/sequioa exists and remove if it does
+    if [ -d "/usr/share/sddm/themes/sequoia" ]; then
+      sudo rm -rf "/usr/share/sddm/themes/sequoia"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'sequoia' directory." 2>&1 | tee -a "$LOG"
     fi
 
-    # Check if simple-sddm-2 directory exists in the current directory and remove if it does
-    if [ -d "simple-sddm-2" ]; then
-      rm -rf "simple-sddm-2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory from the current location." 2>&1 | tee -a "$LOG"
+    # Check if sequoia directory exists in the current directory and remove if it does
+    if [ -d "sequoia" ]; then
+      rm -rf "sequoia"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'sequoia' directory from the current location." 2>&1 | tee -a "$LOG"
     fi
 
-    if git clone --depth 1 https://github.com/JaKooLit/simple-sddm-2.git; then
-      while [ ! -d "simple-sddm-2" ]; do
+    if git clone --depth 1 git clone https://codeberg.org/minMelody/sddm-sequoia.git sequoia; then
+      while [ ! -d "sequoia" ]; do
         sleep 1
       done
 
@@ -86,8 +86,13 @@ while [ "$valid_input" != true ]; do
         echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
       fi
 
-      sudo mv simple-sddm-2 /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm-2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
+      sudo mv sequoia /usr/share/sddm/themes/sequoia
+      echo -e "[Theme]\nCurrent=sequoia" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
+
+      # replace current background from assets
+      sudo cp -r assets/mountain.png /usr/share/sddm/themes/sequoia/backgrounds/default
+      sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia/theme.conf 
+
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection" | tee -a "$LOG" >&2
     fi

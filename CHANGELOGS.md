@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 03 Feb 2025
+- offering a new SDDM theme from here [SDDM](https://codeberg.org/minMelody/sddm-sequoia)
+
 ## 02 Feb 2025
 - some tweaking on install-scripts except the compiling part. It will not show progress for much cleaner work. 
 

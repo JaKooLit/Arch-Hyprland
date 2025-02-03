@@ -109,7 +109,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
 
 #### 💫 SDDM and GTK Themes offered
-- If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm-2)
+- If you opted to install SDDM theme, here's the [`LINK`](https://codeberg.org/minMelody/sddm-sequoia)
 - If you opted to install GTK Themes, Icons,  here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons). This also includes Bibata Modern Ice cursor.
 
 #### 👀 NVidia GPU Owners.
