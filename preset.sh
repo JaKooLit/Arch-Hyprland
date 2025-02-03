@@ -34,7 +34,7 @@ dots="Y"
 ### Would you like to blacklist nouveau? (y/n)
 blacklist_nouveau="Y"
 ### Do you want to set Thunar as the default file manager? (y/n): "
-thundefault="Y"
+thunar_choice="Y"
 ### OPTIONAL - Would you like to install SDDM themes? (y/n)
 install_sddm_theme="Y"
 ### " This script will add your user to the 'input' group."

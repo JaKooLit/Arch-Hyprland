@@ -38,24 +38,31 @@ printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n\n"
 
 printf "\n%.0s" {1..2}
 
-# confirm if wanted to set as default
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
+
+# Confirm if wanted to set as default
 while true; do
-  read -n 1 -r -p "${CAT} set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n)" thundefault
-  case $thundefault in
-    [Yy]) 
-      xdg-mime default thunar.desktop inode/directory
-      xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
-      echo "${OK} Thunar has been set as the default file manager." | tee -a "$LOG"
-      break
-      ;;
-    [Nn]) 
-      echo "${NOTE} you chose not to set Thunar as the default file manager." | tee -a "$LOG"
-      break
-      ;;
-    *)
-      echo "Invalid input. Please enter 'y' or 'n'."
-      ;;
-  esac
+    if [[ -z $thunar_choice ]]; then
+        read -p "${CAT} want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thunar_choice
+    fi
+    case "$thunar_choice" in
+        [Yy]*)
+            xdg-mime default thunar.desktop inode/directory
+            xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
+            echo "${OK} Thunar has been set as the default file manager." | tee -a "$LOG"
+            break
+            ;;
+        [Nn]*)
+            echo "${NOTE} You chose not to set ${MAGENTA}Thunar${RESET} as the default file manager." | tee -a "$LOG"
+            break
+            ;;
+        *)
+            echo "${WARN} Invalid input. Please enter 'y' or 'n'."
+            unset thunar_choice
+            ;;
+    esac
 done
 
 printf "\n%.0s" {1..1}
