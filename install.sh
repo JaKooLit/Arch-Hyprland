@@ -69,7 +69,7 @@ read -p "${SKY_BLUE}Would you like to proceed? (y/n): ${RESET}" proceed
 printf "\n%.0s" {1..2}
 
 if [ "$proceed" != "y" ]; then
-    echo "${INFO} Installation aborted No changes done! Goodbye!"
+    echo "${INFO} Installation aborted. No changes done! Goodbye!"
 	printf "\n%.0s" {1..2}
     exit 1
 fi
@@ -293,15 +293,24 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-    # Check if the user answered 'y' or 'Y'
-    if [[ "$HYP" =~ ^[Yy]$ ]]; then
-        if [[ "$nvidia" == "Y" ]]; then
-            echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
-        fi
-        systemctl reboot
+    # Normalize user input to lowercase
+    HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
+
+    if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
+        echo "${INFO} Rebooting now..."
+        reboot # Optionally reboot if the user agrees
+    elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
+        echo "${INFO} You can reboot later at any time."
+    else
+        echo "${WARN} Invalid response. Please answer with 'y' or 'n'. Exiting."
+        exit 1
+    fi
+
+    # Check if NVIDIA GPU is present
+    if lspci | grep -i "nvidia" &> /dev/null; then
+        echo "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
     else
         echo -e "\n${CAT} Thanks for using ${MAGENTA}KooL's Hyprland Dots${RESET}. Enjoy and Have a good day!"
-        printf "\n%.0s" {1..1}
         exit 0
     fi
 else
