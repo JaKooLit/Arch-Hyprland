@@ -33,12 +33,9 @@ while true; do
     fi
     case "$pokemon_choice" in
         [Yy]*)
-            zsh_pkg+=('pokemon-colorscripts-git')
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
-
-			# commenting out fastfetch since pokemon was chosen to install
             sed -i '/^fastfetch -c $HOME\/.config\/fastfetch\/config-compact.jsonc/s/^/#/' assets/.zshrc >> "$LOG" 2>&1
-			
+            
             break
             ;;
         [Nn]*)
@@ -47,11 +44,12 @@ while true; do
             ;;
         *)
             echo "${WARN}Please enter 'y' for yes or 'n' for no.${RESET}"
+            pokemon_choice=""  
             ;;
     esac
 done
 
-# Installing zsh packages
+# Installing core zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
 for ZSH in "${zsh_pkg[@]}"; do
   (
@@ -62,6 +60,16 @@ for ZSH in "${zsh_pkg[@]}"; do
   ) &
 done
 wait  
+
+# Install the Pokemon color scripts if the user accepted earlier
+if [[ "$pokemon_choice" =~ [Yy] ]]; then
+  echo "${NOTE} Installing ${SKY_BLUE}Pokemon color scripts${RESET} ..."
+  install_package 'pokemon-colorscripts-git' "$LOG"
+  if [ $? -ne 0 ]; then
+    echo "${ERROR} Failed to install ${YELLOW}Pokemon color scripts${RESET} . Please check the log." | tee -a "$LOG"
+    exit 1
+  fi
+fi
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then

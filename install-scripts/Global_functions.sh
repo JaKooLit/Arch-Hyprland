@@ -51,8 +51,7 @@ show_progress() {
 install_package_pacman() {
   # Check if package is already installed
   if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} ${MAGENTA}$1${RESET} is already installed. Skipping..."
-    printf "\n%.0s" {1..1}
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     # Run pacman and redirect all output to a log file
     (
@@ -77,7 +76,7 @@ ISAUR=$(command -v yay || command -v paru)
 install_package() {
   # Checking if package is already installed
   if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} ${MAGENTA}$1${RESET} is already installed. Skipping..."
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     # Run yay/paru and redirect all output to a log file
     (
@@ -114,7 +113,7 @@ uninstall_package() {
       return 1
     fi
   else
-    echo -e "${NOTE} Package $pkg not installed, skipping."
+    echo -e "${INFO} Package $pkg not installed, skipping."
   fi
   return 0
 }

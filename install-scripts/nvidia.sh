@@ -53,11 +53,11 @@ else
   echo "Nvidia modules added in /etc/mkinitcpio.conf"
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 printf "${INFO} Rebuilding ${YELLOW}Initramfs${RESET}...\n" 2>&1 | tee -a "$LOG"
 sudo mkinitcpio -P 2>&1 | tee -a "$LOG"
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Additional Nvidia steps
 NVEA="/etc/modprobe.d/nvidia.conf"
@@ -120,7 +120,7 @@ if [ -f /boot/loader/loader.conf ]; then
     fi
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
