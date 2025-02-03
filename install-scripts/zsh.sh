@@ -6,7 +6,7 @@ if [[ $USE_PRESET = [Yy] ]]; then
   source ./preset.sh
 fi
 
-zsh=(
+zsh_pkg=(
     eza
     zsh
     zsh-completions
@@ -33,7 +33,7 @@ while true; do
     fi
     case "$pokemon_choice" in
         [Yy]*)
-            zsh+=('pokemon-colorscripts-git')
+            zsh_pkg+=('pokemon-colorscripts-git')
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
 
 			# commenting out fastfetch since pokemon was chosen to install
@@ -53,16 +53,15 @@ done
 
 # Installing zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
-for ZSH in "${zsh[@]}"; do
+for ZSH in "${zsh_pkg[@]}"; do
   (
-    # Call the global install_package function and redirect its output to the log
     install_package "$ZSH" "$LOG"
     if [ $? -ne 0 ]; then
-       echo -e "\e[1A\e[K${ERROR} - $ZSH Package installation failed, Please check the installation logs"
+    exit 1
     fi
   ) &
 done
-wait  # Ensure all background processes finish before continuing
+wait  
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then

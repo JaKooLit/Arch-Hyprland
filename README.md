@@ -176,7 +176,6 @@ source ~/.zshrc
 
 #### 🛣️ Roadmap:
 - [ ] show a progress bar in downloading and compiling part when installing outside AUR or official repo
-- [ ] When preset.sh is used, it still asked whether I want thunar to be default manager or not
 
 #### ❗ some known issues for nvidia
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
