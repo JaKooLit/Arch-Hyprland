@@ -76,6 +76,13 @@ fi
 
 printf "\n%.0s" {1..2}
 
+# install pciutils if detected not installed. Necessary for detecting GPU
+if ! pacman -Qs pciutils > /dev/null; then
+    echo "pciutils is not installed. Installing..."
+    sudo pacman -S --noconfirm --needed pciutils
+fi
+
+
 echo "${WARN} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages!!!${RESET}"
 echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
 echo "If you are not sure what to do, answer N in here"
@@ -169,7 +176,10 @@ execute_script() {
 printf "\n"
 ask_custom_option "-Type ${YELLOW}AUR helper${RESET} wanted" "paru or yay" aur_helper
 printf "\n"
-ask_yes_no "-Do you have any ${YELLOW}nvidia${RESET} GPU in your system?" nvidia
+# Check if nvidia is present
+if lspci | grep -i "nvidia" &> /dev/null; then
+    ask_yes_no "- ${YELLOW}nvidia${RESET} GPU is detected. Do you want script to configure it?" nvidia
+fi
 printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
 printf "\n"
