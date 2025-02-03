@@ -2,10 +2,6 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # XDG-Desktop-Portals hyprland #
 
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
-
 xdg=(
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
