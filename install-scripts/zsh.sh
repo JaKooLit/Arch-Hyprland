@@ -7,10 +7,10 @@ if [[ $USE_PRESET = [Yy] ]]; then
 fi
 
 zsh_pkg=(
-    eza
-    zsh
-    zsh-completions
-    fzf
+  eza
+  zsh
+  zsh-completions
+  fzf
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -25,6 +25,15 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh.log"
+
+# Installing core zsh packages
+printf "\n%s - Installing ${SKY_BLUE}zsh packages${RESET} .... \n" "${NOTE}"
+for ZSH in "${zsh_pkg[@]}"; do
+  install_package "$ZSH" "$LOG"
+  if [ $? -ne 0 ]; then
+    exit 1
+  fi
+done 
 
 ## Optional Pokemon color scripts
 while true; do
@@ -49,19 +58,8 @@ while true; do
     esac
 done
 
-# Installing core zsh packages
-printf "${NOTE} Installing core zsh packages...${RESET}\n"
-for ZSH in "${zsh_pkg[@]}"; do
-  (
-    install_package "$ZSH" "$LOG"
-    if [ $? -ne 0 ]; then
-    exit 1
-    fi
-  ) &
-done
-wait  
 
-# Install the Pokemon color scripts if the user accepted earlier
+# Install the Pokemon color scripts if user choose Y
 if [[ "$pokemon_choice" =~ [Yy] ]]; then
   echo "${NOTE} Installing ${SKY_BLUE}Pokemon color scripts${RESET} ..."
   install_package 'pokemon-colorscripts-git' "$LOG"
