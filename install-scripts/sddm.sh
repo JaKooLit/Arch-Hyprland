@@ -76,7 +76,7 @@ while [ "$valid_input" != true ]; do
       echo -e "\e[1A\e[K${OK} - Removed existing 'sequoia_2' directory from the current location." 2>&1 | tee -a "$LOG"
     fi
 
-    if git clone --depth 1 git clone https://codeberg.org/JaKooLit/sddm-sequoia sequoia_2; then
+    if git clone --depth 1 https://codeberg.org/JaKooLit/sddm-sequoia sequoia_2; then
       while [ ! -d "sequoia_2" ]; do
         sleep 1
       done
