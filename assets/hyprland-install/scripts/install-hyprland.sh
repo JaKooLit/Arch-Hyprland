@@ -38,32 +38,35 @@ packages=(
     "pyprland"
 )
 
-# Function that would show a progress bar to the user
+# rotating stars progress
 show_progress() {
+    spin='-'
     while ps | grep $1 &> /dev/null; do
-        echo -n "."
-        sleep 1
+        echo -ne "\rInstalling ${ORANGE}$2${RESET} ... Kindly wait! $spin"  
+        sleep 0.3
+        case $spin in
+            '-') spin='\';;
+            '\') spin='|';;
+            '|') spin='/';;
+            '/') spin='-';;
+        esac
     done
-    echo -en "Done!"
+    echo -en "\rInstalling ${ORANGE}$2${RESET} ... Kindly wait! .... Done!"
 }
+
+printf "\n%.0s" {1..1}
+printf "${NOTE} Installing ${BLUE}non-git hyprland version${RESET}....."
+printf "\n%.0s" {1..1}
+
 # Installing packages
 for package in "${packages[@]}"; do
-    echo -n "Installing ${ORANGE}$package${RESET} ... ${BLUE}Kindly wait!${RESET} "
-
-    # Show progress dots and installation result on a new line
-    echo -n "..."
-    
-    # Install the package in the background and capture its PID
     $ISAUR -S --noconfirm --needed "$package" &>/dev/null &
     pid=$!
     
-    # Start the progress bar in the background
-    show_progress $pid
+    show_progress $pid $package
     
-    # Wait for the package installation to finish
     wait $pid
 
-    # Check the result of the installation
     if [ $? -eq 0 ]; then
         echo -e "\n${OK} ${ORANGE}$package${RESET} successfully installed."
         printf "\n%.0s" {1..1}

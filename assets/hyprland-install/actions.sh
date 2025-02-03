@@ -31,23 +31,21 @@ while true; do
 
     case $choice in
         1)
-            printf "\n${OK} You chose non-git version of Hyprland....... executing...\n"
+            printf "\n${OK} You chose ${BLUE}non-git version of Hyprland${RESET}....... executing...\n"
             echo -e "${YELLOW} Uninstalling some hyprland packages first...${RESET}"
-            ./scripts/uninstall.sh
-            echo -e "${NOTE} Installing non-git version of Hyprland...${RESET}"
+            ./scripts/uninstall.sh &&
             ./scripts/install-hyprland.sh
             break
             ;;
         2)
-            printf "\n${OK} You chose git version of Hyprland....... executing...\n"
+            printf "\n${OK} You chose ${BLUE}git version of Hyprland${RESET}....... executing...\n"
             echo -e "${YELLOW} Uninstalling some hyprland packages....${RESET}"
-            ./scripts/uninstall.sh
-            echo -e "${NOTE} Installing git version of Hyprland...${RESET}"
+            ./scripts/uninstall.sh &&
             ./scripts/install-hyprland-git.sh
             break
             ;;
         3)
-            echo -e "${MAGENTA} You chose to cancel. Good Bye!!...${RESET}"
+            echo -e "${MAGENTA} You have cancel it. Good Bye!!...${RESET}"
             printf "\n%.0s" {1..2}
             break
             ;;
