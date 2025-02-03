@@ -60,7 +60,6 @@ while true; do
             ;;
         *)
             echo "${WARN} Invalid input. Please enter 'y' or 'n'."
-            unset thunar_choice
             ;;
     esac
 done
