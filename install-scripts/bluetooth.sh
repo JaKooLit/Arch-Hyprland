@@ -22,7 +22,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
 
 # Bluetooth
-printf "${NOTE} Installing ${BLUE}Bluetooth${RESET} Packages...\n"
+printf "${NOTE} Installing ${SKY_BLUE}Bluetooth${RESET} Packages...\n"
  for BLUE in "${blue[@]}"; do
    install_package "$BLUE" "$LOG"
   done

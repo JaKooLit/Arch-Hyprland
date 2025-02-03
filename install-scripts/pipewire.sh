@@ -30,7 +30,7 @@ echo -e "${NOTE} Disabling pulseaudio to avoid conflicts..."
 systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>&1 | tee -a "$LOG"
 
 # Pipewire
-echo -e "${NOTE} Installing ${BLUE}Pipewire${RESET} Packages..."
+echo -e "${NOTE} Installing ${SKY_BLUE}Pipewire${RESET} Packages..."
 for PIPEWIRE in "${pipewire[@]}"; do
     install_package "$PIPEWIRE" "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $PIPEWIRE Package installation failed, Please check the installation logs"; exit 1; }

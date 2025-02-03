@@ -36,7 +36,7 @@ if [ -d "GTK-themes-icons" ]; then
     rm -rf "GTK-themes-icons" 2>&1 | tee -a "$LOG"
 fi
 
-echo "$NOTE Cloning ${BLUE}GTK themes and Icons${RESET} repository..." 2>&1 | tee -a "$LOG"
+echo "$NOTE Cloning ${SKY_BLUE}GTK themes and Icons${RESET} repository..." 2>&1 | tee -a "$LOG"
 if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh

@@ -30,7 +30,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 
 # Thunar
-printf "${NOTE} Installing ${BLUE}Thunar${RESET} Packages...\n\n"  
+printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"; exit 1; }
@@ -40,7 +40,7 @@ printf "\n%.0s" {1..2}
 
 # confirm if wanted to set as default
 while true; do
-  read -n1 -rep "${CAT} set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thundefault
+  read -n 1 -r -p "${CAT} set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n)" thundefault
   case $thundefault in
     [Yy]) 
       xdg-mime default thunar.desktop inode/directory

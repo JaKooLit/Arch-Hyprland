@@ -38,7 +38,7 @@ if pacman -Qs hyprland > /dev/null; then
 fi
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing ${BLUE}Nvidia Packages and Linux headers${RESET}...\n"
+printf "${YELLOW} Installing ${SKY_BLUE}Nvidia Packages and Linux headers${RESET}...\n"
 for krnl in $(cat /usr/lib/modules/*/pkgbase); do
   for NVIDIA in "${krnl}-headers" "${nvidia_pkg[@]}"; do
     install_package "$NVIDIA" "$LOG"

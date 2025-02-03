@@ -34,7 +34,7 @@ if pacman -Qs hyprland >/dev/null; then
 fi
 
 # Hyprland
-printf "${NOTE} Installing ${BLUE}Hyprland packages${RESET} .......\n"
+printf "${NOTE} Installing ${SKY_BLUE}Hyprland packages${RESET} .......\n"
 for HYPR in "${hypr[@]}"; do
   install_package "$HYPR" "$LOG"
   [ $? -ne 0 ] && {

@@ -78,7 +78,6 @@ install_package() {
   # Checking if package is already installed
   if $ISAUR -Q "$1" &>> /dev/null ; then
     echo -e "${OK} ${MAGENTA}$1${RESET} is already installed. Skipping..."
-    printf "\n%.0s" {1..1}
   else
     # Run yay/paru and redirect all output to a log file
     (
@@ -90,6 +89,7 @@ install_package() {
     # Double check if package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+      printf "\n%.0s" {1..1}
     else
       # Something is missing, exiting to review log
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
@@ -103,17 +103,18 @@ uninstall_package() {
   local pkg="$1"
 
   # Checking if package is installed
-  if pacman -Qi "$pkg" &>> /dev/null ; then
-    # Package is installed
+  if pacman -Qi "$pkg" &>/dev/null; then
     echo -e "${NOTE} Uninstalling $pkg ..."
     sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
-    # Check if the package was uninstalled
-    if ! pacman -Qi "$pkg" &>> /dev/null ; then
+    
+    if ! pacman -Qi "$pkg" &>/dev/null; then
       echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
     else
       echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
-      return 1 
+      return 1
     fi
+  else
+    echo -e "${NOTE} Package $pkg not installed, skipping."
   fi
-  return 0 
+  return 0
 }

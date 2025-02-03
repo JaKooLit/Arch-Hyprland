@@ -51,7 +51,7 @@ MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 printf "\n%.0s" {1..1}
 
 # Installation of main components
-printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
 
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
@@ -65,7 +65,7 @@ done
 printf "\n%.0s" {1..1}
 
 # ags v1
-printf "${NOTE} Install and Compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
+printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
@@ -74,7 +74,7 @@ if [ -d "ags" ]; then
 fi
 
 printf "\n%.0s" {1..1}
-printf "${INFO} Kindly Standby...cloning and compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
+printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
 printf "\n%.0s" {1..1}
 # Clone repository with the specified tag and capture git output into MLOG
 if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then

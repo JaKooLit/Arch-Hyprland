@@ -24,7 +24,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 ### Install software for Asus ROG laptops ###
 
-printf " Installing ${BLUE}ASUS ROG packages${RESET}...\n"
+printf " Installing ${SKY_BLUE}ASUS ROG packages${RESET}...\n"
 for ASUS in "${rog[@]}"; do
 install_package  "$ASUS" "$LOG"
   if [ $? -ne 0 ]; then
