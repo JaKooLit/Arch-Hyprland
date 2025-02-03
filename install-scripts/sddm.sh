@@ -90,7 +90,7 @@ while [ "$valid_input" != true ]; do
       echo -e "[Theme]\nCurrent=sequoia_2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
 
       # replace current background from assets
-      sudo cp -r assets/mountain.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
+      sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
       sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf 
 
     else
