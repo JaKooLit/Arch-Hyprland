@@ -49,7 +49,7 @@
 
 <div align="center">
 
-https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-9913-76039e84a2cd
+https://github.com/JaKooLit/screenshots/assets/71ccd129-f6e0-4d79-aa09-9143511fe982
 
 </div>
 
