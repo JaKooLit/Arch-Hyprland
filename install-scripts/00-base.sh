@@ -17,7 +17,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_base.log"
 printf "\n%s - Installing ${SKY_BLUE}base-devel${RESET} \n" "${NOTE}"
 
 for PKG1 in "${base[@]}"; do
-  install_package_pacman "$PKG1" | tee -a "$LOG"
+  install_package_pacman "$PKG1" "$LOG"
 done
 
 printf "\n%.0s" {1..2}

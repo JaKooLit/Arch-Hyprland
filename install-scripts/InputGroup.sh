@@ -30,7 +30,6 @@ while true; do
     fi
 
     if [[ $input_group_choid == "y" || $input_group_choid == "Y" ]]; then
-        # Check if the 'input' group exists
         if grep -q '^input:' /etc/group; then
             echo "${OK} ${MAGENTA}input${RESET} group exists."
         else
@@ -40,16 +39,14 @@ while true; do
             echo "${MAGENTA}input${RESET} group created" >> "$LOG"
         fi
 
-        # Add the user to the input group
         sudo usermod -aG input "$(whoami)"
         echo "${OK} ${YELLOW}user${RESET} added to the ${MAGENTA}input${RESET} group. Changes will take effect after you log out and log back in."
 
-        # Log the addition of the user to the 'input' group
         echo "User added to 'input' group" >> "$LOG"
-        break  # Break out of the loop if 'yes' is chosen
+        break 
     elif [[ $input_group_choid == "n" || $input_group_choid == "N" ]]; then
         echo "${NOTE} No changes made. Exiting the script."
-        break  # Break out of the loop if 'no' is chosen
+        break 
     else
         echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
     fi

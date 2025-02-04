@@ -41,3 +41,5 @@ systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.
 systemctl --user enable --now pipewire.service 2>&1 | tee -a "$LOG"
 
 echo -e "\n${OK} Pipewire Installation and services setup complete!" 2>&1 | tee -a "$LOG"
+
+printf "\n%.0s" {1..2}

@@ -65,7 +65,6 @@ install_package_pacman() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
@@ -92,7 +91,6 @@ install_package() {
     else
       # Something is missing, exiting to review log
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
     fi
   fi
 }
