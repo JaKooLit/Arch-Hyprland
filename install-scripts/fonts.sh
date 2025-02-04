@@ -36,9 +36,6 @@ printf "\n%s - Installing necessary ${SKY_BLUE}fonts${RESET}.... \n" "${NOTE}"
 
 for PKG1 in "${fonts[@]}"; do
   install_package "$PKG1" "$LOG"
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
 done
 
 printf "\n%.0s" {1..2}

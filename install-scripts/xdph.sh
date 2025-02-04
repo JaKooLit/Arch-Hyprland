@@ -26,10 +26,6 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 printf "${NOTE} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland${RESET}\n\n" 
 for xdgs in "${xdg[@]}"; do
   install_package "$xdgs" "$LOG"
-    if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $xdph Package installation failed, Please check the installation logs"
-    exit 1
-    fi
 done
     
 printf "\n%.0s" {1..2}

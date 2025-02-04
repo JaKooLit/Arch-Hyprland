@@ -30,9 +30,6 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh.log"
 printf "\n%s - Installing ${SKY_BLUE}zsh packages${RESET} .... \n" "${NOTE}"
 for ZSH in "${zsh_pkg[@]}"; do
   install_package "$ZSH" "$LOG"
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
 done 
 
 ## Optional Pokemon color scripts
@@ -63,10 +60,6 @@ done
 if [[ "$pokemon_choice" =~ [Yy] ]]; then
   echo "${NOTE} Installing ${SKY_BLUE}Pokemon color scripts${RESET} ..."
   install_package 'pokemon-colorscripts-git' "$LOG"
-  if [ $? -ne 0 ]; then
-    echo "${ERROR} Failed to install ${YELLOW}Pokemon color scripts${RESET} . Please check the log." | tee -a "$LOG"
-    exit 1
-  fi
 fi
 
 # Install Oh My Zsh, plugins, and set zsh as default shell

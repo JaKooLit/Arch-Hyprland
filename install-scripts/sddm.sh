@@ -31,8 +31,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 printf "${NOTE} Installing sddm and dependencies........\n"
   for package in "${sddm[@]}"; do
   install_package "$package" "$LOG"
-  [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package Package installation failed, Please check the installation logs"; exit 1; }
- done 
+  done 
 
 # Check if other login managers installed and disabling its service before enabling sddm
 for login_manager in lightdm gdm lxdm lxdm-gtk3; do

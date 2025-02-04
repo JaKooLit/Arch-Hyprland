@@ -56,10 +56,6 @@ printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependen
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
     install_package "$PKG1" "$LOG"
-    if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-        exit 1
-    fi
 done
 
 printf "\n%.0s" {1..1}

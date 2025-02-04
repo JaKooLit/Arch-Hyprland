@@ -50,9 +50,9 @@ fi
 clear
 
 printf "\n%.0s" {1..3}                            
-echo "   |  _.   |/  _   _  |  o _|_ "
-echo " \_| (_| o |\ (_) (_) |_ |  |_ "
-printf "\n%.0s" {1..2}  
+echo -e "\e[32m   |  _.   |/  _   _  |  o _|_  \e[39m"
+echo -e "\e[32m \_| (_| o |\ (_) (_) |_ |  |_  2025\e[39m"
+printf "\n%.0s" {1..2}
 
 # Welcome message
 echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
@@ -66,11 +66,9 @@ echo
 
 read -p "${SKY_BLUE}Would you like to proceed? (y/n): ${RESET}" proceed
 
-printf "\n%.0s" {1..2}
-
 if [ "$proceed" != "y" ]; then
+    printf "\n%.0s" {1..2}
     echo "${INFO} Installation aborted. No changes done! Goodbye!"
-	printf "\n%.0s" {1..2}
     exit 1
 fi
 

@@ -27,9 +27,6 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 printf " Installing ${SKY_BLUE}ASUS ROG packages${RESET}...\n"
 for ASUS in "${rog[@]}"; do
 install_package  "$ASUS" "$LOG"
-  if [ $? -ne 0 ]; then
-  exit 1
-  fi
 done
 
 printf " Activating ROG services...\n"

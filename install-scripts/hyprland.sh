@@ -37,9 +37,6 @@ fi
 printf "${NOTE} Installing ${SKY_BLUE}Hyprland packages${RESET} .......\n"
 for HYPR in "${hypr[@]}"; do
   install_package "$HYPR" "$LOG"
-  [ $? -ne 0 ] && {
-    exit 1
-  }
 done
 
 printf "\n%.0s" {1..2}

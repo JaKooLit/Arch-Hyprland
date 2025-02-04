@@ -115,9 +115,6 @@ printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} 
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" "$LOG"
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
 done
 
 printf "\n%.0s" {1..2}
