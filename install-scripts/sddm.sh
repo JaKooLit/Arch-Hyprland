@@ -91,7 +91,9 @@ while [ "$valid_input" != true ]; do
 
       # replace current background from assets
       sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
-      sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf 
+      sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf
+      
+      echo -e "\e[1A\e[K${OK} - ${MAGENTA}Additional SDDM Theme${RESET} successfully installed" | tee -a "$LOG" >&2
 
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the sddm theme repository. Please check your internet connection" | tee -a "$LOG" >&2
