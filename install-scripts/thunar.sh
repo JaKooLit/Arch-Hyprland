@@ -50,7 +50,7 @@ while true; do
         [Yy]*)
             xdg-mime default thunar.desktop inode/directory
             xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
-            echo "${OK} Thunar has been set as the default file manager." | tee -a "$LOG"
+            echo "${OK} ${MAGENTA}Thunar${RESET} is now set as the default file manager." | tee -a "$LOG"
             break
             ;;
         [Nn]*)
