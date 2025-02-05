@@ -291,7 +291,7 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
-    printf "\n${NOTE} You can start Hyprland by typing ${MAGENTA}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
     # Prompt user to reboot
