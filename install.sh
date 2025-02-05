@@ -200,7 +200,7 @@ ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optiona
 printf "\n"
 ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
 printf "\n"
-ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL Hyprland dotfiles${RESET}?" dots
+ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL Hyprland dotfiles?${RESET}" dots
 printf "\n"
 
 
