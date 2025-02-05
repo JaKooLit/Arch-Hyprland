@@ -25,15 +25,15 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# Function that would show a progress
+# Show progress function
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("●○○○○○" "○●○○○○" "○○●○○○" "○○○●○○" "○○○○●○" "○○○○○●" \
-                      "○○○○●○" "○○○●○○" "○○●○○○" "○●○○○○")  # Growing & Shrinking Dots
+    local spin_chars=("●○○○○○○○○○" "○●○○○○○○○○" "○○●○○○○○○○" "○○○●○○○○○○" "○○○○●○○○○" \
+                      "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●") 
     local i=0
 
-    tput civis  # Hide cursor
+    tput civis 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
 
     while ps -p $pid &> /dev/null; do
@@ -42,9 +42,10 @@ show_progress() {
         sleep 0.3  
     done
 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n" "$package_name" ""
     tput cnorm  
 }
+
 
 
 # Function to install packages with pacman
@@ -73,11 +74,9 @@ ISAUR=$(command -v yay || command -v paru)
 
 # Function to install packages with either yay or paru
 install_package() {
-  # Checking if package is already installed
   if $ISAUR -Q "$1" &>> /dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Run yay/paru and redirect all output to a log file
     (
       stdbuf -oL $ISAUR -S --noconfirm --needed "$1" 2>&1
     ) >> "$LOG" 2>&1 &
