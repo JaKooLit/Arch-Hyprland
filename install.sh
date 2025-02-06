@@ -40,7 +40,7 @@ if pacman -Q base-devel &> /dev/null; then
 else
     echo "$NOTE Install base-devel.........."
 
-    if sudo pacman -S --noconfirm --needed base-devel; then
+    if sudo pacman -S --noconfirm base-devel; then
         echo "$OK base-devel has been installed successfully."
     else
         echo "$ERROR base-devel not found nor cannot be installed."
@@ -83,7 +83,7 @@ printf "\n%.0s" {1..1}
 # install pciutils if detected not installed. Necessary for detecting GPU
 if ! pacman -Qs pciutils > /dev/null; then
     echo "pciutils is not installed. Installing..."
-    sudo pacman -S --noconfirm --needed pciutils
+    sudo pacman -S --noconfirm pciutils
     printf "\n%.0s" {1..1}
 fi
 

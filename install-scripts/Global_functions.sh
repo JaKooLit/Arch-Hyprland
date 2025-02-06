@@ -56,7 +56,7 @@ install_package_pacman() {
   else
     # Run pacman and redirect all output to a log file
     (
-      stdbuf -oL sudo pacman -S --noconfirm --needed "$1" 2>&1
+      stdbuf -oL sudo pacman -S --noconfirm "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
     show_progress $PID "$1" 
@@ -78,7 +78,7 @@ install_package() {
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     (
-      stdbuf -oL $ISAUR -S --noconfirm --needed "$1" 2>&1
+      stdbuf -oL $ISAUR -S --noconfirm "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
     show_progress $PID "$1"  
