@@ -30,6 +30,7 @@ fi
 # Check if PulseAudio package is installed
 if pacman -Qq | grep -qw '^pulseaudio$'; then
     echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
+    printf "\n%.0s" {1..2} 
     exit 1
 fi
 
@@ -96,6 +97,8 @@ read -p "${SKY_BLUE}Would you like to Use ${YELLOW}Preset Install Settings?${RES
 if [[ $use_preset = [Yy] ]]; then
   source ./preset.sh
 fi
+
+printf "\n%.0s" {1..1} 
 
 # Function to colorize prompts
 colorize_prompt() {
@@ -179,6 +182,7 @@ execute_script() {
 # Collect user responses to all questions
 # Check if nvidia is present
 if lspci | grep -i "nvidia" &> /dev/null; then
+    printf "\n"
     printf "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected in your system \n"
     printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
@@ -186,6 +190,7 @@ if lspci | grep -i "nvidia" &> /dev/null; then
 fi
 # Check first if yay or paru is installed before askiing aur helper
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
+    printf "\n"
     ask_custom_option "-Type ${YELLOW}AUR helper${RESET} wanted" "paru or yay" aur_helper
     printf "\n"
 fi
