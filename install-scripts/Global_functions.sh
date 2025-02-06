@@ -86,7 +86,6 @@ install_package() {
     # Double check if package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
-      printf "\n%.0s" {1..1}
     else
       # Something is missing, exiting to review log
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
