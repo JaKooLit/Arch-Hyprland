@@ -370,11 +370,12 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
         echo "${INFO} Rebooting now..."
         reboot # Optionally reboot if the user agrees
     elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
-        echo "${INFO} You choose NOT to reboot\n"
-
+        echo "${OK} You choose NOT to reboot"
+        printf "\n%.0s" {1..1}
         # Check if NVIDIA GPU is present
         if lspci | grep -i "nvidia" &> /dev/null; then
             echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+            printf "\n%.0s" {1..1}
         fi
     else
         echo "${WARN} Invalid response. Please answer with 'y' or 'n'. Exiting."
@@ -386,3 +387,5 @@ else
     printf "\n%.0s" {1..3}
     exit 1
 fi
+
+printf "\n%.0s" {1..2}
