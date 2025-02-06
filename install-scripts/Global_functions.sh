@@ -94,19 +94,19 @@ install_package() {
   fi
 }
 
-# Function for uninstalling packages
+# Function for removing packages
 uninstall_package() {
   local pkg="$1"
 
   # Checking if package is installed
   if pacman -Qi "$pkg" &>/dev/null; then
-    echo -e "${NOTE} Uninstalling $pkg ..."
+    echo -e "${NOTE} removing $pkg ..."
     sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
     
     if ! pacman -Qi "$pkg" &>/dev/null; then
-      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
+      echo -e "\e[1A\e[K${OK} $pkg removed."
     else
-      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. No actions required."
+      echo -e "\e[1A\e[K${ERROR} $pkg Removal failed. No actions required."
       return 1
     fi
   else
