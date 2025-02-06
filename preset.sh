@@ -9,7 +9,7 @@
 ###-Configure NVIDIA
 nvidia="Y"
 ### Would you like to blacklist nouveau? (y/n)
-blacklist_nouveau="Y"
+nouveau="Y"
 
 ### yay or paru 
 aur_helper="yay"

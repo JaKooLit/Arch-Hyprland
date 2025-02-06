@@ -189,7 +189,7 @@ if lspci | grep -i "nvidia" &> /dev/null; then
 fi
 
 if [[ "$nvidia" == "Y" ]]; then
-    ask_yes_no "-Would you like to ${YELLOW}blacklist nouveau?${RESET} (y/n): " nouveau
+    ask_yes_no "-Would you like to ${YELLOW}blacklist nouveau?${RESET}" nouveau
 fi
 
 # AUR helper
@@ -208,14 +208,14 @@ printf "\n"
 ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
 
 if [[ "$thunar" == "Y" ]]; then
-    ask_yes_no "-Set ${YELLOW}Thunar${RESET} as the default file manager? (y/n): " thunar_choice
+    ask_yes_no "-Set ${YELLOW}Thunar${RESET} as the default file manager?" thunar_choice
 fi
 
 # Input group
 printf "\n"
 if ! groups "$(whoami)" | grep -q '\binput\b'; then
     printf "${NOTE} Please note that adding yourself to the ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n."
-    ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group? (y/n)" input_group
+    ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group?" input_group
 fi
 
 printf "\n"
@@ -226,21 +226,21 @@ printf "\n"
 ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} as login manager?" sddm
 
 if [[ "$sddm" == "Y" ]]; then
-    ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} (y/n): " sddm_theme
+    ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} " sddm_theme
 fi
 
 printf "\n"
-ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share, e.g., OBS)" xdph
+ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND?${RESET} (For proper Screen Share, e.g., OBS)" xdph
 
 printf "\n"
 ask_yes_no "-Install ${YELLOW}zsh${RESET} with ${YELLOW}oh-my-zsh?${RESET}" zsh
 
 if [[ "$zsh" == "Y" ]]; then
-    ask_yes_no "-Add ${YELLOW}Pokemon color scripts${RESET}? in your terminal? (y/n): " pokemon_choice
+    ask_yes_no "-Add ${YELLOW}Pokemon color scripts?${RESET} in your terminal?" pokemon_choice
 fi
 
 printf "\n"
-ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
+ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops?${RESET}" rog
 
 printf "\n"
 ask_yes_no "-Do you want to add pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
