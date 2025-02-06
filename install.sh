@@ -27,6 +27,18 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+# Check if --preset argument is provided
+if [[ "$1" == "--preset" ]]; then
+    
+    # nvidia
+    if [[ "$2" == "--nvidia" ]]; then
+        sed -i 's/^nvidia=".*"/nvidia="Y"/' preset.sh
+        sed -i 's/^nouveau=".*"/nouveau="Y"/' preset.sh
+    fi
+    
+    source ./preset.sh
+fi
+
 # Check if PulseAudio package is installed
 if pacman -Qq | grep -qw '^pulseaudio$'; then
     echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
@@ -86,19 +98,6 @@ if ! pacman -Qs pciutils > /dev/null; then
     sudo pacman -S --noconfirm pciutils
     printf "\n%.0s" {1..1}
 fi
-
-
-echo "${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages!!!${RESET}"
-echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
-echo "If you are not sure what to do, answer N in here"
-read -p "${SKY_BLUE}Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
-
-# Use of Preset Settings
-if [[ $use_preset = [Yy] ]]; then
-  source ./preset.sh
-fi
-
-printf "\n%.0s" {1..1} 
 
 # Function to colorize prompts
 colorize_prompt() {

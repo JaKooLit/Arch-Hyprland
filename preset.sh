@@ -2,13 +2,12 @@
 # CREDIT to: https://github.com/PostCyberPunk for this Preset function
 
 ## -- Make sure you use the right answer or install script will fail ###
-# Make sure proper AUR Helper is use NO Upperscript. Either paru or yay only is accepted
 # The rest Change to Y for Yes and N for No. 
 
 ###-Configure NVIDIA
-nvidia="Y"
+nvidia="N"
 ### Would you like to blacklist nouveau? (y/n)
-nouveau="Y"
+nouveau="N"
 
 ### yay or paru 
 aur_helper="yay"
@@ -25,7 +24,7 @@ thunar="Y"
 thunar_choice="Y"
 
 
-### " Adding user to the 'input' group might be necessary for waybar keyboard-state functionality."
+### Adding user to the 'input' group might be necessary for waybar keyboard-state functionality
 input_group="Y"
 
 ### Install AGS (aylur's GTK shell) v1 for Desktop-Like Overview?" 
@@ -41,7 +40,7 @@ xdph="Y"
 
 ###-Install zsh, oh-my-zsh
 zsh="Y"
-### add Pokemon color scripts to terminal (y/n): 
+### add Pokemon color scripts to terminal 
 pokemon_choice="Y"
 
 ###-Installing on Asus ROG Laptops?
