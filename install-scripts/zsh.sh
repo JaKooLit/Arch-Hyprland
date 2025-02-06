@@ -1,10 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# zsh and oh my zsh including pokemon-color-scripts#
-
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
+# zsh and oh my zsh#
 
 zsh_pkg=(
   eza
@@ -31,36 +27,6 @@ printf "\n%s - Installing ${SKY_BLUE}zsh packages${RESET} .... \n" "${NOTE}"
 for ZSH in "${zsh_pkg[@]}"; do
   install_package "$ZSH" "$LOG"
 done 
-
-## Optional Pokemon color scripts
-while true; do
-    if [[ -z $pokemon_choice ]]; then
-       read -p "${CAT} OPTIONAL - Do you want to add ${YELLOW}Pokemon color scripts${RESET}? (y/n): " pokemon_choice
-    fi
-    case "$pokemon_choice" in
-        [Yy]*)
-            sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
-            sed -i '/^fastfetch -c $HOME\/.config\/fastfetch\/config-compact.jsonc/s/^/#/' assets/.zshrc >> "$LOG" 2>&1
-            
-            break
-            ;;
-        [Nn]*)
-            echo "${NOTE}Skipping Pokemon color scripts installation.${RESET}" 2>&1 | tee -a "$LOG"
-            break
-            ;;
-        *)
-            echo "${WARN}Please enter 'y' for yes or 'n' for no.${RESET}"
-            pokemon_choice=""  
-            ;;
-    esac
-done
-
-
-# Install the Pokemon color scripts if user choose Y
-if [[ "$pokemon_choice" =~ [Yy] ]]; then
-  echo "${NOTE} Installing ${SKY_BLUE}Pokemon color scripts${RESET} ..."
-  install_package 'pokemon-colorscripts-git' "$LOG"
-fi
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then

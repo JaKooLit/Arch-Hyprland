@@ -1,9 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # SDDM Log-in Manager #
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
 
 sddm=(
   qt6-5compat 
@@ -13,7 +10,6 @@ sddm=(
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
-
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -51,60 +47,5 @@ sddm_conf_dir=/etc/sddm.conf.d
 
 wayland_sessions_dir=/usr/share/wayland-sessions
 [ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
-
-printf "\n%.0s" {1..2}
-    
-# SDDM-themes
-valid_input=false
-while [ "$valid_input" != true ]; do
-    if [[ -z $install_sddm_theme ]]; then
-      read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install ${YELLOW}additional SDDM themes?${RESET} (y/n)" install_sddm_theme
-    fi
-  if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
-    printf "\n%s - Installing ${SKY_BLUE}Additional SDDM Theme${RESET}\n" "${NOTE}"
-
-    # Check if /usr/share/sddm/themes/sequoia_2 exists and remove if it does
-    if [ -d "/usr/share/sddm/themes/sequoia_2" ]; then
-      sudo rm -rf "/usr/share/sddm/themes/sequoia_2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'sequoia_2' directory." 2>&1 | tee -a "$LOG"
-    fi
-
-    # Check if sequoia_2 directory exists in the current directory and remove if it does
-    if [ -d "sequoia_2" ]; then
-      rm -rf "sequoia_2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'sequoia_2' directory from the current location." 2>&1 | tee -a "$LOG"
-    fi
-
-    if git clone --depth 1 https://codeberg.org/JaKooLit/sddm-sequoia sequoia_2; then
-      while [ ! -d "sequoia_2" ]; do
-        sleep 1
-      done
-
-      if [ ! -d "/usr/share/sddm/themes" ]; then
-        sudo mkdir -p /usr/share/sddm/themes
-        echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
-      fi
-
-      sudo mv sequoia_2 /usr/share/sddm/themes/sequoia_2
-      echo -e "[Theme]\nCurrent=sequoia_2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
-
-      # replace current background from assets
-      sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
-      sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf
-      
-      echo -e "\e[1A\e[K${OK} - ${MAGENTA}Additional SDDM Theme${RESET} successfully installed" | tee -a "$LOG" >&2
-
-    else
-      echo -e "\e[1A\e[K${ERROR} - Failed to clone the sddm theme repository. Please check your internet connection" | tee -a "$LOG" >&2
-    fi
-    valid_input=true
-  elif [[ $install_sddm_theme =~ ^[Nn]$ ]]; then
-    printf "\n%s - No SDDM themes will be installed.\n" "${NOTE}" 2>&1 | tee -a "$LOG"
-    valid_input=true
-  else
-    printf "\n%s - Invalid input. Please enter 'y' for Yes or 'n' for No.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
-    install_sddm_theme=""
-  fi
-done
 
 printf "\n%.0s" {1..2}

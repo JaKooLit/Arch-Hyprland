@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 05 Feb 2025
+- move all the initial questions at the beginning
+
 ## 03 Feb 2025
 - offering a new SDDM theme from here [SDDM](https://codeberg.org/minMelody/sddm-sequoia)
 

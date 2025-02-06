@@ -120,30 +120,4 @@ if [ -f /boot/loader/loader.conf ]; then
     fi
 fi
 
-printf "\n%.0s" {1..1} 
-
-# Blacklist nouveau
-    if [[ -z $blacklist_nouveau ]]; then
-      read -n1 -rep "${CAT} Would you like to ${YELLOW}blacklist nouveau${RESET}? (y/n)" blacklist_nouveau
-    fi
-echo
-if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
-  NOUVEAU="/etc/modprobe.d/nouveau.conf"
-  if [ -f "$NOUVEAU" ]; then
-    printf "${OK} Seems like ${YELLOW}nouveau${RESET} is already blacklisted..moving on.\n"
-  else
-    echo "blacklist nouveau" | sudo tee -a "$NOUVEAU" 2>&1 | tee -a "$LOG"
-    printf "${INFO} has been added to $NOUVEAU.\n"
-
-    # To completely blacklist nouveau (See wiki.archlinux.org/title/Kernel_module#Blacklisting 6.1)
-    if [ -f "/etc/modprobe.d/blacklist.conf" ]; then
-      echo "install nouveau /bin/true" | sudo tee -a "/etc/modprobe.d/blacklist.conf" 2>&1 | tee -a "$LOG"
-    else
-      echo "install nouveau /bin/true" | sudo tee "/etc/modprobe.d/blacklist.conf" 2>&1 | tee -a "$LOG"
-    fi
-  fi
-else
-  printf "${NOTE} Skipping ${YELLOW}nouveau blacklisting${RESET} ..." 2>&1 | tee -a "$LOG"
-fi
-
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..2} 

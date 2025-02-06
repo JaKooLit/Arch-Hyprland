@@ -187,31 +187,66 @@ if lspci | grep -i "nvidia" &> /dev/null; then
     printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
 fi
-# Check first if yay or paru is installed before askiing aur helper
+
+if [[ "$nvidia" == "Y" ]]; then
+    ask_yes_no "-Would you like to ${YELLOW}blacklist nouveau?${RESET} (y/n): " nouveau
+fi
+
+# AUR helper
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
     printf "\n"
-    ask_custom_option "-Type ${YELLOW}AUR helper${RESET} wanted" "paru or yay" aur_helper
+    ask_custom_option "-Which ${YELLOW}AUR helper${RESET} would you like to use? (paru or yay): " "paru or yay" aur_helper
 fi
+
 printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
+
 printf "\n"
 ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
+
 printf "\n"
 ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
+
+if [[ "$thunar" == "Y" ]]; then
+    ask_yes_no "-Set ${YELLOW}Thunar${RESET} as the default file manager? (y/n): " thunar_choice
+fi
+
+# Input group
+printf "\n"
+if ! groups "$(whoami)" | grep -q '\binput\b'; then
+    printf "${NOTE} Please note that adding yourself to the ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n."
+    ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group? (y/n)" input_group
+fi
+
 printf "\n"
 printf "${NOTE} ${YELLOW}AGS Desktop Overview DEMO link${RESET} on README\n"
 ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" ags
+
 printf "\n"
-ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} login manager, plus (OPTIONAL) SDDM theme?" sddm
+ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} as login manager?" sddm
+
+if [[ "$sddm" == "Y" ]]; then
+    ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} (y/n): " sddm_theme
+fi
+
 printf "\n"
 ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share, e.g., OBS)" xdph
+
 printf "\n"
-ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optional) ${YELLOW}pokemon-colorscripts${RESET}?" zsh
+ask_yes_no "-Install ${YELLOW}zsh${RESET} with ${YELLOW}oh-my-zsh?${RESET}" zsh
+
+if [[ "$zsh" == "Y" ]]; then
+    ask_yes_no "-Add ${YELLOW}Pokemon color scripts${RESET}? in your terminal? (y/n): " pokemon_choice
+fi
+
 printf "\n"
 ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
+
 printf "\n"
-ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
+ask_yes_no "-Do you want to add pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
+
 printf "\n"
+
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
@@ -244,6 +279,9 @@ execute_script "hyprland.sh"
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi
+if [ "$nouveau" == "Y" ]; then
+    execute_script "nvidia_nouveau.sh"
+fi
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
@@ -256,12 +294,20 @@ fi
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
+if [ "$thunar_choice" == "Y" ]; then
+    execute_script "thunar_default.sh"
+fi
+
 if [ "$ags" == "Y" ]; then
     execute_script "ags.sh"
 fi
 
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
+fi
+
+if [ "$sddm_theme" == "Y" ]; then
+    execute_script "sddm_theme.sh"
 fi
 
 if [ "$xdph" == "Y" ]; then
@@ -272,7 +318,13 @@ if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
 
-execute_script "InputGroup.sh"
+if [ "$pokemon_choice" == "Y" ]; then
+    execute_script "zsh_pokemon.sh"
+fi
+
+if [ "$input_group" == "Y" ]; then
+    execute_script "InputGroup.sh"
+fi
 
 if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"

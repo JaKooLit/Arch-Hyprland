@@ -30,38 +30,10 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 
 # Thunar
-printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n"  
+printf "${INFO} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" "$LOG"
   done
-
-printf "\n%.0s" {1..1}
-
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
-
-# Confirm if wanted to set as default
-while true; do
-    if [[ -z $thunar_choice ]]; then
-        read -p "${CAT} want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thunar_choice
-    fi
-    case "$thunar_choice" in
-        [Yy]*)
-            xdg-mime default thunar.desktop inode/directory
-            xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
-            echo "${OK} ${MAGENTA}Thunar${RESET} is now set as the default file manager." | tee -a "$LOG"
-            break
-            ;;
-        [Nn]*)
-            echo "${NOTE} You chose not to set ${MAGENTA}Thunar${RESET} as the default file manager." | tee -a "$LOG"
-            break
-            ;;
-        *)
-            echo "${WARN} Invalid input. Please enter 'y' or 'n'."
-            ;;
-    esac
-done
 
 printf "\n%.0s" {1..1}
 
