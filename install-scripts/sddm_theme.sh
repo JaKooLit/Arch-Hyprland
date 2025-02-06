@@ -40,12 +40,12 @@ if git clone --depth 1 https://codeberg.org/JaKooLit/sddm-sequoia sequoia_2; the
     echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
   fi
 
-  sudo mv sequoia_2 /usr/share/sddm/themes/sequoia_2
+  sudo mv sequoia_2 /usr/share/sddm/themes/sequoia_2 2>&1 | tee -a "$LOG"
   echo -e "[Theme]\nCurrent=sequoia_2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
 
   # replace current background from assets
-  sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
-  sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf
+  sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default 2>&1 | tee -a "$LOG" 
+  sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf 2>&1 | tee -a "$LOG"
 
   echo -e "\e[1A\e[K${OK} - ${MAGENTA}Additional SDDM Theme${RESET} successfully installed" | tee -a "$LOG" >&2
 
