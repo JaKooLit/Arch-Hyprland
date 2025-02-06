@@ -6,6 +6,7 @@ if [[ $USE_PRESET = [Yy] ]]; then
   source ./preset.sh
 fi
 
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -18,6 +19,12 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
+
+# Checking if current user is in the 'input' group
+if groups "$(whoami)" | grep -q '\binput\b'; then
+    echo "USER $(whoami) is already in the 'input' group." 2>&1 > "$LOG"
+    exit 0
+fi
 
 while true; do
     echo "${WARN} This script will add your ${YELLOW}user${RESET} to the ${MAGENTA}input${RESET} group."

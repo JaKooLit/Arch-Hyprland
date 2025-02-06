@@ -30,12 +30,12 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 
 # Thunar
-printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n\n"  
+printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" "$LOG"
   done
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 if [[ $USE_PRESET = [Yy] ]]; then
   source ./preset.sh

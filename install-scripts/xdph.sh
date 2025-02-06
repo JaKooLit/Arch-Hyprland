@@ -23,7 +23,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 
 # XDG-DESKTOP-PORTAL-HYPRLAND
-printf "${NOTE} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland${RESET}\n\n" 
+printf "${NOTE} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland${RESET}\n" 
 for xdgs in "${xdg[@]}"; do
   install_package "$xdgs" "$LOG"
 done

@@ -50,7 +50,7 @@ if grep -qE '^MODULES=.*nvidia. *nvidia_modeset.*nvidia_uvm.*nvidia_drm' /etc/mk
   echo "Nvidia modules already included in /etc/mkinitcpio.conf" 2>&1 | tee -a "$LOG"
 else
   sudo sed -Ei 's/^(MODULES=\([^\)]*)\)/\1 nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf 2>&1 | tee -a "$LOG"
-  echo "Nvidia modules added in /etc/mkinitcpio.conf"
+  echo "${OK} Nvidia modules added in /etc/mkinitcpio.conf"
 fi
 
 printf "\n%.0s" {1..1}
@@ -62,7 +62,7 @@ printf "\n%.0s" {1..1}
 # Additional Nvidia steps
 NVEA="/etc/modprobe.d/nvidia.conf"
 if [ -f "$NVEA" ]; then
-  printf "${OK} Seems like ${YELLOW}nvidia_drm modeset=1 fbdev=1${RESET} is already added in your system..moving on."
+  printf "${INFO} Seems like ${YELLOW}nvidia_drm modeset=1 fbdev=1${RESET} is already added in your system..moving on."
   printf "\n"
 else
   printf "\n"
@@ -78,19 +78,19 @@ if [ -f /etc/default/grub ]; then
     # Check if nvidia-drm.modeset=1 is present
     if ! sudo grep -q "nvidia-drm.modeset=1" /etc/default/grub; then
         sudo sed -i -e 's/\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 nvidia-drm.modeset=1"/' /etc/default/grub
-        printf "nvidia-drm.modeset=1 added to /etc/default/grub\n" 2>&1 | tee -a "$LOG"
+        printf "${OK} nvidia-drm.modeset=1 added to /etc/default/grub\n" 2>&1 | tee -a "$LOG"
     fi
 
     # Check if nvidia_drm.fbdev=1 is present
     if ! sudo grep -q "nvidia_drm.fbdev=1" /etc/default/grub; then
         sudo sed -i -e 's/\(GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 nvidia_drm.fbdev=1"/' /etc/default/grub
-        printf "nvidia_drm.fbdev=1 added to /etc/default/grub\n" 2>&1 | tee -a "$LOG"
+        printf "${OK} nvidia_drm.fbdev=1 added to /etc/default/grub\n" 2>&1 | tee -a "$LOG"
     fi
 
     # Regenerate GRUB configuration 
     if sudo grep -q "nvidia-drm.modeset=1" /etc/default/grub || sudo grep -q "nvidia_drm.fbdev=1" /etc/default/grub; then
        sudo grub-mkconfig -o /boot/grub/grub.cfg
-       printf "${YELLOW}GRUB${RESET} configuration regenerated\n" 2>&1 | tee -a "$LOG"
+       printf "${INFO} ${YELLOW}GRUB${RESET} configuration regenerated\n" 2>&1 | tee -a "$LOG"
     fi
   
     printf "${OK} Additional steps for ${YELLOW}GRUB${RESET} completed\n" 2>&1 | tee -a "$LOG"
@@ -107,7 +107,7 @@ if [ -f /boot/loader/loader.conf ]; then
         find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf; do
             # Backup conf
             sudo cp "$imgconf" "$imgconf.bak"
-            printf "Backup created for systemd-boot loader: %s\n" "$imgconf" 2>&1 | tee -a "$LOG"
+            printf "${INFO} Backup created for systemd-boot loader: %s\n" "$imgconf" 2>&1 | tee -a "$LOG"
             
             # Clean up options and update with NVIDIA settings
             sdopt=$(grep -w "^options" "$imgconf" | sed 's/\b nvidia-drm.modeset=[^ ]*\b//g' | sed 's/\b nvidia_drm.fbdev=[^ ]*\b//g')
@@ -120,7 +120,7 @@ if [ -f /boot/loader/loader.conf ]; then
     fi
 fi
 
-printf "\n%.0s" {1..1}
+printf "\n%.0s" {1..1} 
 
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
@@ -133,8 +133,7 @@ if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
     printf "${OK} Seems like ${YELLOW}nouveau${RESET} is already blacklisted..moving on.\n"
   else
     echo "blacklist nouveau" | sudo tee -a "$NOUVEAU" 2>&1 | tee -a "$LOG"
-    printf "${NOTE} has been added to $NOUVEAU.\n"
-    printf "\n"
+    printf "${INFO} has been added to $NOUVEAU.\n"
 
     # To completely blacklist nouveau (See wiki.archlinux.org/title/Kernel_module#Blacklisting 6.1)
     if [ -f "/etc/modprobe.d/blacklist.conf" ]; then
