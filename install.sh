@@ -88,7 +88,7 @@ if ! pacman -Qs pciutils > /dev/null; then
 fi
 
 
-echo "${WARN} ${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages!!!${RESET}"
+echo "${WARNING}ATTENTION: Choosing Y on use preset question will install also ${MAGENTA}nvidia packages!!!${RESET}"
 echo "${YELLOW}CTRL C or Q to cancel and edit the file ${MAGENTA}preset.sh${RESET} ${RESET}"  
 echo "If you are not sure what to do, answer N in here"
 read -p "${SKY_BLUE}Would you like to Use ${YELLOW}Preset Install Settings?${RESET} (See note above)? (y/n): ${RESET}" use_preset
@@ -214,7 +214,7 @@ fi
 # Input group
 printf "\n"
 if ! groups "$(whoami)" | grep -q '\binput\b'; then
-    printf "${NOTE} Please note that adding yourself to the ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n."
+    printf "${NOTE} adding to ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n"
     ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group?" input_group
 fi
 

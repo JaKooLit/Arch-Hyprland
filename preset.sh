@@ -1,5 +1,4 @@
 # 💫 https://github.com/JaKooLit 💫 #
-#
 # CREDIT to: https://github.com/PostCyberPunk for this Preset function
 
 ## -- Make sure you use the right answer or install script will fail ###
@@ -22,30 +21,31 @@ bluetooth="Y"
 
 ###-Do you want to install Thunar file manager?
 thunar="Y"
-### Do you want to set Thunar as the default file manager? (y/n): "
+### Do you want to set Thunar as the default file manager? 
 thunar_choice="Y"
 
 
-### " Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
+### " Adding user to the 'input' group might be necessary for waybar keyboard-state functionality."
 input_group="Y"
 
-### Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" 
+### Install AGS (aylur's GTK shell) v1 for Desktop-Like Overview?" 
 ags="Y"
 
-###-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?
+###-Install & configure SDDM log-in Manager
 sddm="Y"
-### Would you like to install SDDM themes? (y/n)
+### install and download SDDM themes
 sddm_theme="Y"
 
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
 xdph="Y"
 
-###-Install zsh, oh-my-zsh & (Optional) pokemon-colorscripts?
+###-Install zsh, oh-my-zsh
 zsh="Y"
-### OPTIONAL - Do you want to add Pokemon color scripts? (y/n): 
+### add Pokemon color scripts to terminal (y/n): 
 pokemon_choice="Y"
 
-###-Installing in a Asus ROG Laptops?
+###-Installing on Asus ROG Laptops?
 rog="N"
-###-Do you want to download pre-configured Hyprland dotfiles?
+
+###-Download and Add pre-configured Hyprland dotfiles?
 dots="Y"

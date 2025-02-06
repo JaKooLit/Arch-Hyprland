@@ -1,9 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # Nvidia Stuffs #
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
 
 nvidia_pkg=(
   nvidia-dkms

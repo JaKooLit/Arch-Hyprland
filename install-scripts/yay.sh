@@ -39,8 +39,8 @@ ISAUR=$(command -v yay || command -v paru)
 if [ -n "$ISAUR" ]; then
   printf "\n%s - ${SKY_BLUE}AUR helper${RESET} already installed, moving on.\n" "${OK}"
 else
-  printf "\n%s - Installing ${SKY_BLUE}yay${RESET} from AUR\n" "${NOTE}"
-  git clone https://aur.archlinux.org/yay.git || { printf "%s - Failed to clone ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
+  printf "\n%s - Installing ${SKY_BLUE}yay-bin${RESET} from AUR\n" "${NOTE}"
+  git clone https://aur.archlinux.org/yay-bin.git || { printf "%s - Failed to clone ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
   cd yay || { printf "%s - Failed to enter yay directory\n" "${ERROR}"; exit 1; }
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
 
