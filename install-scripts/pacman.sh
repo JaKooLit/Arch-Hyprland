@@ -39,7 +39,9 @@ fi
 
 echo -e "${CAT} ${MAGENTA}Pacman.conf${RESET} spicing up completed ${RESET}" 2>&1 | tee -a "$LOG"
 
+
 # updating pacman.conf
+printf "\n%s - ${SKY_BLUE}Synchronizing Pacman Repo${RESET}" "${INFO}"
 sudo pacman -Sy
 
 printf "\n%.0s" {1..2}
