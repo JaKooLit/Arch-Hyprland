@@ -305,7 +305,6 @@ fi
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
 fi
-
 if [ "$sddm_theme" == "Y" ]; then
     execute_script "sddm_theme.sh"
 fi
@@ -317,7 +316,6 @@ fi
 if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
-
 if [ "$pokemon_choice" == "Y" ]; then
     execute_script "zsh_pokemon.sh"
 fi
@@ -360,15 +358,13 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
-    # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-    # Normalize user input to lowercase
     HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
 
     if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
         echo "${INFO} Rebooting now..."
-        reboot # Optionally reboot if the user agrees
+        systemctl reboot 
     elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
         echo "${OK} You choose NOT to reboot"
         printf "\n%.0s" {1..1}
