@@ -77,6 +77,8 @@ uninstall=(
   cachyos-hyprland-settings
   rofi
   wallust-git
+  rofi-lbonn-wayland
+  rofi-lbonn-wayland-git
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
