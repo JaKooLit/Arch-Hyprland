@@ -19,7 +19,9 @@ MAGENTA="$(tput setaf 5)"
 ORANGE="$(tput setaf 214)"
 WARNING="$(tput setaf 1)"
 YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 
@@ -37,9 +39,8 @@ fi
 ISAUR=$(command -v yay || command -v paru)
 
 if [ -n "$ISAUR" ]; then
-  printf "\n%s - AUR helper already installed, moving on..\n" "${OK}"
+  printf "\n%s - ${SKY_BLUE}AUR helper${RESET} already installed, moving on.\n" "${OK}"
 else
-  printf "\n%s - AUR helper was NOT located\n" "$WARN"
   printf "\n%s - Installing ${SKY_BLUE}paru-bin${RESET} from AUR\n" "${NOTE}"
   git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone ${YELLOW}paru-bin${RESET} from AUR\n" "${ERROR}"; exit 1; }
   cd paru-bin || { printf "%s - Failed to enter paru directory\n" "${ERROR}"; exit 1; }
