@@ -186,13 +186,11 @@ if lspci | grep -i "nvidia" &> /dev/null; then
     printf "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected in your system \n"
     printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
-    printf "\n"
 fi
 # Check first if yay or paru is installed before askiing aur helper
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
     printf "\n"
     ask_custom_option "-Type ${YELLOW}AUR helper${RESET} wanted" "paru or yay" aur_helper
-    printf "\n"
 fi
 printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
