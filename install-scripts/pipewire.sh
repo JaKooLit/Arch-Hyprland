@@ -27,7 +27,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_pipewire.log"
 
 # Disabling pulseaudio to avoid conflicts and logging output
 echo -e "${NOTE} Disabling pulseaudio to avoid conflicts..."
-systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>&1 | tee -a "$LOG"
+systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>&1 > "$LOG"
 
 # Pipewire
 echo -e "${NOTE} Installing ${SKY_BLUE}Pipewire${RESET} Packages..."
