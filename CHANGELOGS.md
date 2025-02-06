@@ -1,13 +1,13 @@
 ## Changelogs
 
-## 05 Feb 2025
+## 06 Feb 2025
+- added semi-unattended function.
 - move all the initial questions at the beginning
 
-## 03 Feb 2025
-- offering a new SDDM theme from here [SDDM](https://codeberg.org/minMelody/sddm-sequoia)
-
-## 02 Feb 2025
-- some tweaking on install-scripts except the compiling part. It will not show progress for much cleaner work. 
+## 04 Feb 2025
+- Re-coded for better visibility
+- Offered a new SDDM theme.
+- script will automatically detect if you have nvidia but script still offer if you want to set up for user
 
 ## 29 Jan 2025
 - enhanced nvidia.sh to add additional systemd-bootloader entries for nvidia

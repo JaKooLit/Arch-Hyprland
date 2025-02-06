@@ -30,10 +30,11 @@ printf "${NOTE} Installing sddm and dependencies........\n"
   done 
 
 # Check if other login managers installed and disabling its service before enabling sddm
-for login_manager in lightdm gdm lxdm lxdm-gtk3; do
+for login_manager in lightdm gdm3 gdm lxdm xdm lxdm-gtk3; do
   if pacman -Qs "$login_manager" > /dev/null; then
     echo "disabling $login_manager..."
     sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
+    echo "$login_manager disabled."
   fi
 done
 
