@@ -3,6 +3,7 @@
 # Yay AUR Helper #
 # NOTE: If paru is already installed, yay will not be installed #
 
+pkg="yay-bin"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Set the name of the log file to include the current date and time
@@ -29,20 +30,20 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# Check Existing yay
-if [ -d yay ]; then
-    rm -rf yay 2>&1 | tee -a "$LOG"
-fi
-
 # Check for AUR helper and install if not found
 ISAUR=$(command -v yay || command -v paru)
 if [ -n "$ISAUR" ]; then
   printf "\n%s - ${SKY_BLUE}AUR helper${RESET} already installed, moving on.\n" "${OK}"
 else
-  printf "\n%s - Installing ${SKY_BLUE}yay-bin${RESET} from AUR\n" "${NOTE}"
-  git clone https://aur.archlinux.org/yay-bin.git || { printf "%s - Failed to clone ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
-  cd yay || { printf "%s - Failed to enter yay directory\n" "${ERROR}"; exit 1; }
-  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}yay${RESET} from AUR\n" "${ERROR}"; exit 1; }
+  printf "\n%s - Installing ${SKY_BLUE}$pkg${RESET} from AUR\n" "${NOTE}"
+
+# Check if folder exists and remove it
+if [ -d "$pkg" ]; then
+    rm -rf "$pkg"
+fi
+  git clone https://aur.archlinux.org/$pkg.git || { printf "%s - Failed to clone ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
+  cd $pkg || { printf "%s - Failed to enter $pkg directory\n" "${ERROR}"; exit 1; }
+  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
 
   # moving install logs in to Install-Logs folder
   mv install*.log ../Install-Logs/ || true   

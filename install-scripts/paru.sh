@@ -3,10 +3,11 @@
 # Paru AUR Helper #
 # NOTE: If yay is already installed, paru will not be installed #
 
+pkg="paru-bin"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +%d-%H%M%S)_paru.log"
+LOG="install-$(date +%d-%H%M%S)_yay.log"
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -24,30 +25,28 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# checking if paru exist and removing if it is
-if [ -d paru-bin ]; then
-    rm -rf paru-bin 2>&1 | tee -a "$LOG"
-fi
-
 # Check for AUR helper and install if not found
 ISAUR=$(command -v yay || command -v paru)
-
 if [ -n "$ISAUR" ]; then
   printf "\n%s - ${SKY_BLUE}AUR helper${RESET} already installed, moving on.\n" "${OK}"
 else
-  printf "\n%s - Installing ${SKY_BLUE}paru-bin${RESET} from AUR\n" "${NOTE}"
-  git clone https://aur.archlinux.org/paru-bin.git || { printf "%s - Failed to clone ${YELLOW}paru-bin${RESET} from AUR\n" "${ERROR}"; exit 1; }
-  cd paru-bin || { printf "%s - Failed to enter paru directory\n" "${ERROR}"; exit 1; }
-  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}paru-bin${RESET} from AUR\n" "${ERROR}"; exit 1; }
-  
+  printf "\n%s - Installing ${SKY_BLUE}$pkg${RESET} from AUR\n" "${NOTE}"
+
+# Check if folder exists and remove it
+if [ -d "$pkg" ]; then
+    rm -rf "$pkg"
+fi
+  git clone https://aur.archlinux.org/$pkg.git || { printf "%s - Failed to clone ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
+  cd $pkg || { printf "%s - Failed to enter $pkg directory\n" "${ERROR}"; exit 1; }
+  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
+
   # moving install logs in to Install-Logs folder
-  mv install*.log ../Install-Logs/ || true  
+  mv install*.log ../Install-Logs/ || true   
   cd ..
 fi
 
