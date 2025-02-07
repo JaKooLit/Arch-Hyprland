@@ -4,7 +4,6 @@
 
 source_theme="https://codeberg.org/JaKooLit/sddm-sequoia"
 theme_name="sequoia_2"
-sddm_conf_dir="/etc/sddm.conf.d"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -49,6 +48,11 @@ if git clone --depth 1 "$source_theme" "$theme_name"; then
   # Move cloned theme to the themes directory
   sudo mv "$theme_name" "/usr/share/sddm/themes/$theme_name" 2>&1 | tee -a "$LOG"
 
+  # Set up new theme
+  echo -e "${NOTE} Setting up the login screen."
+  sddm_conf_dir=/etc/sddm.conf.d
+  [ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
+  
   # Configure theme settings
   echo -e "[Theme]\nCurrent=$theme_name" | sudo tee "$sddm_conf_dir/theme.conf.user" >> "$LOG"
 
