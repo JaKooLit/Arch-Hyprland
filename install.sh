@@ -72,7 +72,7 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1} 
 
 # Welcome message
-echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
+echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland (2025) Install Script!${RESET}"
 echo
 echo "${WARNING}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
 echo
