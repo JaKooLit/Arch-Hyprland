@@ -109,7 +109,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Care though as the Hyprland Dots may not work properly!
 
 #### 💫 SDDM and GTK Themes offered
-- If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm-2)
+- If you opted to install SDDM theme, here's the [`LINK`](https://codeberg.org/JaKooLit/sddm-sequoia) which is a fork of [`LINK`](https://codeberg.org/minMelody/sddm-sequoia)
 - If you opted to install GTK Themes, Icons,  here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons). This also includes Bibata Modern Ice cursor.
 
 #### 👀 NVidia GPU Owners.
@@ -119,12 +119,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 ## ✨ to use this script
-> clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
-
->[!IMPORTANT]
-> Make sure you have base-devel installed
-
-- Without base-devel installed, script will fail
+- clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git ~/Arch-Hyprland
@@ -135,6 +130,24 @@ chmod +x install.sh
 
 <p align="center">
     <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/Installer.png" />
+
+
+### 🤟 semi-unattended installation (new for 2025)
+- edit preset.sh to modify what packages you want. Make sure to change only with Y or N
+- to use preset instead of usual `./install.sh` you can ran like this
+
+```bash
+./install.sh --preset
+```
+
+- if you have nvidia you can add --nvidia argument
+
+```bash
+./install.sh --preset --nvidia
+```
+
+- its called semi-unattended it is because you still have to answer some questions when installing KooL's Hyprland Dots
+
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -171,16 +184,11 @@ source ~/.zshrc
 - CD into Arch-Hyprland directory and then ran the below command. 
 - i.e. `./install-scripts/gtk-themes.sh` - For reinstall GTK Themes or
 - `./install-scripts/sddm.sh` - For reinstall sddm
-
 > [!IMPORTANT]
 > DO NOT cd into install-scripts directory as script will most likely to fail
 
-#### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
-
 #### 🛣️ Roadmap:
-- ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
-- [ ] possibly adding gruvbox themes, cursors, icons
+- [ ] show a progress bar in downloading and compiling part when installing outside AUR or official repo
 
 #### ❗ some known issues for nvidia
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
@@ -217,12 +225,6 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
-
-
-#### ➕ Added Hyprland install either git or non-git version
-- on assets directory of Arch-Hyprland, you will find install scripts to assist in switching non-git and git version of hyprland
-- pretty straight forward `chmod +x actions.sh` `./actions.sh` and `1 for non-git` and `2 for git version`
-
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)

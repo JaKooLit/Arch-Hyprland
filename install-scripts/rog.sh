@@ -2,6 +2,13 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Asus ROG Laptops #
 
+rog=(
+    power-profiles-daemon
+    asusctl
+    supergfxctl
+    rog-control-center
+)
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -17,13 +24,9 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 ### Install software for Asus ROG laptops ###
 
-printf " Installing ASUS ROG packages...\n"
-for ASUS in power-profiles-daemon asusctl supergfxctl rog-control-center; do
-install_package  "$ASUS" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-  echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
-  exit 1
-  fi
+printf " Installing ${SKY_BLUE}ASUS ROG packages${RESET}...\n"
+for ASUS in "${rog[@]}"; do
+install_package  "$ASUS" "$LOG"
 done
 
 printf " Activating ROG services...\n"
@@ -32,5 +35,4 @@ sudo systemctl enable supergfxd 2>&1 | tee -a "$LOG"
 printf " enabling power-profiles-daemon...\n"
 sudo systemctl enable power-profiles-daemon 2>&1 | tee -a "$LOG"
 
-clear
-
+printf "\n%.0s" {1..2}

@@ -40,19 +40,19 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/00_CHECK-$(date +%d-%H%M%S)_installed.log"
 
-printf "\n%s - Final Check if Essential packages were installed \n" "${NOTE}"
+printf "\n%s - Final Check if all ${SKY_BLUE}Essential packages${RESET} were installed \n" "${NOTE}"
 # Initialize an empty array to hold missing packages
 missing=()
 local_missing=()
 
-# Function to check if a package is installed using pacman
+# Function to check if a packages are installed using pacman
 is_installed_pacman() {
     pacman -Qi "$1" &>/dev/null
 }
 
 # Loop through each package
 for pkg in "${packages[@]}"; do
-    # Check if the package is installed via pacman
+    # Check if the packages are installed
     if ! is_installed_pacman "$pkg"; then
         missing+=("$pkg")
     fi
@@ -67,25 +67,24 @@ done
 
 # Log missing packages
 if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ]; then
-    echo "${OK} All essential packages are installed." | tee -a "$LOG"
+    echo "${OK} GREAT! It seems All ${YELLOW}essential packages${RESET} are installed." | tee -a "$LOG"
 else
     if [ ${#missing[@]} -ne 0 ]; then
         echo "${WARN} The following packages are not installed and will be logged:"
         for pkg in "${missing[@]}"; do
-            echo "$pkg"
-            echo "$pkg" >> "$LOG" # Log the missing package to the file
+            echo "${WARNING}$pkg${RESET}"
+            echo "$pkg" >> "$LOG" 
         done
     fi
 
     if [ ${#local_missing[@]} -ne 0 ]; then
         echo "${WARN} The following local packages are missing from /usr/local/bin/ and will be logged:"
         for pkg1 in "${local_missing[@]}"; do
-            echo "$pkg1 is not installed. Can't find it in /usr/local/bin/"
-            echo "$pkg1" >> "$LOG" # Log the missing local package to the file
+            echo "${WARNING}$pkg1${REST} is not installed. Can't find it in /usr/local/bin/"
+            echo "$pkg1" >> "$LOG" 
         done
     fi
 
-    # Add a timestamp when the missing packages were logged
     echo "${NOTE} Missing packages logged at $(date)" >> "$LOG"
 fi
 

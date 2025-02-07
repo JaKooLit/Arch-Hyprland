@@ -1,10 +1,13 @@
 ## Changelogs
 
-## 01 Fed 2025
-- added a small scripts in the assets directory to install git and non-git version of hyprland (instruction on the readme)
+## 06 Feb 2025
+- added semi-unattended function.
+- move all the initial questions at the beginning
 
-## 30 Jan 2025
-- separate AGS v1 installation separate
+## 04 Feb 2025
+- Re-coded for better visibility
+- Offered a new SDDM theme.
+- script will automatically detect if you have nvidia but script still offer if you want to set up for user
 
 ## 29 Jan 2025
 - enhanced nvidia.sh to add additional systemd-bootloader entries for nvidia

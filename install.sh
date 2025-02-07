@@ -1,29 +1,48 @@
 #!/bin/bash
 # https://github.com/JaKooLit
 
+clear
+
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-MAGENTA=$(tput setaf 5)
-WARNING=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+MAGENTA="$(tput setaf 5)"
+ORANGE="$(tput setaf 214)"
+WARNING="$(tput setaf 1)"
+YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
+BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
+RESET="$(tput sgr0)"
 
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
-    echo "$ERROR This script should not be executed as root! Exiting......."
+    echo "${ERROR}  This script should ${WARNING}NOT${RESET} be executed as root!! Exiting......."
+    printf "\n%.0s" {1..2} 
     exit 1
 fi
 
-clear
+# Check if --preset argument is provided
+if [[ "$1" == "--preset" ]]; then
+    
+    # nvidia
+    if [[ "$2" == "--nvidia" ]]; then
+        sed -i 's/^nvidia=".*"/nvidia="Y"/' preset.sh
+        sed -i 's/^nouveau=".*"/nouveau="Y"/' preset.sh
+    fi
+    
+    source ./preset.sh
+fi
 
 # Check if PulseAudio package is installed
 if pacman -Qq | grep -qw '^pulseaudio$'; then
     echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
+    printf "\n%.0s" {1..2} 
     exit 1
 fi
 
@@ -33,7 +52,7 @@ if pacman -Q base-devel &> /dev/null; then
 else
     echo "$NOTE Install base-devel.........."
 
-    if sudo pacman -S --noconfirm --needed base-devel; then
+    if sudo pacman -S --noconfirm base-devel; then
         echo "$OK base-devel has been installed successfully."
     else
         echo "$ERROR base-devel not found nor cannot be installed."
@@ -44,41 +63,40 @@ fi
 
 clear
 
-printf "\n%.0s" {1..3}                            
-echo "   |  _.   |/  _   _  |  o _|_ "
-echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
+	╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ 2025
+	╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ 
+\e[0m"
+printf "\n%.0s" {1..1} 
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Arch-Hyprland Install Script!$(tput sgr0)"
+echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
 echo
-echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
+echo "${WARNING}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
 echo
-echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation! $(tput sgr0)"
+echo "${YELLOW}NOTE: You will be required to answer some questions during the installation! ${RESET}"
 echo
-echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
+echo "${YELLOW}NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! ${RESET}"
 echo
 
-read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
-
-printf "\n%.0s" {1..2}
+read -p "${SKY_BLUE}Would you like to proceed? (y/n): ${RESET}" proceed
 
 if [ "$proceed" != "y" ]; then
-    echo "Installation aborted."
-	printf "\n%.0s" {1..2}
+    printf "\n%.0s" {1..2}
+    echo "${INFO} Installation aborted. ${SKY_BLUE}No changes in your system.${RESET} ${YELLOW}Goodbye!${RESET}"
+    printf "\n%.0s" {1..2}
     exit 1
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
-echo "$(tput bold)$(tput setaf 166)ATTENTION: Choosing Y on use preset question will install also nvidia stuff! $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 3)CTRL C to cancel and edit the file preset.sh $(tput sgr0)"  
-echo "$(tput bold)$(tput setaf 7)If you are not sure what to do, answer N in here $(tput sgr0)"
-read -p "$(tput setaf 6)Would you like to Use Preset Settings (See note above)? (y/n): $(tput sgr0)" use_preset
-
-# Use of Preset Settings
-if [[ $use_preset = [Yy] ]]; then
-  source ./preset.sh
+# install pciutils if detected not installed. Necessary for detecting GPU
+if ! pacman -Qs pciutils > /dev/null; then
+    echo "pciutils is not installed. Installing..."
+    sudo pacman -S --noconfirm pciutils
+    printf "\n%.0s" {1..1}
 fi
 
 # Function to colorize prompts
@@ -91,17 +109,6 @@ colorize_prompt() {
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S).log"
 
-# Initialize variables to store user responses
-# aur_helper=""
-# bluetooth=""
-# dots=""
-# gtk_themes=""
-# nvidia=""
-# rog=""
-# sddm=""
-# thunar=""
-# xdph=""
-# zsh=""
 
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
@@ -172,32 +179,77 @@ execute_script() {
 }
 
 # Collect user responses to all questions
+# Check if nvidia is present
+if lspci | grep -i "nvidia" &> /dev/null; then
+    printf "\n"
+    printf "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected in your system \n"
+    printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
+    ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
+fi
+
+if [[ "$nvidia" == "Y" ]]; then
+    ask_yes_no "-Would you like to ${YELLOW}blacklist nouveau?${RESET}" nouveau
+fi
+
+# AUR helper
+if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
+    printf "\n"
+    ask_custom_option "-Which ${YELLOW}AUR helper${RESET} would you like to use? (paru or yay): " "paru or yay" aur_helper
+fi
+
 printf "\n"
-ask_custom_option "-Type AUR helper" "paru or yay" aur_helper
+ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
+
 printf "\n"
-ask_yes_no "-Do you have any nvidia gpu in your system?" nvidia
+ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
+
 printf "\n"
-ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
+ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
+
+if [[ "$thunar" == "Y" ]]; then
+    ask_yes_no "-Set ${YELLOW}Thunar${RESET} as the default file manager?" thunar_choice
+fi
+
+# Input group
 printf "\n"
-ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
+if ! groups "$(whoami)" | grep -q '\binput\b'; then
+    printf "${NOTE} adding to ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n"
+    ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group?" input_group
+fi
+
 printf "\n"
-ask_yes_no "-Do you want to install Thunar file manager?" thunar
+printf "${NOTE} ${YELLOW}AGS Desktop Overview DEMO link${RESET} on README\n"
+ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" ags
+
 printf "\n"
-ask_yes_no "-Install AGS (aylur's gtk shell) v1 for Desktop Like Overview?" ags
+ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} as login manager?" sddm
+
+if [[ "$sddm" == "Y" ]]; then
+    ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} " sddm_theme
+fi
+
 printf "\n"
-ask_yes_no "-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
+ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND?${RESET} (For proper Screen Share, e.g., OBS)" xdph
+
 printf "\n"
-ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
+ask_yes_no "-Install ${YELLOW}zsh${RESET} with ${YELLOW}oh-my-zsh?${RESET}" zsh
+
+if [[ "$zsh" == "Y" ]]; then
+    ask_yes_no "-Add ${YELLOW}Pokemon color scripts?${RESET} in your terminal?" pokemon_choice
+fi
+
 printf "\n"
-ask_yes_no "-Install zsh, oh-my-zsh & (Optional) pokemon-colorscripts?" zsh
+ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops?${RESET}" rog
+
 printf "\n"
-ask_yes_no "-Installing in a Asus ROG Laptops?" rog
+ask_yes_no "-Do you want to add pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
+
 printf "\n"
-ask_yes_no "-Do you want to download pre-configured Hyprland dotfiles?" dots
-printf "\n"
+
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
+
 sleep 1
 # Ensuring base-devel is installed
 execute_script "00-base.sh"
@@ -226,6 +278,9 @@ execute_script "hyprland.sh"
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
 fi
+if [ "$nouveau" == "Y" ]; then
+    execute_script "nvidia_nouveau.sh"
+fi
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
@@ -238,12 +293,19 @@ fi
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
+if [ "$thunar_choice" == "Y" ]; then
+    execute_script "thunar_default.sh"
+fi
+
 if [ "$ags" == "Y" ]; then
     execute_script "ags.sh"
 fi
 
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
+fi
+if [ "$sddm_theme" == "Y" ]; then
+    execute_script "sddm_theme.sh"
 fi
 
 if [ "$xdph" == "Y" ]; then
@@ -253,8 +315,13 @@ fi
 if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
+if [ "$pokemon_choice" == "Y" ]; then
+    execute_script "zsh_pokemon.sh"
+fi
 
-execute_script "InputGroup.sh"
+if [ "$input_group" == "Y" ]; then
+    execute_script "InputGroup.sh"
+fi
 
 if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
@@ -279,25 +346,41 @@ printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
-    printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
+    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
+    printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
-    printf "\n${NOTE} You can start Hyprland by typing 'Hyprland' (IF SDDM is not installed) (note the capital H!).\n"
-    printf "\n${NOTE} However, it is highly recommended to reboot your system.\n\n"
+    printf "\n%.0s" {1..2}
 
-    # Prompt user to reboot
+    printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
+    printf "\n%.0s" {1..2}
+
+    printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
+
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-    # Check if the user answered 'y' or 'Y'
-    if [[ "$HYP" =~ ^[Yy]$ ]]; then
-        if [[ "$nvidia" == "Y" ]]; then
-            echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
+    HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
+
+    if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
+        echo "${INFO} Rebooting now..."
+        systemctl reboot 
+    elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
+        echo "${OK} You choose NOT to reboot"
+        printf "\n%.0s" {1..1}
+        # Check if NVIDIA GPU is present
+        if lspci | grep -i "nvidia" &> /dev/null; then
+            echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+            printf "\n%.0s" {1..1}
         fi
-        systemctl reboot
+    else
+        echo "${WARN} Invalid response. Please answer with 'y' or 'n'. Exiting."
+        exit 1
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files Install-Logs/ directory...\n\n"
+    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
+    printf "\n%.0s" {1..3}
     exit 1
 fi
 
+printf "\n%.0s" {1..2}

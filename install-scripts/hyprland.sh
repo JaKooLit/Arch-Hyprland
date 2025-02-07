@@ -27,20 +27,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Removing other Hyprland to avoid conflict
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
 if pacman -Qs hyprland >/dev/null; then
-  printf "${YELLOW} Hyprland detected. uninstalling to install Hyprland-git...${RESET}\n"
+  printf "${YELLOW} Hyprland detected. attempting to uninstall to install Hyprland from official repo...${RESET}\n"
   for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
     sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
   done
 fi
 
 # Hyprland
-printf "${NOTE} Installing Hyprland .......\n"
+printf "${NOTE} Installing ${SKY_BLUE}Hyprland packages${RESET} .......\n"
 for HYPR in "${hypr[@]}"; do
-  install_package "$HYPR" 2>&1 | tee -a "$LOG"
-  [ $? -ne 0 ] && {
-    echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"
-    exit 1
-  }
+  install_package "$HYPR" "$LOG"
 done
 
-clear
+printf "\n%.0s" {1..2}
