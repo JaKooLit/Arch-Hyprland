@@ -4,6 +4,7 @@
 
 source_theme="https://codeberg.org/JaKooLit/sddm-sequoia"
 theme_name="sequoia_2"
+sddm_conf_dir="/etc/sddm.conf.d"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
