@@ -66,7 +66,7 @@ printf "\n%.0s" {1..1}
 
 # Installing packages
 for package in "${packages[@]}"; do
-    $ISAUR -S --noconfirm --needed "$package" &>/dev/null &
+    $ISAUR -S --noconfirm "$package" &>/dev/null &
     pid=$!
     
     show_progress $pid $package
