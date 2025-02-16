@@ -155,6 +155,12 @@ source ~/.zshrc
 > [!TIP]
 > KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
+
+#### 🔄 switching between Hyprland-git and none Hyprland-git
+- you can use my prepared script [`LINK`](https://github.com/JaKooLit/Arch-Hyprland/tree/main/assets/hyprland-install)
+- Readme is also there
+
+
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
