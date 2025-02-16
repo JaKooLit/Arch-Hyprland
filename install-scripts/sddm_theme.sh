@@ -56,24 +56,20 @@ if git clone --depth 1 "$source_theme" "$theme_name"; then
   echo -e "${NOTE} Setting up the login screen." | tee -a "$LOG"
 
   if [ -d "$sddm_conf_dir" ]; then
-    # If the directory exists, backup present files
     echo "Backing up files in $sddm_conf_dir" | tee -a "$LOG"
     for file in "$sddm_conf_dir"/*; do
       if [ -f "$file" ]; then
-        # not change the backed up files
         if [[ "$file" == *$BACKUP_SUFFIX ]]; then
           echo "Skipping backup file: $file" | tee -a "$LOG"
           continue
         fi
-
         # Backup each original file
         sudo cp "$file" "$file$BACKUP_SUFFIX" 2>&1 | tee -a "$LOG"
         echo "Backup created for $file" | tee -a "$LOG"
         
-        # editing present files in "/etc/sddm.conf.d"
+        # Edit existing "Current=" 
         if grep -q '^[[:space:]]*Current=' "$file"; then
-          sudo sed -i 's/^[[:space:]]*Current=/#&/' "$file" 2>&1 | tee -a "$LOG"  
-          sudo sed -i "s/^[[:space:]]*#Current=.*/Current=$theme_name/" "$file" 2>&1 | tee -a "$LOG" 
+          sudo sed -i "s/^[[:space:]]*Current=.*/Current=$theme_name/" "$file" 2>&1 | tee -a "$LOG"
           echo "Updated theme in $file" | tee -a "$LOG"
         fi
       fi
