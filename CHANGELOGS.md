@@ -1,5 +1,10 @@
 ## Changelogs
 
+## 18 Feb 2025
+- Change default zsh theme to adnosterzak
+- pokemon coloscript integrated with fastfetch when opted with pokemon to add some bling
+- additional external oh-my-zsh theme
+
 ## 06 Feb 2025
 - added semi-unattended function.
 - move all the initial questions at the beginning

@@ -135,7 +135,7 @@ zsh
 source ~/.zshrc
 ```
 - reboot or logout
-- by default `funky` theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+- by default `agnosterzak` theme is installed. Which is from external oh-my-zsh theme. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 - to change the theme, `SUPER SHIFT O` , choose  desired theme, and close and open terminal. 
 - or manually edit `~/.zshrc` . Look for ZSH_THEME="desired theme"
 
