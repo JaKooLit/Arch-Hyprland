@@ -63,6 +63,7 @@ hypr_package_2=(
   mpv-mpris 
   nvtop
   nwg-look
+  nwg-displays
   pacman-contrib
   qalculate-gtk
   vim

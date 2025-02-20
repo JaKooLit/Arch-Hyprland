@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 20 Feb 2025
+- Added nwg-displays for the upcoming Kools dots v2.3.12
+
 ## 06 Feb 2025
 - added semi-unattended function.
 - move all the initial questions at the beginning
