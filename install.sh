@@ -72,7 +72,7 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1} 
 
 # Welcome message
-echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland Install Script!${RESET}"
+echo "${SKY_BLUE}Welcome to JaKooLit's Arch-Hyprland (2025) Install Script!${RESET}"
 echo
 echo "${WARNING}ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) ${RESET}"
 echo
@@ -223,7 +223,21 @@ ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Lik
 
 printf "\n"
 ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} as login manager?" sddm
+# check if any known login managers are active when users choose to install sddm
+if [ "$sddm" == "y" ] || [ "$sddm" == "Y" ]; then
+    # List of services to check
+    services=("gdm.service" "gdm3.service" "lightdm.service" "lxdm.service")
 
+    # Loop through each service
+    for svc in "${services[@]}"; do
+        if systemctl is-active --quiet "$svc"; then
+            echo "${ERROR} ${MAGENTA}$svc${RESET} is active.  stop or disable it first or ${YELLOW}DO NOT choose SDDM${RESET} to install."
+            echo "${NOTE} If you have GDM, no need to install SDDM. GDM will work fine as Login Manager for Hyprland."
+            printf "\n%.0s" {1..2}            
+            exit 1  
+        fi
+    done
+fi
 if [[ "$sddm" == "Y" ]]; then
     ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} " sddm_theme
 fi

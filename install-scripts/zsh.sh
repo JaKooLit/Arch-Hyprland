@@ -62,14 +62,20 @@ if command -v zsh >/dev/null; then
   cp -r 'assets/.zshrc' ~/
   cp -r 'assets/.zprofile' ~/
 
-  printf "${NOTE} Changing default shell to ${MAGENTA}zsh${RESET}..."
-  printf "\n%.0s" {1..2}
-  while ! chsh -s $(which zsh); do
+  # Check if the current shell is zsh
+  if [[ "$SHELL" != *"zsh"* ]]; then
+    printf "${NOTE} Changing default shell to ${MAGENTA}zsh${RESET}..."
+    printf "\n%.0s" {1..2}
+
+    while ! chsh -s $(which zsh); do
       echo "${ERROR} Authentication failed. Please enter the correct password." 2>&1 | tee -a "$LOG"
       sleep 1
-  done
-  printf "${INFO} Shell changed successfully to ${MAGENTA}zsh${RESET}" 2>&1 | tee -a "$LOG"
+    done
 
+    printf "${INFO} Shell changed successfully to ${MAGENTA}zsh${RESET}" 2>&1 | tee -a "$LOG"
+  else
+    echo "${NOTE}Your shell is already set to ${MAGENTA}zsh${RESET}."
+  fi
 fi
 
 printf "\n%.0s" {1..2}

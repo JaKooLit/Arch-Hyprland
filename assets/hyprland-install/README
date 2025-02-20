@@ -1,0 +1,7 @@
+Arch-Hyprland - Sharing a scripts to install hyprland git or non-git versions 
+
+Basically created this script so I can easily switch to git and non-git version of hyprland on Arch Linux
+
+
+chmod +x actions.sh
+./actions.sh

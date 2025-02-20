@@ -11,6 +11,12 @@ pipewire=(
     sof-firmware
 )
 
+# added this as some reports script didnt install this.
+# basically force reinstall
+pipewire_2=(
+    pipewire-pulse
+)
+
 ############## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##############
 # Set some colors for output messages
 # Determine the directory where the script is located
@@ -27,12 +33,16 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_pipewire.log"
 
 # Disabling pulseaudio to avoid conflicts and logging output
 echo -e "${NOTE} Disabling pulseaudio to avoid conflicts..."
-systemctl --user disable --now pulseaudio.socket pulseaudio.service 2>&1 > "$LOG"
+systemctl --user disable --now pulseaudio.socket pulseaudio.service >> "$LOG" 2>&1 || true
 
 # Pipewire
 echo -e "${NOTE} Installing ${SKY_BLUE}Pipewire${RESET} Packages..."
 for PIPEWIRE in "${pipewire[@]}"; do
     install_package "$PIPEWIRE" "$LOG"
+done
+
+for PIPEWIRE2 in "${pipewire_2[@]}"; do
+    install_package_pacman "$PIPEWIRE" "$LOG"
 done
 
 echo -e "${NOTE} Activating Pipewire Services..."
