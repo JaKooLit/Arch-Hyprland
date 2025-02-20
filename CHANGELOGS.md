@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 20 Feb 2025
+- Added nwg-displays for the upcoming Kools dots v2.3.12
+
 ## 18 Feb 2025
 - Change default zsh theme to adnosterzak
 - pokemon coloscript integrated with fastfetch when opted with pokemon to add some bling
