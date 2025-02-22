@@ -4,8 +4,12 @@
 
 zsh_pkg=(
   eza
+  mercurial
   zsh
   zsh-completions
+)
+
+zsh_pkg2=(
   fzf
 )
 
@@ -28,23 +32,30 @@ for ZSH in "${zsh_pkg[@]}"; do
   install_package "$ZSH" "$LOG"
 done 
 
+
+# Check if the zsh-completions directory exists
+if [ -d "zsh-completions" ]; then
+    rm -rf zsh-completions
+fi
+
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then
   printf "${NOTE} Installing ${SKY_BLUE}Oh My Zsh and plugins${RESET} ...\n"
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
-      sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then  
+    sh -c "$(curl -fsSL https://install.ohmyz.sh)" "" --unattended  	       
   else
-      echo "${INFO} Directory .oh-my-zsh already exists. Skipping re-installation." 2>&1 | tee -a "$LOG"
+    echo "${INFO} Directory .oh-my-zsh already exists. Skipping re-installation." 2>&1 | tee -a "$LOG"
   fi
+  
   # Check if the directories exist before cloning the repositories
   if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-      git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || true
+      git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 
   else
       echo "${INFO} Directory zsh-autosuggestions already exists. Cloning Skipped." 2>&1 | tee -a "$LOG"
   fi
 
   if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
   else
       echo "${INFO} Directory zsh-syntax-highlighting already exists. Cloning Skipped." 2>&1 | tee -a "$LOG"
   fi
@@ -77,6 +88,12 @@ if command -v zsh >/dev/null; then
     echo "${NOTE}Your shell is already set to ${MAGENTA}zsh${RESET}."
   fi
 fi
+
+# Installing core zsh packages
+printf "\n%s - Installing ${SKY_BLUE}fzf${RESET} .... \n" "${NOTE}"
+for ZSH2 in "${zsh_pkg2[@]}"; do
+  install_package "$ZSH2" "$LOG"
+done
 
 # copy additional oh-my-zsh themes from assets
 if [ -d "$HOME/.oh-my-zsh/themes" ]; then
