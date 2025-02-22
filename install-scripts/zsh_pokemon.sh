@@ -15,6 +15,18 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_zsh_pokemon.log"
 
+printf "${NOTE} Removing any traces of ${SKY_BLUE}Pokemon Color Scripts${RESET}\n"
+
+# Check if the pokemon directory exists
+if [ -d "/usr/local/opt/pokemon-colorscripts" ]; then
+    sudo rm -rf /usr/local/opt/pokemon-colorscripts
+fi
+
+# Check if the pokemon file exists
+if [ -f "/usr/local/bin/pokemon-colorscripts" ]; then
+    sudo rm -f /usr/local/bin/pokemon-colorscripts
+fi
+
 # Install Pokemon Color Scripts
 printf "${NOTE} Installing ${SKY_BLUE}Pokemon Color Scripts${RESET}\n"
 for pok in "pokemon-colorscripts-git"; do
