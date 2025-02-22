@@ -4,6 +4,7 @@
 
 zsh_pkg=(
   eza
+  mercurial
   zsh
   zsh-completions
   fzf
