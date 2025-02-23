@@ -13,7 +13,8 @@ fonts=(
   ttf-droid 
   ttf-fira-code
   ttf-jetbrains-mono 
-  ttf-jetbrains-mono-nerd 
+  ttf-jetbrains-mono-nerd
+  ttf-victor-mono
 )
 
 

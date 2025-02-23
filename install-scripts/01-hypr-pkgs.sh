@@ -41,6 +41,7 @@ hypr_package=(
   swappy 
   swaync 
   swww
+  unzip # needed later
   wallust 
   waybar
   wget
