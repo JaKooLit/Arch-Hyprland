@@ -12,6 +12,7 @@ fonts=(
   otf-font-awesome 
   ttf-droid 
   ttf-fira-code
+  ttf-fantasque-nerd
   ttf-jetbrains-mono 
   ttf-jetbrains-mono-nerd
   ttf-victor-mono

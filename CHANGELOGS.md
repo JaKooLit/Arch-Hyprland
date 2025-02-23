@@ -2,6 +2,7 @@
 
 ## 23 Feb 2025
 - added Victor Mono Font for proper hyprlock font rendering for Dots v2.3.12
+- added Fantasque Sans Mono Nerd for Kitty
 
 ## 22 Feb 2025
 - replaced eog with loupe
