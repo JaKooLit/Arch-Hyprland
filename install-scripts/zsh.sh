@@ -33,6 +33,7 @@ for ZSH in "${zsh_pkg[@]}"; do
 done 
 
 
+
 # Check if the zsh-completions directory exists
 if [ -d "zsh-completions" ]; then
     rm -rf zsh-completions
