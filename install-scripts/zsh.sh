@@ -33,7 +33,8 @@ for ZSH in "${zsh_pkg[@]}"; do
 done 
 
 
-# Check if the pokemon directory exists
+
+# Check if the zsh-completions directory exists
 if [ -d "zsh-completions" ]; then
     rm -rf zsh-completions
 fi
@@ -42,7 +43,7 @@ fi
 if command -v zsh >/dev/null; then
   printf "${NOTE} Installing ${SKY_BLUE}Oh My Zsh and plugins${RESET} ...\n"
   if [ ! -d "$HOME/.oh-my-zsh" ]; then  
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  	       
+    sh -c "$(curl -fsSL https://install.ohmyz.sh)" "" --unattended  	       
   else
     echo "${INFO} Directory .oh-my-zsh already exists. Skipping re-installation." 2>&1 | tee -a "$LOG"
   fi

@@ -1,4 +1,15 @@
-## Changelogs
+## CHANGELOGS
+
+## 23 Feb 2025
+- added Victor Mono Font for proper hyprlock font rendering for Dots v2.3.12
+- added Fantasque Sans Mono Nerd for Kitty
+
+## 22 Feb 2025
+- replaced eog with loupe
+- changed url for installing oh-my-zsh to get wider coverage. Some countries are blocking github raw url's
+
+## 20 Feb 2025
+- Added nwg-displays for the upcoming Kools dots v2.3.12
 
 ## 18 Feb 2025
 - Change default zsh theme to adnosterzak

@@ -41,6 +41,7 @@ hypr_package=(
   swappy 
   swaync 
   swww
+  unzip # needed later
   wallust 
   waybar
   wget
@@ -56,7 +57,7 @@ hypr_package_2=(
   brightnessctl 
   btop
   cava
-  eog
+  loupe
   fastfetch
   gnome-system-monitor
   mousepad 
@@ -64,6 +65,7 @@ hypr_package_2=(
   mpv-mpris 
   nvtop
   nwg-look
+  nwg-displays
   pacman-contrib
   qalculate-gtk
   vim
