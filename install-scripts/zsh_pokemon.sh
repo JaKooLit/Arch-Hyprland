@@ -20,7 +20,7 @@ printf "${NOTE} Removing any traces of ${SKY_BLUE}Pokemon Color Scripts${RESET}\
 # Install Pokemon Color Scripts
 printf "${NOTE} Installing ${SKY_BLUE}Pokemon Color Scripts${RESET}\n"
 for pok in "pokemon-colorscripts-git"; do
-  install_package "$pok" "$LOG"
+  install_package_f "$pok" "$LOG"
 done
 
 printf "\n%.0s" {1..1}
