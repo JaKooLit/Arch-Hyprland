@@ -93,6 +93,23 @@ install_package() {
   fi
 }
 
+# Function to just install packages with either yay or paru without checking if installed
+install_package_f() {
+  (
+    stdbuf -oL $ISAUR -S --noconfirm "$1" 2>&1
+  ) >> "$LOG" 2>&1 &
+  PID=$!
+  show_progress $PID "$1"  
+
+  # Double check if package is installed
+  if $ISAUR -Q "$1" &>> /dev/null ; then
+    echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+  else
+    # Something is missing, exiting to review log
+    echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+  fi
+}
+
 # Function for removing packages
 uninstall_package() {
   local pkg="$1"
