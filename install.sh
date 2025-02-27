@@ -53,9 +53,9 @@ else
     echo "$NOTE Install base-devel.........."
 
     if sudo pacman -S --noconfirm base-devel; then
-        echo "$OK base-devel has been installed successfully."
+        echo "👌 ${OK} base-devel has been installed successfully."
     else
-        echo "$ERROR base-devel not found nor cannot be installed."
+        echo "❌ $ERROR base-devel not found nor cannot be installed."
         echo "$ACTION Please install base-devel manually before running this script... Exiting"
         exit 1
     fi
@@ -81,14 +81,13 @@ NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprl
 # Ask if the user wants to proceed
 if ! whiptail --title "Proceed with Installation?" \
     --yesno "Would you like to proceed?" 7 50; then
-    echo -e "\n\n"
-    echo "${INFO} - You chose ${YELLOW}NOT${RESET} to proceed. Exiting..."
-    echo -e "\n\n"
+    echo -e "\n"
+    echo "❌ ${INFO} You 🫵 chose ${YELLOW}NOT${RESET} to proceed. ${YELLOW}Exiting...${RESET}"
+    echo -e "\n"
     exit 1
 fi
 
-# If they choose "Yes" (1), the script continues
-echo "${OK} - ${MAGENTA}KooL${RESET}.. lets continue with the installation..."
+echo "👌 ${OK} 🇵🇭 ${MAGENTA}KooL..${RESET} ${SKY_BLUE}lets continue with the installation...${RESET}"
 
 printf "\n%.0s" {1..1}
 
@@ -132,7 +131,7 @@ execute_script() {
     fi
 }
 
-#################
+
 ## Default values for the options (will be overwritten by preset file if available)
 gtk_themes="OFF"
 bluetooth="OFF"
@@ -180,7 +179,7 @@ check_services_running() {
 # Check if yay or paru is installed
 echo "${INFO} - Checking if yay or paru is installed"
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
-    echo "${CAT} - Neither yay nor paru found. Asking for selection..."
+    echo "${CAT} - Neither yay nor paru found. Asking 🗣️ USER to select..."
     while true; do
         aur_helper=$(whiptail --title "Neither Yay nor Paru is installed" --checklist "Choose ONE helper ONLY!\nNOTE: spacebar to select" 10 60 2 \
             "yay" "AUR Helper yay" "OFF" \
@@ -188,7 +187,7 @@ if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
             3>&1 1>&2 2>&3)
 
         if [ -z "$aur_helper" ]; then
-            echo "${OK} - You cancelled the selection. ${YELLOW}Goodbye!${RESET}"
+            echo "❌ ${INFO} You 🫵 cancelled the selection. ${YELLOW}Goodbye!${RESET}"
             exit 0  
         fi
 
@@ -261,14 +260,15 @@ while true; do
 
     # Check if the user pressed Cancel (exit status 1)
     if [ $? -ne 0 ]; then
-        echo "❌ You cancelled the selection. Returning to selection..."
-        continue  # Go back to the selection menu instead of exiting
+    	echo -e "\n"
+        echo "❌ ${INFO} You 🫵 cancelled the selection. ${YELLOW}Goodbye!${RESET}"
+        exit 0  # Exit the script if Cancel is pressed
     fi
 
     # If no option was selected, notify and restart the selection
     if [ -z "$selected_options" ]; then
         whiptail --title "Warning" --msgbox "⚠️ No options were selected. Please select at least one option." 10 60
-        continue  # Return to selection
+        continue  # Return to selection if no options selected
     fi
 
     # Convert selected options into an array (preserving spaces in values)
@@ -279,20 +279,21 @@ while true; do
     for option in "${options[@]}"; do
         confirm_message+=" - $option\n"
     done
-    confirm_message+="\nDo you want to proceed with these choices?"
+    confirm_message+="\nAre you happy with these choices?"
 
-    # Show the confirmation prompt
-    if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 20 80; then
-        echo "❌ You cancelled the confirmation. Returning to selection..."
-        continue  # Return to selection
+    # onfirmation prompt
+    if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 25 80; then
+    	echo -e "\n"
+        echo "❌ ${SKY_BLUE}You 🫵 cancelled the confirmation${RESET}. ${YELLOW}Exiting...${RESET}"
+        exit 0  
     fi
 
-    # If user confirms, break out of the loop and proceed
+    echo "👌 ${OK} You confirmed your choices. Proceeding with ${SKY_BLUE}KooL 🇵🇭 Hyprland Installation...${RESET}"
     break
 done
 
 # Proceed with installation
-echo "${OK} - Proceeding with selected options..."
+echo "👌 ${OK} - Proceeding with selected options..."
 
 # Ensuring base-devel is installed
 execute_script "00-base.sh"
@@ -414,12 +415,12 @@ printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
+    printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
     printf "\n%.0s" {1..2}
 
-    printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
+    printf "${SKY_BLUE}Thank you${RESET} 🫰 for using 🇵🇭 ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
     printf "\n%.0s" {1..2}
 
     printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
@@ -433,7 +434,7 @@ if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
         echo "${INFO} Rebooting now..."
         systemctl reboot 
     elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
-        echo "${OK} You choose NOT to reboot"
+        echo "👌 ${OK} You choose NOT to reboot"
         printf "\n%.0s" {1..1}
         # Check if NVIDIA GPU is present
         if lspci | grep -i "nvidia" &> /dev/null; then
