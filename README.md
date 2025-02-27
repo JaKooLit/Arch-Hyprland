@@ -110,20 +110,13 @@ chmod +x install.sh
     <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/Installer.png" />
 
 
-### 🤟 semi-unattended installation (new for Feb 2025)
-- edit preset.sh to modify what packages you want. Make sure to change only with Y or N
+### 🤟 semi-unattended installation (new for End of 2025)
+- edit preset.sh to modify what packages you want. Make sure to change only with ON or OFF
 - to use preset instead of usual `./install.sh` you can ran like this
 
 ```bash
-./install.sh --preset
+./install.sh --preset preset.sh
 ```
-
-- if you have nvidia you can add --nvidia argument
-
-```bash
-./install.sh --preset --nvidia
-```
-
 - its called semi-unattended it is because you still have to answer some questions when installing KooL's Hyprland Dots
 
 
