@@ -31,4 +31,4 @@ for PKG1 in "${base[@]}"; do
   install_package_pacman "$PKG1" "$LOG"
 done
 
-echo -e "\nInstallation completed. Proceeding with AUR installations (if needed)..."
+printf "\n%.0s" {1..1}

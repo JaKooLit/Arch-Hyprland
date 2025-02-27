@@ -215,14 +215,17 @@ if lspci | grep -i "nvidia" &> /dev/null; then
     whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia-dkms, nvidia-utils, and nvidia-settings if you choose to configure." 12 60
 fi
 
-# Initialize the options command for whiptail checklist
-options_command="whiptail --title 'Select Options' --checklist 'Choose options to install or configure\nNOTE: spacebar to select' 28 85 20"
+# Initialize the options array for whiptail checklist
+options_command=(
+    whiptail --title "Select Options" --checklist "Choose options to install or configure\nNOTE: spacebar to select" 28 85 20
+)
 
-# Add NVIDIA options to the checklist if NVIDIA GPU is detected
+# Add NVIDIA options if detected
 if [ "$nvidia_detected" == "true" ]; then
-    options_command+=" \
-        'nvidia' 'Do you want script to configure NVIDIA GPU?' 'OFF' \
-        'nouveau' 'Do you want Nouveau to be blacklisted?' 'OFF' "
+    options_command+=(
+        "nvidia" "Do you want script to configure NVIDIA GPU?" "OFF"
+        "nouveau" "Do you want Nouveau to be blacklisted?" "OFF"
+    )
 fi
 
 # Check if user is already in the 'input' group
@@ -232,61 +235,66 @@ if ! groups "$(whoami)" | grep -q '\binput\b'; then
     whiptail --title "Input Group" --msgbox "You are not currently in the input group.\n\nAdding you to the input group might be necessary for the Waybar keyboard-state functionality." 12 60
 fi
 
-# Add 'input_group' option if user is not in the 'input' group
+# Add 'input_group' option if necessary
 if [ "$input_group_detected" == "true" ]; then
-    options_command+=" \
-        'input_group' 'Add your USER to input group for some waybar functionality?' 'OFF' "
+    options_command+=(
+        "input_group" "Add your USER to input group for some waybar functionality?" "OFF"
+    )
 fi
 
-# Add the rest of your options here (including AUR helper option)
-options_command+=" \
-    'gtk_themes' 'Install GTK themes (required for Dark/Light function)' 'OFF' \
-    'bluetooth' 'Do you want script to configure Bluetooth?' 'OFF' \
-    'thunar' 'Do you want Thunar file manager to be installed?' 'OFF' \
-    'ags' 'Install AGS v1 for Desktop-Like Overview' 'OFF' \
-    'sddm' 'Install & configure SDDM login manager?' 'OFF' \
-    'sddm_theme' 'Download & Install Additional SDDM theme?' 'OFF' \
-    'xdph' 'Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?' 'OFF' \
-    'zsh' 'Install zsh shell with Oh-My-Zsh?' 'OFF' \
-    'pokemon' 'Add Pokemon color scripts to your terminal?' 'OFF' \
-    'rog' 'Are you installing on Asus ROG laptops?' 'OFF' \
-    'dots' 'Download and install pre-configured KooL Hyprland dotfiles?' 'OFF'"
+# Add the remaining static options
+options_command+=(
+    "gtk_themes" "Install GTK themes (required for Dark/Light function)" "OFF"
+    "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
+    "thunar" "Do you want Thunar file manager to be installed?" "OFF"
+    "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
+    "sddm" "Install & configure SDDM login manager?" "OFF"
+    "sddm_theme" "Download & Install Additional SDDM theme?" "OFF"
+    "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
+    "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
+    "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
+    "rog" "Are you installing on Asus ROG laptops?" "OFF"
+    "dots" "Download and install pre-configured KooL Hyprland dotfiles?" "OFF"
+)
 
-# Execute the options checklist and capture the selected options
-selected_options=$(eval "$options_command" 3>&1 1>&2 2>&3)
+while true; do
+    # Execute the checklist and capture the selected options
+    selected_options=$("${options_command[@]}" 3>&1 1>&2 2>&3)
 
-# Check if the user pressed Cancel (exit status 1)
-if [ $? -ne 0 ]; then
-    echo "${NOTE} - You cancelled the selection. ${YELLOW}Goodbye!${RESET}"
-    exit 1
-fi
+    # Check if the user pressed Cancel (exit status 1)
+    if [ $? -ne 0 ]; then
+        echo "❌ You cancelled the selection. Returning to selection..."
+        continue  # Go back to the selection menu instead of exiting
+    fi
 
-# Clean up the selected options (remove quotes and trim spaces)
-selected_options=$(echo "$selected_options" | tr -d '"' | tr -s ' ')
+    # If no option was selected, notify and restart the selection
+    if [ -z "$selected_options" ]; then
+        whiptail --title "Warning" --msgbox "⚠️ No options were selected. Please select at least one option." 10 60
+        continue  # Return to selection
+    fi
 
-# Convert selected options into an array
-IFS=' ' read -r -a options <<< "$selected_options"
+    # Convert selected options into an array (preserving spaces in values)
+    IFS=' ' read -r -a options <<< "$selected_options"
 
-# Prepare Confirmation Message
-confirm_message="You have selected the following options:\n\n"
-for option in "${options[@]}"; do
-    confirm_message+=" - $option\n"
+    # Prepare Confirmation Message
+    confirm_message="You have selected the following options:\n\n"
+    for option in "${options[@]}"; do
+        confirm_message+=" - $option\n"
+    done
+    confirm_message+="\nDo you want to proceed with these choices?"
+
+    # Show the confirmation prompt
+    if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 20 80; then
+        echo "❌ You cancelled the confirmation. Returning to selection..."
+        continue  # Return to selection
+    fi
+
+    # If user confirms, break out of the loop and proceed
+    break
 done
 
-confirm_message+="\nDo you want to proceed with these choices?"
-
-# Show Confirmation Dialog
-dialog --title "Confirm Your Choices" --yesno "$confirm_message" 20 80
-
-# If the user cancels, show the checklist again
-if [ $? -ne 0 ]; then
-    echo "${NOTE} - You cancelled the confirmation. Returning to option selection..."
-    exec "$0"  
-fi
-
-# If user confirms
+# Proceed with installation
 echo "${OK} - Proceeding with selected options..."
-
 
 # Ensuring base-devel is installed
 execute_script "00-base.sh"
