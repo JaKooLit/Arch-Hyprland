@@ -1,55 +1,48 @@
 # 💫 https://github.com/JaKooLit 💫 #
-# CREDIT to: https://github.com/PostCyberPunk for this Preset function
 
-## -- Make sure you use the right answer or install script will fail ###
-# The rest Change to Y for Yes and N for No. 
+# Define the options you want to preselect (either ON or OFF)
+# IMPORTANT: answer should be inside ""
 
 ### Script will install nvidia-dkms nvidia-utils & nvidia-settings
 ###-Would you like script to Configure NVIDIA for you?
-nvidia="N"
+nvidia="ON"
 ### Would you like to blacklist nouveau? (y/n)
-nouveau="N"
-
-### yay or paru 
-aur_helper="yay"
+nouveau="ON"
 
 ###-Install GTK themes (required for Dark/Light function)?
-gtk_themes="Y"
+gtk_themes="ON"
 
 ###-Do you want to configure Bluetooth?
-bluetooth="Y"
+bluetooth="ON"
 
 ###-Do you want to install Thunar file manager?
-thunar="Y"
-### Do you want to set Thunar as the default file manager? 
-thunar_choice="Y"
-
+thunar="ON"
 
 ### Adding user to the 'input' group might be necessary for waybar keyboard-state functionality
-input_group="Y"
+input_group="ON"
 
 ### Desktop overview Demo Link in README
 ### Desktop overview Demo Link in README
 ### Install AGS (aylur's GTK shell) v1 for Desktop-Like Overview?" 
-ags="Y"
+ags="ON"
 
 ###-Install & configure SDDM log-in Manager
-sddm="Y"
+sddm="ON"
 ### install and download SDDM themes
-sddm_theme="Y"
+sddm_theme="ON"
 
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
-xdph="Y"
+xdph="ON"
 
 ### Shell extension. Bash alternative
 ###-Install zsh, oh-my-zsh
-zsh="Y"
+zsh="ON"
 ### add Pokemon color scripts to terminal 
-pokemon_choice="Y"
+pokemon="ON"
 
 ### This will install ASUSCTL & SUPERGFXCTL
 ###-Installing on Asus ROG Laptops?
-rog="N"
+rog="ON"
 
 ###-Download and Add pre-configured Hyprland dotfiles?
-dots="Y"
+dots="ON"
