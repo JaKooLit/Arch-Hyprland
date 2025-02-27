@@ -5,9 +5,9 @@
 
 ### Script will install nvidia-dkms nvidia-utils & nvidia-settings
 ###-Would you like script to Configure NVIDIA for you?
-nvidia="ON"
+nvidia="OFF"
 ### Would you like to blacklist nouveau? (y/n)
-nouveau="ON"
+nouveau="OFF"
 
 ###-Install GTK themes (required for Dark/Light function)?
 gtk_themes="ON"
@@ -42,7 +42,7 @@ pokemon="ON"
 
 ### This will install ASUSCTL & SUPERGFXCTL
 ###-Installing on Asus ROG Laptops?
-rog="ON"
+rog="OFF"
 
 ###-Download and Add pre-configured Hyprland dotfiles?
 dots="ON"

@@ -133,7 +133,7 @@ execute_script() {
 }
 
 #################
-# Default values for the options (will be overwritten by preset file if available)
+## Default values for the options (will be overwritten by preset file if available)
 gtk_themes="OFF"
 bluetooth="OFF"
 thunar="OFF"
@@ -152,11 +152,10 @@ nouveau="OFF"
 # Function to load preset file
 load_preset() {
     if [ -f "$1" ]; then
-        # Source the preset file
+        echo "✅ Loading preset: $1"
         source "$1"
-        echo "${NOTE} - Preset file loaded successfully."
     else
-        echo "${INFO} - Preset file not found. Using default values."
+        echo "⚠️ Preset file not found: $1. Using default values."
     fi
 }
 
@@ -164,7 +163,6 @@ load_preset() {
 if [[ "$1" == "--preset" && -n "$2" ]]; then
     load_preset "$2"
 fi
-
 
 # List of services to check for active login managers
 services=("gdm.service" "gdm3.service" "lightdm.service" "lxdm.service")
