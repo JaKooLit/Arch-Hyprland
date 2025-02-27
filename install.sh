@@ -61,6 +61,12 @@ else
     fi
 fi
 
+if ! command -v whiptail >/dev/null; then
+    echo "${NOTE} - whiptail is not installed. Installing..."
+    sudo pacman -S --noconfirm whiptail
+    printf "\n%.0s" {1..1}
+fi
+
 clear
 
 printf "\n%.0s" {1..2}  
@@ -95,12 +101,6 @@ printf "\n%.0s" {1..1}
 if ! pacman -Qs pciutils > /dev/null; then
     echo "${NOTE} - pciutils is not installed. Installing..."
     sudo pacman -S --noconfirm pciutils
-    printf "\n%.0s" {1..1}
-fi
-
-if ! command -v whiptail >/dev/null; then
-    echo "${NOTE} - whiptail is not installed. Installing..."
-    sudo pacman -S --noconfirm whiptail
     printf "\n%.0s" {1..1}
 fi
 
