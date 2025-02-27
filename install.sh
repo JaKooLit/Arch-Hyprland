@@ -377,6 +377,7 @@ for option in "${options[@]}"; do
         thunar)
             echo "Installing Thunar file manager..."
             execute_script "thunar.sh"
+            execute_script "thunar_default.sh"
             ;;
         sddm_theme)
             echo "Downloading & Installing Additional SDDM theme..."
@@ -389,6 +390,10 @@ for option in "${options[@]}"; do
         pokemon)
             echo "Adding Pokemon color scripts to terminal..."
             execute_script "zsh_pokemon.sh"
+            ;;
+        rog)
+            echo "Installing ROG packages..."
+            execute_script "rog.sh"
             ;;
         dots)
             echo "Installing pre-configured Hyprland dotfiles..."
