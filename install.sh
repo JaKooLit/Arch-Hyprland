@@ -152,19 +152,6 @@ if [[ "$1" == "--preset" && -n "$2" ]]; then
     load_preset "$2"
 fi
 
-# List of services to check for active login managers
-services=("gdm.service" "gdm3.service" "lightdm.service" "lxdm.service")
-
-# Function to check if any login services are active
-check_services_running() {
-    for svc in "${services[@]}"; do
-        if systemctl is-active --quiet "$svc"; then
-            return 0  
-        fi
-    done
-    return 1  
-}
-
 # Check if yay or paru is installed
 echo "${INFO} - Checking if yay or paru is installed"
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
@@ -192,6 +179,33 @@ if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
     done
 else
     echo "${NOTE} - AUR helper is already installed. Skipping AUR helper selection."
+fi
+
+# List of services to check for active login managers
+services=("gdm.service" "gdm3.service" "lightdm.service" "lxdm.service")
+
+# Function to check if any login services are active
+check_services_running() {
+    active_services=()  # Array to store active services
+    for svc in "${services[@]}"; do
+        if systemctl is-active --quiet "$svc"; then
+            active_services+=("$svc")  
+        fi
+    done
+
+    if [ ${#active_services[@]} -gt 0 ]; then
+        return 0  
+    else
+        return 1  
+    fi
+}
+
+if check_services_running; then
+    active_list=$(printf "%s\n" "${active_services[@]}")
+
+    # Display the active login manager(s) in the whiptail message box
+    whiptail --title "Active non-SDDM login manager(s) detected" \
+        --msgbox "The following non-SDDM login manager(s) are active:\n\n$active_list\n\nWARN: DO NOT install or choose to install SDDM & SDDM theme" 12 60
 fi
 
 # Check if NVIDIA GPU is detected
@@ -327,8 +341,8 @@ for option in "${options[@]}"; do
     case "$option" in
         sddm)
             if check_services_running; then
-                # If any log in managers are active
-                whiptail --title "Error" --msgbox "One of the following login services is running:\n$(IFS=$'\n'; echo "${services[*]}")\n\nPlease stop it or DO not choose SDDM." 12 60
+                active_list=$(printf "%s\n" "${active_services[@]}")
+                whiptail --title "Error" --msgbox "One of the following login services is running:\n$active_list\n\nPlease stop & disable it or DO not choose SDDM." 12 60
                 exec "$0"  
             else
                 echo "Installing and configuring SDDM..."
