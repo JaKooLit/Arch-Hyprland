@@ -27,18 +27,6 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-# Check if --preset argument is provided
-if [[ "$1" == "--preset" ]]; then
-    
-    # nvidia
-    if [[ "$2" == "--nvidia" ]]; then
-        sed -i 's/^nvidia=".*"/nvidia="Y"/' preset.sh
-        sed -i 's/^nouveau=".*"/nouveau="Y"/' preset.sh
-    fi
-    
-    source ./preset.sh
-fi
-
 # Check if PulseAudio package is installed
 if pacman -Qq | grep -qw '^pulseaudio$'; then
     echo "$ERROR PulseAudio is detected as installed. Uninstall it first or edit install.sh on line 211 (execute_script 'pipewire.sh')."
@@ -61,6 +49,7 @@ else
     fi
 fi
 
+# install whiptails if detected not installed. Necessary for this version
 if ! command -v whiptail >/dev/null; then
     echo "${NOTE} - whiptail is not installed. Installing..."
     sudo pacman -S --noconfirm whiptail
