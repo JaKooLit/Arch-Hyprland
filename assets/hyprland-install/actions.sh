@@ -25,7 +25,8 @@ while true; do
     echo -e "${BLUE}   Please choose an option:${RESET}"
     echo -e "${YELLOW} -- 1 - Install non-git Hyprland version${RESET}"
     echo -e "${YELLOW} -- 2 - Install git Hyprland version${RESET}"
-    echo -e "${MAGENTA} -- 3 - Quit${RESET}"
+    echo -e "${YELLOW} -- 3 - Update Hyprland-git packages${RESET}"
+    echo -e "${MAGENTA} -- 4 - Quit${RESET}"
 
     read -p "${CAT} Enter your choice [1, 2, or 3]: " choice
 
@@ -45,12 +46,17 @@ while true; do
             break
             ;;
         3)
+            printf "\n${OK} You chose ${BLUE} to update Hyprland-git packages${RESET}....... executing...\n"
+            ./scripts/install-hyprland-git.sh
+            break
+            ;;
+        4)
             echo -e "${MAGENTA} You have cancel it. Good Bye!!...${RESET}"
             printf "\n%.0s" {1..2}
             break
             ;;
         *)
-            echo -e "\n${WARNING} There are only 3 Choices!!!! 1 or 2 or 3. Enter 1, 2, or 3.${RESET}"
+            echo -e "\n${WARNING} There are only 4 Choices!!!! 1 2 3 or 4. Enter 1, 2, 3, or 4 only.${RESET}"
             ;;
     esac
     
