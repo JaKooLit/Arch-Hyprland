@@ -3,7 +3,7 @@
 # zsh and oh my zsh#
 
 zsh_pkg=(
-  eza
+  lsd
   mercurial
   zsh
   zsh-completions
