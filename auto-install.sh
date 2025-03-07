@@ -6,16 +6,18 @@ Github_URL="https://github.com/JaKooLit/$Distro.git"
 Distro_DIR="$HOME/$Distro"
 
 printf "\n%.0s" {1..1}
-# Package GIT
+
 if ! command -v git &> /dev/null
 then
     echo "Git not found! Installing Git..."
-    sudo pacman -S --no-confirm git
+    if ! sudo pacman -S --no-confirm git; then
+        echo "Failed to install Git. Exiting."
+        exit 1
+    fi
 fi
 
 printf "\n%.0s" {1..1}
 
-# Check if the repository already exists
 if [ -d "$Distro_DIR" ]; then
     echo "$Distro_DIR exists. Updating the repository..."
     cd "$Distro_DIR"
