@@ -162,7 +162,11 @@ if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
             "paru" "AUR Helper paru" "OFF" \
             3>&1 1>&2 2>&3)
 
-        # Check if no selection was made (empty input)
+        if [ $? -ne 0 ]; then  
+            echo "❌ ${INFO} You cancelled the selection. ${YELLOW}Goodbye!${RESET}" | tee -a "$LOG"
+            exit 0 
+        fi
+
         if [ -z "$aur_helper" ]; then
             whiptail --title "Error" --msgbox "You must select at least one AUR helper to proceed." 10 60 2
             continue 
@@ -175,9 +179,9 @@ if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
         # Check if multiple helpers were selected
         if [[ $(echo "$aur_helper" | wc -w) -ne 1 ]]; then
             whiptail --title "Error" --msgbox "You must select exactly one AUR helper." 10 60 2
-            continue 
+            continue  
         else
-            break
+            break 
         fi
     done
 else
