@@ -96,8 +96,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
-## ✨ Auto download and install
-- you can use this command to automatically clone and ran the script for you
+## ✨ Auto clone and install
+- you can use this command to automatically clone the installer and ran the script for you
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh)
 ```

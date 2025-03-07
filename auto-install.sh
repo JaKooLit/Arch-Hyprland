@@ -1,31 +1,31 @@
 #!/bin/bash
 # https://github.com/JaKooLit
 
+Distro="Arch-Hyprland"
+Github_URL="https://github.com/JaKooLit/$Distro.git"
+Distro_DIR="$HOME/$Distro"
 
-# Check if Git is installed
+printf "\n%.0s" {1..1}
+# Package GIT
 if ! command -v git &> /dev/null
 then
-    echo "Git not found! Installing Git..."    
+    echo "Git not found! Installing Git..."
     sudo pacman -S --no-confirm git
 fi
 
-# Define the directory path
-Distro_DIR="$HOME/Arch-Hyprland"
+printf "\n%.0s" {1..1}
 
 # Check if the repository already exists
 if [ -d "$Distro_DIR" ]; then
+    echo "$Distro_DIR exists. Updating the repository..."
     cd "$Distro_DIR"
     git stash && git pull
     chmod +x install.sh
     ./install.sh
 else
-    # Clone the repository if it doesn't exist
     echo "$Distro_DIR does not exist. Cloning the repository..."
-    git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git "$Distro_DIR"
+    git clone --depth=1 "$Github_URL" "$Distro_DIR"
     cd "$Distro_DIR"
     chmod +x install.sh
-    echo "Running install.sh..."
     ./install.sh
 fi
-
-
