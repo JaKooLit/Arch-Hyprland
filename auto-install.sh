@@ -10,7 +10,7 @@ printf "\n%.0s" {1..1}
 if ! command -v git &> /dev/null
 then
     echo "Git not found! Installing Git..."
-    if ! sudo pacman -S --no-confirm git; then
+    if ! sudo pacman -S --noconfirm git; then
         echo "Failed to install Git. Exiting."
         exit 1
     fi
