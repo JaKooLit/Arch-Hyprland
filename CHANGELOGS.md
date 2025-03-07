@@ -1,5 +1,9 @@
 ## CHANGELOGS
 
+## 06 March 2025
+- Switched to whiptail version for Y & N questions
+- switched eza to lsd
+
 ## 23 Feb 2025
 - added Victor Mono Font for proper hyprlock font rendering for Dots v2.3.12
 - added Fantasque Sans Mono Nerd for Kitty
