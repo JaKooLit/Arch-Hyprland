@@ -315,7 +315,7 @@ while true; do
     for option in "${options[@]}"; do
         confirm_message+=" - $option\n"
     done
-    confirm_message+="\n😀 Are you happy with these choices?"
+    confirm_message+="\nAre you happy with these choices?"
 
     # Confirmation prompt
     if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 25 80; then
@@ -377,61 +377,61 @@ for option in "${options[@]}"; do
                 whiptail --title "Error" --msgbox "One of the following login services is running:\n$active_list\n\nPlease stop & disable it or DO not choose SDDM." 12 60
                 exec "$0"  
             else
-                echo "${INFO}Installing and configuring ${SKY_BLUE}SDDM...${RESET}" | tee -a "$LOG"
+                echo "${INFO} Installing and configuring ${SKY_BLUE}SDDM...${RESET}" | tee -a "$LOG"
                 execute_script "sddm.sh"
             fi
             ;;
         nvidia)
-            echo "${INFO}Configuring ${SKY_BLUE}nvidia stuff${RESET}" | tee -a "$LOG"
+            echo "${INFO} Configuring ${SKY_BLUE}nvidia stuff${RESET}" | tee -a "$LOG"
             execute_script "nvidia.sh"
             ;;
         nouveau)
-            echo "${INFO}blacklisting ${SKY_BLUE}nouveau${RESET}"
+            echo "${INFO} blacklisting ${SKY_BLUE}nouveau${RESET}"
             execute_script "nvidia_nouveau.sh" | tee -a "$LOG"
             ;;
         gtk_themes)
-            echo "${INFO}Installing ${SKY_BLUE}GTK themes...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}GTK themes...${RESET}" | tee -a "$LOG"
             execute_script "gtk_themes.sh"
             ;;
         input_group)
-            echo "${INFO}Adding user into ${SKY_BLUE}input group...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Adding user into ${SKY_BLUE}input group...${RESET}" | tee -a "$LOG"
             execute_script "InputGroup.sh"
             ;;
         ags)
-            echo "${INFO}Installing ${SKY_BLUE}AGS v1 for Desktop Overview...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}AGS v1 for Desktop Overview...${RESET}" | tee -a "$LOG"
             execute_script "ags.sh"
             ;;
         xdph)
-            echo "${INFO}Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
             execute_script "xdph.sh"
             ;;
         bluetooth)
-            echo "${INFO}Configuring ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Configuring ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
             execute_script "bluetooth.sh"
             ;;
         thunar)
-            echo "${INFO}Installing ${SKY_BLUE}Thunar file manager...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}Thunar file manager...${RESET}" | tee -a "$LOG"
             execute_script "thunar.sh"
             execute_script "thunar_default.sh"
             ;;
         sddm_theme)
-            echo "${INFO}Downloading & Installing ${SKY_BLUE}Additional SDDM theme...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Downloading & Installing ${SKY_BLUE}Additional SDDM theme...${RESET}" | tee -a "$LOG"
             execute_script "sddm_theme.sh"
             ;;
         zsh)
-            echo "${INFO}Installing ${SKY_BLUE}zsh with Oh-My-Zsh...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}zsh with Oh-My-Zsh...${RESET}" | tee -a "$LOG"
             execute_script "zsh.sh"
             ;;
         pokemon)
-            echo "${INFO}Adding ${SKY_BLUE}Pokemon color scripts to terminal...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Adding ${SKY_BLUE}Pokemon color scripts to terminal...${RESET}" | tee -a "$LOG"
             execute_script "zsh_pokemon.sh"
             ;;
         rog)
-            echo "${INFO}Installing ${SKY_BLUE}ROG laptop packages...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing ${SKY_BLUE}ROG laptop packages...${RESET}" | tee -a "$LOG"
             execute_script "rog.sh"
             ;;
         dots)
-            echo "${INFO}Installing pre-configured ${SKY_BLUE}KooL Hyprland dotfiles...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Installing pre-configured ${SKY_BLUE}KooL Hyprland dotfiles...${RESET}" | tee -a "$LOG"
             execute_script "dotfiles-main.sh"
             ;;
         *)
