@@ -112,10 +112,6 @@ chmod +x install.sh
 ./install.sh
 ```
 
-<p align="center">
-    <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/Installer.png" />
-
-
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
 ```bash
