@@ -21,7 +21,7 @@ if [ -d "$Distro_DIR" ]; then
 else
     # Clone the repository if it doesn't exist
     echo "$Distro_DIR does not exist. Cloning the repository..."
-    git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git -b development "$Distro_DIR"
+    git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git "$Distro_DIR"
     cd "$Distro_DIR"
     chmod +x install.sh
     echo "Running install.sh..."
