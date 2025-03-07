@@ -96,6 +96,11 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
+## ✨ Auto download and install
+```bash
+sh <(curl -L https://github.com/JaKooLit/Arch-Hyprland/raw/main/auto-install.sh)
+```
+
 ## ✨ to use this script
 - clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 
