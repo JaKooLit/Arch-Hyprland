@@ -1,5 +1,5 @@
 #!/bin/bash
-# https://github.com/JaKooLit Arch-Hyprland
+# https://github.com/JaKooLit
 
 
 # Check if Git is installed
