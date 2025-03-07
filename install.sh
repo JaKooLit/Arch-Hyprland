@@ -157,7 +157,7 @@ echo "${INFO} - Checking if yay or paru is installed"
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
     echo "${CAT} - Neither yay nor paru found. Asking 🗣️ USER to select..."
     while true; do
-        aur_helper=$(whiptail --title "Neither Yay nor Paru is installed" --checklist "Choose ONE helper ONLY!\nNOTE: spacebar to select" 10 60 2 \
+        aur_helper=$(whiptail --title "Neither Yay nor Paru is installed" --checklist "Choose ONE AUR helper ONLY!\nNOTE: spacebar to select" 10 60 2 \
             "yay" "AUR Helper yay" "OFF" \
             "paru" "AUR Helper paru" "OFF" \
             3>&1 1>&2 2>&3)
@@ -171,8 +171,9 @@ if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
 
         aur_helper=$(echo "$aur_helper" | tr -d '"')
 
+        # Check if no AUR helper was selected or if multiple helpers are selected
         if [[ -z "$aur_helper" || $(echo "$aur_helper" | wc -w) -ne 1 ]]; then
-            whiptail --title "Error" --msgbox "You must select at least one AUR helper." 10 60 2
+            whiptail --title "Error" --msgbox "You must select at least one AUR helper to proceed." 10 60 2
         else
             break  
         fi
