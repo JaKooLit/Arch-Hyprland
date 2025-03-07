@@ -327,8 +327,8 @@ while true; do
     # Confirmation prompt
     if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 25 80; then
         echo -e "\n"
-        echo "❌ ${SKY_BLUE}You 🫵 cancelled the confirmation${RESET}. ${YELLOW}Exiting...${RESET}" | tee -a "$LOG"
-        exit 0  
+        echo "❌ ${SKY_BLUE}You're not 🫵 happy${RESET}. ${YELLOW}Returning to options...${RESET}" | tee -a "$LOG"
+        continue 
     fi
 
     echo "👌 ${OK} You confirmed your choices. Proceeding with ${SKY_BLUE}KooL 🇵🇭 Hyprland Installation...${RESET}" | tee -a "$LOG"
