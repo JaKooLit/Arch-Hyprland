@@ -68,7 +68,6 @@ hypr_package_2=(
   nwg-displays
   pacman-contrib
   qalculate-gtk
-  vim
   yt-dlp
 )
 
