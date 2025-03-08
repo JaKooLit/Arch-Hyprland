@@ -38,7 +38,7 @@ if [ -d "$theme_name" ]; then
 fi
 
 # Clone the repository
-if git clone --depth 1 "$source_theme" "$theme_name"; then
+if git clone --depth=1 "$source_theme" "$theme_name"; then
   if [ ! -d "$theme_name" ]; then
     echo "${ERROR} Failed to clone the repository." | tee -a "$LOG"
   fi
