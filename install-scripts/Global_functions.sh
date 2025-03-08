@@ -71,7 +71,6 @@ install_package_pacman() {
 }
 
 ISAUR=$(command -v yay || command -v paru)
-
 # Function to install packages with either yay or paru
 install_package() {
   if $ISAUR -Q "$1" &>> /dev/null ; then
@@ -109,6 +108,7 @@ install_package_f() {
     echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
   fi
 }
+
 
 # Function for removing packages
 uninstall_package() {
