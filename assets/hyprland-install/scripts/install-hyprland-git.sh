@@ -35,7 +35,6 @@ packages=(
     "hypridle-git"
     "xdg-desktop-portal-hyprland-git"
     "hyprpolkitagent-git"
-    "pyprland"
 )
 
 # rotating stars progress

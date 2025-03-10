@@ -18,7 +18,6 @@ packages=(
   hypridle
   hyprlock
   hyprland
-  pyprland 
 )
 
 # Local packages that should be in /usr/local/bin/
