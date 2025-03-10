@@ -59,7 +59,7 @@ fi
 # install whiptails if detected not installed. Necessary for this version
 if ! command -v whiptail >/dev/null; then
     echo "${NOTE} - whiptail is not installed. Installing..." | tee -a "$LOG"
-    sudo pacman -S --noconfirm whiptail
+    sudo pacman -S --noconfirm libnewt
     printf "\n%.0s" {1..1}
 fi
 

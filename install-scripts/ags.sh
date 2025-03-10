@@ -77,7 +77,7 @@ printf "\n%.0s" {1..1}
 printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
 printf "\n%.0s" {1..1}
 # Clone repository with the specified tag and capture git output into MLOG
-if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
+if git clone --recursive -b "$ags_tag" --depth=1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
     npm install
     meson setup build
