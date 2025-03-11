@@ -56,12 +56,17 @@ remove_packages() {
         package=$(echo "$package" | tr -d '"')  # Remove extra quotes
         if pacman -Qi "$package" &> /dev/null; then
             echo "Removing package: $package"
-            sudo pacman -Rsc --noconfirm "$package"
+            if ! sudo pacman -Rsc --noconfirm "$package"; then
+                echo "$ERROR Failed to remove package: $package"
+            else
+                echo "$OK Successfully removed package: $package"
+            fi
         else
             echo "$INFO Package ${YELLOW}$package${RESET} not found."
         fi
     done
 }
+
 
 # Function to remove selected directories
 remove_directories() {
@@ -70,12 +75,17 @@ remove_directories() {
         dir=$(echo "$dir" | tr -d '"')  # Remove extra quotes
         if [ -d "$HOME/.config/$dir" ]; then
             echo "Removing directory: $HOME/.config/$dir"
-            rm -rf "$HOME/.config/$dir"
+            if ! rm -rf "$HOME/.config/$dir"; then
+                echo "$ERROR Failed to remove directory: $HOME/.config/$dir"
+            else
+                echo "$OK Successfully removed directory: $HOME/.config/$dir"
+            fi
         else
             echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found."
         fi
     done
 }
+
 
 # Define the list of packages to choose from (with options_command tags)
 packages=(
@@ -152,7 +162,7 @@ directories=(
 
 # Use whiptail to choose packages to remove
 package_choices=$(whiptail --title "Select Packages to Uninstall" --checklist \
-"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 90 15 \
+"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 30 90 20 \
 "${packages[@]}" 3>&1 1>&2 2>&3)
 
 # Check if the user canceled the operation
