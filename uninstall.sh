@@ -39,7 +39,6 @@ WARNING: After uninstallation, your system may become unstable.
 
 Shall we Proceed?" 20 80
 
-# Check if the user confirmed to proceed
 if [ $? -eq 1 ]; then
     echo "$INFO uninstall process canceled."
     exit 0
@@ -160,7 +159,7 @@ while true; do
 
     # Check if the user canceled the operation
     if [ $? -eq 1 ]; then
-        echo "Operation canceled."
+        echo "$INFO uninstall process canceled."
         exit 0
     fi
 
@@ -168,8 +167,7 @@ while true; do
     if [[ -z "$package_choices" ]]; then
         echo "$NOTE No packages selected. Please select at least one package."
     else
-        # Save the selected package list to a temporary file
-        echo "$package_choices" | tr -d '"' > /tmp/selected_packages.txt
+        echo "$package_choices" | tr -d '"' | tr ' ' '\n' > /tmp/selected_packages.txt
         echo "Packages to remove: $package_choices"
         break
     fi
@@ -191,8 +189,8 @@ while true; do
     if [[ -z "$dir_choices" ]]; then
         echo "$NOTE No directories selected. Please select at least one directory."
     else
-        # Save the selected directories list to a temporary file
-        echo "$dir_choices" | tr -d '"' > /tmp/selected_directories.txt
+        # Save each selected directory to a new line in the temporary file
+        echo "$dir_choices" | tr -d '"' | tr ' ' '\n' > /tmp/selected_directories.txt
         echo "Directories to remove: $dir_choices"
         break
     fi
@@ -214,7 +212,8 @@ if ! whiptail --title "Final Confirmation" --yesno \
     exit 0
 fi
 
-# Loop to attempt removing packages multiple times
+printf "\n%.0s" {1..1}
+printf "\n%s${SKY_BLUE}Attempting to remove selected packages${RESET}\n" "${NOTE}"
 MAX_ATTEMPTS=2
 ATTEMPT=0
 while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
@@ -237,7 +236,10 @@ while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
     fi
 done
 
-# Proceed to removing directories
+printf "\n%.0s" {1..1}
+printf "\n%s${SKY_BLUE}Attempting to remove selected directories${RESET}\n" "${NOTE}"
 remove_directories /tmp/selected_directories.txt
 
-echo "$INFO Uninstall process completed."
+printf "\n%.0s" {1..1}
+echo "$INFO Uninstall process completed. You can now reboot or logout"
+printf "\n%.0s" {1..1}
