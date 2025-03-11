@@ -126,6 +126,8 @@ packages=(
 	"thunar-archive-plugin" "Archive Plugin" "off"
 	"xarchiver" "Archive Manager" "off"
     "yt-dlp" "video downloader" "off"
+    "xdg-desktop-portal-hyprland" "hyprland file picker" "off"
+    "xdg-desktop-portal-gtk" "gtk file picker" "off"
 )
 
 # Define the list of directories to choose from (with options_command tags)
