@@ -50,7 +50,7 @@ remove_packages() {
     while read -r package; do
         if pacman -Qi "$package" &> /dev/null; then
             echo "Removing package: $package"
-            if ! sudo pacman -Rsc --noconfirm "$package"; then
+            if ! sudo pacman -R --noconfirm "$package"; then
                 echo "$ERROR Failed to remove package: $package"
             else
                 echo "$OK Successfully removed package: $package"
