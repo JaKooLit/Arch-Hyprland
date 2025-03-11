@@ -254,5 +254,6 @@ printf "\n%s${SKY_BLUE}Attempting to remove selected directories${RESET}\n" "${N
 remove_directories /tmp/selected_directories.txt
 
 printf "\n%.0s" {1..1}
-echo "$INFO Uninstall process completed. You can now reboot or logout"
+echo -e "$MAGENTA Hyprland and related components have been uninstalled.$RESET"
+echo -e "$YELLOW It is recommended to reboot your system now.$RESET"
 printf "\n%.0s" {1..1}
