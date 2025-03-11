@@ -49,7 +49,7 @@ fi
 remove_packages() {
     local selected_packages=($1)
     for package in "${selected_packages[@]}"; do
-        package=$(echo "$package" | tr -d '"') 
+        package=$(echo "$package" | tr -d '"')  
         if pacman -Qi "$package" &> /dev/null; then
             echo "Removing package: $package"
             if ! sudo pacman -Rsc --noconfirm "$package"; then
@@ -58,7 +58,7 @@ remove_packages() {
                 echo "$OK Successfully removed package: $package"
             fi
         else
-            echo "$INFO Package ${YELLOW}$package${RESET} not found."
+            echo "$INFO Package ${YELLOW}$package${RESET} not found. Skipping."
         fi
     done
 }
@@ -76,7 +76,7 @@ remove_directories() {
                 echo "$OK Successfully removed directory: $HOME/.config/$dir"
             fi
         else
-            echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found."
+            echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found. Skipping."
         fi
     done
 }
@@ -172,7 +172,7 @@ while true; do
     else
         # Convert the selected package list into an array and clean up quotes
         IFS=" " read -r -a selected_packages <<< "$package_choices"
-        selected_packages=($(echo "${selected_packages[@]}" | tr -d '"')) 
+        selected_packages=($(echo "${selected_packages[@]}" | tr -d '"'))
         echo "Packages to remove: ${selected_packages[@]}"
         break
     fi
@@ -189,8 +189,6 @@ while true; do
         echo "$INFO uninstall process canceled."
         exit 0
     fi
-
-    echo "Selected directories: '$dir_choices'"
 
     # If no directories are selected, ask again
     if [[ -z "$dir_choices" ]]; then
