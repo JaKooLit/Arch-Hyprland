@@ -152,7 +152,7 @@ directories=(
 
 # Use whiptail to choose packages to remove
 package_choices=$(whiptail --title "Select Packages to Uninstall" --checklist \
-"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 60 15 \
+"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 90 15 \
 "${packages[@]}" 3>&1 1>&2 2>&3)
 
 # Check if the user canceled the operation
@@ -176,7 +176,7 @@ fi
 
 # Use whiptail to choose directories to remove
 dir_choices=$(whiptail --title "Select Directories to Remove" --checklist \
-"Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 60 15 \
+"Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 90 15 \
 "${directories[@]}" 3>&1 1>&2 2>&3)
 
 # Check if the user canceled the operation
