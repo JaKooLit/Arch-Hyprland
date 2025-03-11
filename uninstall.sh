@@ -65,16 +65,20 @@ remove_packages() {
 remove_directories() {
     local selected_dirs_file=$1
     while read -r dir; do
-        if [ -d "$HOME/.config/$dir" ]; then
-            echo "Removing directory: $HOME/.config/$dir"
-            if ! rm -rf "$HOME/.config/$dir"; then
-                echo "$ERROR Failed to remove directory: $HOME/.config/$dir"
+        pattern="$HOME/.config/$dir*"        
+        # Loop through directories matching the pattern
+        for dir_to_remove in $pattern; do
+            if [ -d "$dir_to_remove" ]; then
+                echo "Removing directory: $dir_to_remove"
+                if ! rm -rf "$dir_to_remove"; then
+                    echo "$ERROR Failed to remove directory: $dir_to_remove"
+                else
+                    echo "$OK Successfully removed directory: $dir_to_remove"
+                fi
             else
-                echo "$OK Successfully removed directory: $HOME/.config/$dir"
+                echo "$INFO Directory ${YELLOW}$dir_to_remove${RESET} not found. Skipping."
             fi
-        else
-            echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found. Skipping."
-        fi
+        done
     done < "$selected_dirs_file"
 }
 
