@@ -28,7 +28,6 @@ echo -e "\e[35m
 \e[0m"
 printf "\n%.0s" {1..1}
 
-
 # Show welcome message using whiptail with Yes/No options
 whiptail --title "Arch-Hyprland KooL Dots Uninstall Script" --yesno \
 "Hello! This script will uninstall KooL Hyprland packages and configs.
@@ -67,7 +66,6 @@ remove_packages() {
     done
 }
 
-
 # Function to remove selected directories
 remove_directories() {
     local selected_dirs=($1)
@@ -85,7 +83,6 @@ remove_directories() {
         fi
     done
 }
-
 
 # Define the list of packages to choose from (with options_command tags)
 packages=(
@@ -162,7 +159,7 @@ directories=(
 
 # Use whiptail to choose packages to remove
 package_choices=$(whiptail --title "Select Packages to Uninstall" --checklist \
-"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 30 90 20 \
+"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 35 90 25 \
 "${packages[@]}" 3>&1 1>&2 2>&3)
 
 # Check if the user canceled the operation
@@ -180,23 +177,22 @@ if [[ -z "$package_choices" ]]; then
 else
     # Convert the selected package list into an array and clean up quotes
     IFS=" " read -r -a selected_packages <<< "$package_choices"
-    selected_packages=($(echo "${selected_packages[@]}" | tr -d '"'))  # Clean up quotes
-    echo "Packages to remove: ${selected_packages[@]}"  # Debugging line
+    selected_packages=($(echo "${selected_packages[@]}" | tr -d '"')) 
+    echo "Packages to remove: ${selected_packages[@]}"
 fi
 
 # Use whiptail to choose directories to remove
 dir_choices=$(whiptail --title "Select Directories to Remove" --checklist \
-"Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 25 90 15 \
+"Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 28 90 18 \
 "${directories[@]}" 3>&1 1>&2 2>&3)
 
 # Check if the user canceled the operation
 if [ $? -eq 1 ]; then
-    echo "$INFO uninstall process canceled."v
+    echo "$INFO uninstall process canceled."
     exit 0
 fi
 
-# Debugging output: Check what was selected
-echo "Selected directories: '$dir_choices'"  # Debugging line
+echo "Selected directories: '$dir_choices'"
 
 # Check if the selected directories are empty or not
 if [[ -z "$dir_choices" ]]; then
@@ -204,8 +200,8 @@ if [[ -z "$dir_choices" ]]; then
 else
     # Convert the selected directories list into an array and clean up quotes
     IFS=" " read -r -a selected_dirs <<< "$dir_choices"
-    selected_dirs=($(echo "${selected_dirs[@]}" | tr -d '"'))  # Clean up quotes
-    echo "Directories to remove: ${selected_dirs[@]}"  # Debugging line
+    selected_dirs=($(echo "${selected_dirs[@]}" | tr -d '"'))
+    echo "Directories to remove: ${selected_dirs[@]}"
 fi
 
 # First confirmation - Warning about potential instability
