@@ -104,7 +104,6 @@ packages=(
     "pamixer" "pamixer" "off"
     "pokemon-colorscripts-git" "terminal colorscripts" "off"
     "pavucontrol" "pavucontrol" "off"
-    "pipewire-alsa" "pipewire-alsa" "off"
     "playerctl" "playerctl" "off"
     "pyprland" "pyprland" "off"
     "qalculate-gtk" "calculater - QT" "off"

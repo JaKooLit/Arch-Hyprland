@@ -29,7 +29,6 @@ hypr_package=(
   network-manager-applet 
   pamixer 
   pavucontrol
-  pipewire-alsa 
   playerctl
   python-requests
   python-pyquery
