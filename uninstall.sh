@@ -20,7 +20,7 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-printf "\n%.0s" {1..2}  
+printf "\n%.0s" {1..2}
 echo -e "\e[35m
 	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
 	╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ UNINSTALL
@@ -32,13 +32,10 @@ printf "\n%.0s" {1..1}
 whiptail --title "Arch-Hyprland KooL Dots Uninstall Script" --yesno \
 "Hello! This script will uninstall KooL Hyprland packages and configs.
 
-
 You can choose packages and directories you want to remove.
 NOTE: This will remove configs from ~/.config
 
-
 WARNING: After uninstallation, your system may become unstable.
-
 
 Shall we Proceed?" 20 80
 
@@ -52,7 +49,7 @@ fi
 remove_packages() {
     local selected_packages=($1)
     for package in "${selected_packages[@]}"; do
-        package=$(echo "$package" | tr -d '"')  # Remove extra quotes
+        package=$(echo "$package" | tr -d '"') 
         if pacman -Qi "$package" &> /dev/null; then
             echo "Removing package: $package"
             if ! sudo pacman -Rsc --noconfirm "$package"; then
@@ -70,7 +67,7 @@ remove_packages() {
 remove_directories() {
     local selected_dirs=($1)
     for dir in "${selected_dirs[@]}"; do
-        dir=$(echo "$dir" | tr -d '"')  # Remove extra quotes
+        dir=$(echo "$dir" | tr -d '"') 
         if [ -d "$HOME/.config/$dir" ]; then
             echo "Removing directory: $HOME/.config/$dir"
             if ! rm -rf "$HOME/.config/$dir"; then
@@ -157,52 +154,55 @@ directories=(
     "wlogout" "wlogout (logout menu) configuration" "off"    
 )
 
-# Use whiptail to choose packages to remove
-package_choices=$(whiptail --title "Select Packages to Uninstall" --checklist \
-"Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 35 90 25 \
-"${packages[@]}" 3>&1 1>&2 2>&3)
+# Loop for package selection until user selects something or cancels
+while true; do
+    package_choices=$(whiptail --title "Select Packages to Uninstall" --checklist \
+    "Select the packages you want to remove\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 35 90 25 \
+    "${packages[@]}" 3>&1 1>&2 2>&3)
 
-# Check if the user canceled the operation
-if [ $? -eq 1 ]; then
-    echo "Operation canceled."
-    exit 0
-fi
+    # Check if the user canceled the operation
+    if [ $? -eq 1 ]; then
+        echo "$INFO uninstall process canceled."
+        exit 0
+    fi
 
-# Debugging output: Check what was selected
-echo "Selected packages: '$package_choices'"  # Debugging line
+    # If no packages are selected, ask again
+    if [[ -z "$package_choices" ]]; then
+        echo "$NOTE No packages selected. Please select at least one package."
+    else
+        # Convert the selected package list into an array and clean up quotes
+        IFS=" " read -r -a selected_packages <<< "$package_choices"
+        selected_packages=($(echo "${selected_packages[@]}" | tr -d '"')) 
+        echo "Packages to remove: ${selected_packages[@]}"
+        break
+    fi
+done
 
-# Check if the selected packages are empty or not
-if [[ -z "$package_choices" ]]; then
-    echo "No packages selected."
-else
-    # Convert the selected package list into an array and clean up quotes
-    IFS=" " read -r -a selected_packages <<< "$package_choices"
-    selected_packages=($(echo "${selected_packages[@]}" | tr -d '"')) 
-    echo "Packages to remove: ${selected_packages[@]}"
-fi
+# Loop for directory selection until user selects something or cancels
+while true; do
+    dir_choices=$(whiptail --title "Select Directories to Remove" --checklist \
+    "Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 28 90 18 \
+    "${directories[@]}" 3>&1 1>&2 2>&3)
 
-# Use whiptail to choose directories to remove
-dir_choices=$(whiptail --title "Select Directories to Remove" --checklist \
-"Select the directories you want to remove\nNOTE: This will remove configs from ~/.config\n\nNOTE: 'SPACEBAR' to select & 'TAB' key to change selection" 28 90 18 \
-"${directories[@]}" 3>&1 1>&2 2>&3)
+    # Check if the user canceled the operation
+    if [ $? -eq 1 ]; then
+        echo "$INFO uninstall process canceled."
+        exit 0
+    fi
 
-# Check if the user canceled the operation
-if [ $? -eq 1 ]; then
-    echo "$INFO uninstall process canceled."
-    exit 0
-fi
+    echo "Selected directories: '$dir_choices'"
 
-echo "Selected directories: '$dir_choices'"
-
-# Check if the selected directories are empty or not
-if [[ -z "$dir_choices" ]]; then
-    echo "$NOTE No directories selected."
-else
-    # Convert the selected directories list into an array and clean up quotes
-    IFS=" " read -r -a selected_dirs <<< "$dir_choices"
-    selected_dirs=($(echo "${selected_dirs[@]}" | tr -d '"'))
-    echo "Directories to remove: ${selected_dirs[@]}"
-fi
+    # If no directories are selected, ask again
+    if [[ -z "$dir_choices" ]]; then
+        echo "$NOTE No directories selected. Please select at least one directory."
+    else
+        # Convert the selected directories list into an array and clean up quotes
+        IFS=" " read -r -a selected_dirs <<< "$dir_choices"
+        selected_dirs=($(echo "${selected_dirs[@]}" | tr -d '"'))
+        echo "Directories to remove: ${selected_dirs[@]}"
+        break
+    fi
+done
 
 # First confirmation - Warning about potential instability
 if ! whiptail --title "Warning" --yesno \
