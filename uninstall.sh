@@ -50,7 +50,7 @@ remove_packages() {
     while read -r package; do
         if pacman -Qi "$package" &> /dev/null; then
             echo "Removing package: $package"
-            if ! sudo pacman -R --noconfirm "$package"; then
+            if ! sudo pacman -Rs --noconfirm "$package"; then
                 echo "$ERROR Failed to remove package: $package"
             else
                 echo "$OK Successfully removed package: $package"
@@ -108,9 +108,9 @@ packages=(
     "pavucontrol" "pavucontrol" "off"
     "pipewire-alsa" "pipewire-alsa" "off"
     "playerctl" "playerctl" "off"
+    "pyprland" "pyprland" "off"
     "qalculate-gtk" "calculater - QT" "off"
     "qt5ct" "qt5ct" "off"
-    "qt6-svg" "qt6-svg" "off"
     "qt6ct" "qt6ct" "off"
     "rofi-wayland" "rofi-wayland" "off"
     "slurp" "screenshot tool" "off"
