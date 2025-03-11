@@ -45,41 +45,6 @@ if [ $? -eq 1 ]; then
     exit 0
 fi
 
-# Function to remove selected packages
-remove_packages() {
-    local selected_packages=($1)
-    for package in "${selected_packages[@]}"; do
-        package=$(echo "$package" | tr -d '"')  
-        if pacman -Qi "$package" &> /dev/null; then
-            echo "Removing package: $package"
-            if ! sudo pacman -Rsc --noconfirm "$package"; then
-                echo "$ERROR Failed to remove package: $package"
-            else
-                echo "$OK Successfully removed package: $package"
-            fi
-        else
-            echo "$INFO Package ${YELLOW}$package${RESET} not found. Skipping."
-        fi
-    done
-}
-
-# Function to remove selected directories
-remove_directories() {
-    local selected_dirs=($1)
-    for dir in "${selected_dirs[@]}"; do
-        dir=$(echo "$dir" | tr -d '"') 
-        if [ -d "$HOME/.config/$dir" ]; then
-            echo "Removing directory: $HOME/.config/$dir"
-            if ! rm -rf "$HOME/.config/$dir"; then
-                echo "$ERROR Failed to remove directory: $HOME/.config/$dir"
-            else
-                echo "$OK Successfully removed directory: $HOME/.config/$dir"
-            fi
-        else
-            echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found. Skipping."
-        fi
-    done
-}
 
 # Define the list of packages to choose from (with options_command tags)
 packages=(
@@ -218,11 +183,69 @@ if ! whiptail --title "Final Confirmation" --yesno \
     exit 0
 fi
 
-# Start removing packages and directories
-if [ ${#selected_packages[@]} -gt 0 ]; then
-    remove_packages "${selected_packages[@]}"
-fi
+# Function to remove selected packages
+remove_packages() {
+    local selected_packages=($1)
+    for package in "${selected_packages[@]}"; do
+        package=$(echo "$package" | tr -d '"')  # Remove extra quotes
+        if pacman -Qi "$package" &> /dev/null; then
+            echo "Removing package: $package"
+            if ! sudo pacman -Rsc --noconfirm "$package"; then
+                echo "$ERROR Failed to remove package: $package"
+            else
+                echo "$OK Successfully removed package: $package"
+            fi
+        else
+            echo "$INFO Package ${YELLOW}$package${RESET} not found. Skipping."
+        fi
+    done
+}
 
+# Function to remove selected directories
+remove_directories() {
+    local selected_dirs=($1)
+    for dir in "${selected_dirs[@]}"; do
+        dir=$(echo "$dir" | tr -d '"')  # Remove extra quotes
+        if [ -d "$HOME/.config/$dir" ]; then
+            echo "Removing directory: $HOME/.config/$dir"
+            if ! rm -rf "$HOME/.config/$dir"; then
+                echo "$ERROR Failed to remove directory: $HOME/.config/$dir"
+            else
+                echo "$OK Successfully removed directory: $HOME/.config/$dir"
+            fi
+        else
+            echo "$INFO Directory ${YELLOW}$HOME/.config/$dir${RESET} not found. Skipping."
+        fi
+    done
+}
+
+# Loop to attempt removing packages multiple times
+MAX_ATTEMPTS=2
+ATTEMPT=0
+while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+    # Remove packages
+    if [ ${#selected_packages[@]} -gt 0 ]; then
+        remove_packages "${selected_packages[@]}"
+    fi
+
+    # Check if any packages still need to be removed, retry if needed
+    MISSING_PACKAGE_COUNT=0
+    for package in "${selected_packages[@]}"; do
+        package=$(echo "$package" | tr -d '"')  # Clean extra quotes
+        if pacman -Qi "$package" &> /dev/null; then
+            MISSING_PACKAGE_COUNT=$((MISSING_PACKAGE_COUNT + 1))
+        fi
+    done
+
+    if [ $MISSING_PACKAGE_COUNT -gt 0 ]; then
+        ATTEMPT=$((ATTEMPT + 1))
+        echo "Attempt #$ATTEMPT failed, retrying..."
+    else
+        break
+    fi
+done
+
+# Proceed to removing directories
 if [ ${#selected_dirs[@]} -gt 0 ]; then
     remove_directories "${selected_dirs[@]}"
 fi
