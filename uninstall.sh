@@ -115,7 +115,6 @@ packages=(
     "thunar-archive-plugin" "Archive Plugin" "off"
     "thunar-volman" "Volume Management" "off"
     "tumbler" "Thumbnail Service" "off"
-    "unzip" "unzip" "off"
     "wallust" "color pallete generator" "off"
     "waybar" "wayland bar" "off"
     "wl-clipboard" "clipboard manager" "off"
