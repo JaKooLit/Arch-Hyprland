@@ -6,7 +6,6 @@ hypr=(
   hyprland
   hypridle
   hyprlock
-  pyprland
   libspng
 )
 

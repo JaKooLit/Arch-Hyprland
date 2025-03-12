@@ -44,8 +44,7 @@ packages=(
     "xdg-desktop-portal-hyprland"
     "xdg-desktop-portal-hyprland-git"
     "hyprpolkitagent"
-    "hyprpolkitagent-git"    
-    "pyprland"
+    "hyprpolkitagent-git"
 )
 
 # Function for uninstall packages

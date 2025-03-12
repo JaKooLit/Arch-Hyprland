@@ -1,5 +1,11 @@
 ## CHANGELOGS
 
+## 11 March 2025
+- Added uninstall script
+
+## 10 March 2025
+- Dropped pyprland in favor of hyprland built in tool for a drop down like terminal and Desktop magnifier
+
 ## 06 March 2025
 - Switched to whiptail version for Y & N questions
 - switched eza to lsd
