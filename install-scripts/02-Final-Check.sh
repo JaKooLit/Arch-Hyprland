@@ -66,7 +66,7 @@ done
 
 # Log missing packages
 if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ]; then
-    echo "${OK} GREAT! It seems All ${YELLOW}essential packages${RESET} are installed." | tee -a "$LOG"
+    echo "${OK} GREAT! All ${YELLOW}essential packages${RESET} have been successfully installed." | tee -a "$LOG"
 else
     if [ ${#missing[@]} -ne 0 ]; then
         echo "${WARN} The following packages are not installed and will be logged:"
