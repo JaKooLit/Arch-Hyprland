@@ -67,9 +67,9 @@ printf "\n%.0s" {1..1}
 # ags v1
 printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
-# Check if folder exists and remove it
+# Check if directory exists and remove it
 if [ -d "ags" ]; then
-    printf "${NOTE} Removing existing ags folder...\n"
+    printf "${NOTE} Removing existing ags directory...\n"
     rm -rf "ags"
 fi
 

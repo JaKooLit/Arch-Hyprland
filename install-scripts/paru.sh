@@ -37,7 +37,7 @@ if [ -n "$ISAUR" ]; then
 else
   printf "\n%s - Installing ${SKY_BLUE}$pkg${RESET} from AUR\n" "${NOTE}"
 
-# Check if folder exists and remove it
+# Check if directory exists and remove it
 if [ -d "$pkg" ]; then
     rm -rf "$pkg"
 fi
@@ -45,7 +45,7 @@ fi
   cd $pkg || { printf "%s - Failed to enter $pkg directory\n" "${ERROR}"; exit 1; }
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
 
-  # moving install logs in to Install-Logs folder
+  # moving install logs in to Install-Logs directory
   mv install*.log ../Install-Logs/ || true   
   cd ..
 fi

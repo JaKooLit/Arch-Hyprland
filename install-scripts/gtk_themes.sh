@@ -32,7 +32,7 @@ done
 
 # Check if the directory exists and delete it if present
 if [ -d "GTK-themes-icons" ]; then
-    echo "$NOTE GTK themes and Icons folder exist..deleting..." 2>&1 | tee -a "$LOG"
+    echo "$NOTE GTK themes and Icons directory exist..deleting..." 2>&1 | tee -a "$LOG"
     rm -rf "GTK-themes-icons" 2>&1 | tee -a "$LOG"
 fi
 
@@ -42,7 +42,7 @@ if git clone --depth=1 https://github.com/JaKooLit/GTK-themes-icons.git ; then
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..
-    echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes folders" 2>&1 | tee -a "$LOG"
+    echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes directories" 2>&1 | tee -a "$LOG"
 else
     echo "$ERROR Download failed for GTK themes and Icons.." 2>&1 | tee -a "$LOG"
 fi
