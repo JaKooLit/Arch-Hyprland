@@ -53,9 +53,11 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
+---
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Doto&weight=700&pause=1000&color=C608F7&width=435&lines=YOUTUBE+VIDEOS)](https://git.io/typing-svg)
-- [YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
-- [YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
+---
+[YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
+[YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
     
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
