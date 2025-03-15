@@ -67,9 +67,9 @@ printf "\n%.0s" {1..1}
 # ags v1
 printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
-# Check if folder exists and remove it
+# Check if directory exists and remove it
 if [ -d "ags" ]; then
-    printf "${NOTE} Removing existing ags folder...\n"
+    printf "${NOTE} Removing existing ags directory...\n"
     rm -rf "ags"
 fi
 
@@ -77,8 +77,8 @@ printf "\n%.0s" {1..1}
 printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
 printf "\n%.0s" {1..1}
 # Clone repository with the specified tag and capture git output into MLOG
-if git clone --recursive -b "$ags_tag" --depth=1 https://github.com/Aylur/ags.git; then
-    cd ags || exit 1
+if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
+    cd ags_v1.9.0 || exit 1
     npm install
     meson setup build
    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then

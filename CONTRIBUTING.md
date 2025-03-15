@@ -67,4 +67,4 @@ Thank you for your interest in contributing to Community Standards! We welcome a
 
 ## Contact
 
-If you have any questions, feel free to contact via [GitHub Discussions](https://github.com/JaKooLit/Arch-Hyprland/discussions) or [Through Discord Server](https://discord.gg/V2SJ92vbEN)
+If you have any questions, feel free to contact via [GitHub Discussions](https://github.com/JaKooLit/Arch-Hyprland/discussions) or [Through Discord Server](https://discord.gg/kool-tech-world)
