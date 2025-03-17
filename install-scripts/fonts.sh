@@ -7,7 +7,8 @@
 # and also, ensure that packages are present in AUR and official Arch Repo
 
 fonts=(
-  adobe-source-code-pro-fonts 
+  adobe-source-code-pro-fonts
+  noto-fonts 
   noto-fonts-emoji
   otf-font-awesome 
   ttf-droid 
