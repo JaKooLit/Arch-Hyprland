@@ -2,11 +2,13 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Main Hyprland Package #
 
-hypr=(
-  hyprland
+hypr_eco=(
   hypridle
   hyprlock
-  libspng
+)
+
+hypr=(
+  hyprland
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -22,23 +24,28 @@ if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
   exit 1
 fi
 
-
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 
-# Removing other Hyprland to avoid conflict
-printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
-if pacman -Qs hyprland >/dev/null; then
-  printf "${YELLOW} Hyprland detected. attempting to uninstall to install Hyprland from official repo...${RESET}\n"
-  for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
-    sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null | tee -a "$LOG" || true
+# Check if Hyprland is installed
+if command -v Hyprland >/dev/null 2>&1; then
+  printf "$NOTE - ${YELLOW} Hyprland is already installed.${RESET} No action required.\n"
+else
+  printf "$INFO - Hyprland not found. ${SKY_BLUE} Installing Hyprland...${RESET}\n"
+  for HYPRLAND in "${hypr[@]}"; do
+    install_package "$HYPRLAND" "$LOG"
   done
 fi
 
-# Hyprland
-printf "${NOTE} Installing ${SKY_BLUE}Hyprland packages${RESET} .......\n"
-for HYPR in "${hypr[@]}"; do
-  install_package "$HYPR" "$LOG"
+# Hyprland -eco packages
+printf "${NOTE} - Installing ${SKY_BLUE}other Hyprland-eco packages${RESET} .......\n"
+for HYPR in "${hypr_eco[@]}"; do
+  if ! command -v "$HYPR" >/dev/null 2>&1; then
+    printf "$INFO - ${YELLOW}$HYPR${RESET} not found. Installing ${YELLOW}$HYPR...${RESET}\n"
+    install_package "$HYPR" "$LOG"
+  else
+    printf "$NOTE - ${YELLOW} $HYPR is already installed.${RESET} No action required.\n"
+  fi
 done
 
 printf "\n%.0s" {1..2}

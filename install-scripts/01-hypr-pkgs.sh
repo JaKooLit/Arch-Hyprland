@@ -25,6 +25,7 @@ hypr_package=(
   jq
   kitty
   kvantum
+  libspng
   nano  
   network-manager-applet 
   pamixer 

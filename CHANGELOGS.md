@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 20 March 2025
+- adjusted hyprland installation script. This is great for those who are using -git packages
+
 ## 11 March 2025
 - Added uninstall script
 - forked AGS v1 into JakooLit repo. This is just incase Aylur decide to take down v1
