@@ -29,7 +29,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 
 # Check if Hyprland is installed
 if command -v Hyprland >/dev/null 2>&1; then
-  printf "$NOTE - ${YELLOW} Hyprland is already installed. No action required.${RESET}\n"
+  printf "$NOTE - ${YELLOW} Hyprland is already installed.${RESET} No action required.\n"
 else
   printf "$INFO - Hyprland not found. ${SKY_BLUE} Installing Hyprland...${RESET}\n"
   for HYPRLAND in "${hypr[@]}"; do
@@ -44,7 +44,7 @@ for HYPR in "${hypr_eco[@]}"; do
     printf "$INFO - ${YELLOW}$HYPR${RESET} not found. Installing ${YELLOW}$HYPR...${RESET}\n"
     install_package "$HYPR" "$LOG"
   else
-    printf "$NOTE - ${YELLOW} $HYPR is already installed. No action required.${RESET}\n"
+    printf "$NOTE - ${YELLOW} $HYPR is already installed.${RESET} No action required.\n"
   fi
 done
 
