@@ -5,6 +5,7 @@
 base=( 
   base-devel
   archlinux-keyring
+  findutils
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
