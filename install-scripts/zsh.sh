@@ -95,6 +95,7 @@ if command -v zsh >/dev/null; then
   else
     echo "${NOTE} Your shell is already set to ${MAGENTA}zsh${RESET}."
   fi
+  
 fi
 
 # Installing core zsh packages
