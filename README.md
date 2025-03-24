@@ -101,16 +101,14 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 ## ✨ Auto clone and install
+> [!CAUTION] 
+> If you are using FISH SHELL, DO NOT use this function. Clone and ran install.sh instead
+
 - you can use this command to automatically clone the installer and ran the script for you
 - NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh)
 ```
-- if you are using like fish or a non-POSIX compliant terminal
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh | bash
-```
-
 
 ## ✨ to use this script
 - clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
