@@ -42,6 +42,7 @@ hypr_package=(
   swaync 
   swww
   unzip # needed later
+  uwsm  # needed for login
   wallust 
   waybar
   wget
