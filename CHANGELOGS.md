@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 08 June 2025
+- updated SDDM theme. 
+
 ## 20 March 2025
 - adjusted hyprland installation script. This is great for those who are using -git packages
 - added findutils as dependencies
