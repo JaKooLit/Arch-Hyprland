@@ -75,8 +75,8 @@ hypr_package_2=(
 uninstall=(
   aylurs-gtk-shell
   dunst
-  mako
   cachyos-hyprland-settings
+  mako
   rofi
   wallust-git
   rofi-lbonn-wayland
