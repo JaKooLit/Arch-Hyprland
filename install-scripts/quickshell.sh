@@ -29,10 +29,22 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_quick.log"
 
 # Installation of main components
-printf "\n%s - Installing ${SKY_BLUE}Quick Shell $ags_tag${RESET} for Desktop Overview \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}Quick Shell ${RESET} for Desktop Overview \n" "${NOTE}"
 
 for PKG1 in "${quick[@]}"; do
     install_package "$PKG1" "$LOG"
 done
+
+# removal of ags
+# Check if the file exists and remove it
+printf "\n%s - removing ${SKY_BLUE}AGS${RESET}  \n" "${NOTE}"
+if [ -f "/usr/local/bin/ags" ]; then
+    sudo rm -r /usr/local/bin/ags
+fi
+
+if [ -d "/usr/local/share/com.github.Aylur.ags" ]; then
+    sudo rm -rf /usr/local/share/com.github.Aylur.ags
+fi
+
 
 printf "\n%.0s" {1..1}
