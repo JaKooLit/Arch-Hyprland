@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 22 July 2025
+- Updated sddm theme and script to work with the updated simple_sddm_2 theme
+
 ## 17 July 2025
 - added quickshell script to replace ags for desktop overview
 
