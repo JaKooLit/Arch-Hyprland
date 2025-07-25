@@ -104,7 +104,7 @@ if git clone --depth=1 "$source_theme" "$theme_name"; then
   sudo cp -r assets/sddm.png "/usr/share/sddm/themes/$theme_name/Backgrounds/default" 2>&1 | tee -a "$LOG"
   sudo sed -i 's|^wallpaper=".*"|wallpaper="Backgrounds/default"|' "/usr/share/sddm/themes/$theme_name/theme.conf" 2>&1 | tee -a "$LOG"
 
-  echo "${OK} - ${MAGENTA}Additional ${YELLOW}$theme_name${RESET} SDDM Theme${RESET} successfully installed." | tee -a "$LOG"
+  echo "${OK} - ${MAGENTA}Additional ${YELLOW}$theme_name SDDM Theme${RESET} successfully installed." | tee -a "$LOG"
 
 else
 
