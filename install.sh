@@ -125,7 +125,7 @@ execute_script() {
 gtk_themes="OFF"
 bluetooth="OFF"
 thunar="OFF"
-ags="OFF"
+quickshell="OFF"
 sddm="OFF"
 sddm_theme="OFF"
 xdph="OFF"
@@ -259,10 +259,10 @@ fi
 
 # Add the remaining static options
 options_command+=(
-    "gtk_themes" "Install GTK themes (required for Dark/Light function)" "OFF"
+    "gtk_themes" "Install GTK themes? (required for Dark/Light function)" "OFF"
     "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
     "thunar" "Do you want Thunar file manager to be installed?" "OFF"
-    "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
+    "quickshell" "Install quickshell for Desktop-Like Overview?" "OFF"
     "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
     "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
     "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
@@ -404,9 +404,9 @@ for option in "${options[@]}"; do
             echo "${INFO} Adding user into ${SKY_BLUE}input group...${RESET}" | tee -a "$LOG"
             execute_script "InputGroup.sh"
             ;;
-        ags)
-            echo "${INFO} Installing ${SKY_BLUE}AGS v1 for Desktop Overview...${RESET}" | tee -a "$LOG"
-            execute_script "ags.sh"
+        quickshell)
+            echo "${INFO} Installing ${SKY_BLUE}quickshell for Desktop Overview...${RESET}" | tee -a "$LOG"
+            execute_script "quickshell.sh"
             ;;
         xdph)
             echo "${INFO} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
