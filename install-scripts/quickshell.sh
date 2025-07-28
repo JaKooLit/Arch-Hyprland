@@ -7,7 +7,8 @@ if [[ $USE_PRESET = [Yy] ]]; then
 fi
 
 quick=(
-  quickshell
+    qt6-5compat
+    quickshell
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
