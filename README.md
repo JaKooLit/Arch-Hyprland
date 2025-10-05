@@ -188,26 +188,25 @@ source ~/.zshrc
 
 > [!IMPORTANT]
 > DO NOT cd into install-scripts directory as script will most likely to fail
-> #### 🛠️ Optional system monitor scripts (cross-distro compatible)
-> - These installer helpers will set up user-level services and install required packages automatically.
-> - Works on Fedora, Arch, and other distributions using standard tools.
-> - Re-run any time from the repo root (do not `cd` into `install-scripts`).
+#### 🛠️ Optional system monitor scripts (cross-distro compatible)
+- These installer helpers will set up user-level services and install required packages automatically.
+- Works on Fedora, Arch, and other distributions using standard tools.
+- Re-run any time from the repo root (do not `cd` into `install-scripts`).
 
-- - `./install-scripts/battery-monitor.sh`
-- - Installs: `acpi`, `libnotify`
-- - Creates: `~/.config/hypr/scripts/battery-monitor.sh` and user service `battery-monitor.service`
-- - Manage: `systemctl --user status|start|stop battery-monitor`
-- - `./install-scripts/disk-monitor.sh`
-- - Installs: `libnotify`
-- - Creates: `~/.config/hypr/scripts/disk-monitor.sh` and user service `disk-monitor.service`
-- - Manage: `systemctl --user status|start|stop disk-monitor`
-- - `./install-scripts/temp-monitor.sh`
-- - Installs: `lm_sensors`, `libnotify`
-- - Detects sensors (runs `sudo sensors-detect --auto` once)
-- - Creates: `~/.config/hypr/scripts/temp-monitor.sh` and user service `temp-monitor.service`
-- - Manage: `systemctl --user status|start|stop temp-monitor`
-- > Packages above are installed by the respective installer scripts; no manual action is required. If you prefer package pre-install via the main package list, ensure `acpi`, `lm_sensors`, and `libnotify` are present in your setup.
--
+- `./install-scripts/battery-monitor.sh`
+  - Installs: `acpi`, `libnotify`
+  - Creates: `~/.config/hypr/scripts/battery-monitor.sh` and user service `battery-monitor.service`
+  - Manage: `systemctl --user status|start|stop battery-monitor`
+- `./install-scripts/disk-monitor.sh`
+  - Installs: `libnotify`
+  - Creates: `~/.config/hypr/scripts/disk-monitor.sh` and user service `disk-monitor.service`
+  - Manage: `systemctl --user status|start|stop disk-monitor`
+- `./install-scripts/temp-monitor.sh`
+  - Installs: `lm_sensors`, `libnotify`
+  - Detects sensors (runs `sudo sensors-detect --auto` once)
+  - Creates: `~/.config/hypr/scripts/temp-monitor.sh` and user service `temp-monitor.service`
+  - Manage: `systemctl --user status|start|stop temp-monitor`
+> Packages above are installed by the respective installer scripts; no manual action is required. If you prefer package pre-install via the main package list, ensure `acpi`, `lm_sensors`, and `libnotify` are present in your setup.
 
 #### 🛣️ Roadmap:
 
