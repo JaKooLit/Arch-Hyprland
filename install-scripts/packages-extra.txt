@@ -1,1 +1,36 @@
-#add flatpak, AUR and pacman scripting for personally used packages
+# packages.txt
+# Lines starting with # are ignored
+# Blank lines are ignored
+# Sections: [pacman], [aur], [flatpak], [git]
+# For [git], format is: repo_url [optional_target_dir_name]
+
+[pacman]
+#Package Name
+neovim
+wget
+git
+#base-devel   # uncomment if you want it
+
+[aur]
+#Package name
+vesktop
+ocs-url
+bauh
+heroic-games-launcher-bin
+localsend-bin
+steamtinkerlaunch-git
+onlyoffice-bin
+appimagelauncher
+
+[flatpak]
+#Flatpak application ID 
+org.prismlauncher.PrismLauncher 
+org.kde.krita
+com.modrinth.ModrinthApp
+
+[git]
+#https://github.com/$USER/$REPO ~/example/location
+
+https://github.com/NvChad/starter ~/.config/nvim
+
+# https://github.com/you/yourrepo   # <-- target dir will default to repo name
