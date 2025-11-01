@@ -1,0 +1,1 @@
+#add flatpak, AUR and pacman scripting for personally used packages
