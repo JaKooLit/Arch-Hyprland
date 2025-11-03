@@ -83,6 +83,25 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     meson setup build
    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+
+    # Patch installed AGS launcher to ensure GI typelibs in /usr/local/lib are discoverable in GJS ESM
+    printf "${NOTE} Applying AGS launcher patch for GI typelibs search path...\n"
+    LAUNCHER="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+    if sudo test -f "$LAUNCHER"; then
+      # 1) Switch from GIRepository ESM import to GLib and drop deprecated prepend_* calls
+      sudo sed -i \
+        -e 's|^import GIR from "gi://GIRepository?version=2.0";$|import GLib from "gi://GLib";|' \
+        -e '/GIR.Repository.prepend_search_path/d' \
+        -e '/GIR.Repository.prepend_library_path/d' \
+        "$LAUNCHER"
+
+      # 2) Inject GI_TYPELIB_PATH export right after the GLib import
+      sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib\" + (__old ? \":\" + __old : \"\"), true);"}' "$LAUNCHER" | sudo tee "$LAUNCHER" >/dev/null
+
+      printf "${OK} AGS launcher patched.\n"
+    else
+      printf "${WARN} Launcher not found at $LAUNCHER, skipping patch.\n"
+    fi
   else
     echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
    fi
