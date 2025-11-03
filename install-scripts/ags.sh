@@ -99,6 +99,23 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
       sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib\" + (__old ? \":\" + __old : \"\"), true);"}' "$LAUNCHER" | sudo tee "$LAUNCHER" >/dev/null
 
       printf "${OK} AGS launcher patched.\n"
+
+      # Create an env-setting wrapper for AGS to ensure GI typelibs/libs are discoverable
+      printf "${NOTE} Creating env wrapper /usr/local/bin/ags...\n"
+      MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+      if ! sudo test -f "$MAIN_JS"; then
+        MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
+      fi
+      sudo tee /usr/local/bin/ags >/dev/null <<WRAP
+#!/usr/bin/env bash
+set -euo pipefail
+# Ensure GI typelibs and native libs are discoverable before gjs ESM loads
+export GI_TYPELIB_PATH="/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib/girepository-1.0:/usr/local/lib64:/usr/local/lib:/usr/lib64/ags:/usr/lib/ags:${GI_TYPELIB_PATH:-}"
+export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH:-}"
+exec /usr/bin/gjs -m "$MAIN_JS" "$@"
+WRAP
+      sudo chmod 0755 /usr/local/bin/ags
+      printf "${OK} AGS wrapper installed at /usr/local/bin/ags\n"
     else
       printf "${WARN} Launcher not found at $LAUNCHER, skipping patch.\n"
     fi
