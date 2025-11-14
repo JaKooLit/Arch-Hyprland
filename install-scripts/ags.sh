@@ -95,26 +95,15 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         grep -n 'moduleResolution\|ignoreDeprecations' tsconfig.json >> "$MLOG" || true
     fi
 
-    # Patch pam.ts to avoid ESM gi://GUtils, which fails on some GJS builds (e.g. Arch),
-    # and instead use the older imports.gi API that we know works.
+    # Patch pam.ts to avoid ESM gi://GUtils (which breaks on some GJS builds)
+    # and instead use imports.gi.GUtils, which we know works from runtime tests.
     if [ -f src/utils/pam.ts ]; then
         if grep -q "import GUtils from 'gi://GUtils'" src/utils/pam.ts; then
             printf "%s Patching src/utils/pam.ts to use imports.gi.GUtils...\n" "${NOTE}" | tee -a "$MLOG"
-            tmp_pam="$(mktemp)"
-            awk '
-                NR==1 {
-                    print "// Patched by install-scripts/ags.sh to avoid gi://GUtils ESM issues";
-                    print "// eslint-disable-next-line @typescript-eslint/ban-ts-comment";
-                    print "// @ts-ignore";
-                    print "declare const imports: any;";
-                }
-                $0 ~ /^import GUtils from '\''gi:\/\/GUtils'\'';/ {
-                    print "const GUtils = imports.gi.GUtils as any;";
-                    next;
-                }
-                { print }
-            ' src/utils/pam.ts > "$tmp_pam"
-            mv "$tmp_pam" src/utils/pam.ts
+            # 1) Drop the upstream // @ts-expect-error line (it causes TS2578 now).
+            sed -i '/@ts-expect-error/d' src/utils/pam.ts
+            # 2) Replace the gi:// import with an imports.gi-based binding.
+            sed -i "s|import GUtils from 'gi://GUtils';|// Patched by install-scripts/ags.sh to avoid gi://GUtils ESM issues\\n// eslint-disable-next-line @typescript-eslint/ban-ts-comment\\n// @ts-ignore\\ndeclare const imports: any;\\nconst GUtils = (imports as any).gi.GUtils as any;|" src/utils/pam.ts
         fi
     fi
 
@@ -124,6 +113,11 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
+        # Abort here on build/install failure so we do NOT install a broken launcher
+        # or report success when AGS binaries are missing.
+        mv "$MLOG" ../Install-Logs/ || true
+        cd ..
+        exit 1
     fi
 
     LAUNCHER_DIR="/usr/local/share/com.github.Aylur.ags"
