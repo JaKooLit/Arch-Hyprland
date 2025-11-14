@@ -118,28 +118,56 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
     fi
 
-    LAUNCHER="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
-    if sudo test -f "$LAUNCHER"; then
-      # 1) Switch from GIRepository ESM import to GLib and drop deprecated prepend_* calls
-      sudo sed -i \
-        -e 's|^import GIR from "gi://GIRepository?version=2.0";$|import GLib from "gi://GLib";|' \
-        -e '/GIR.Repository.prepend_search_path/d' \
-        -e '/GIR.Repository.prepend_library_path/d' \
-        "$LAUNCHER"
+    LAUNCHER_DIR="/usr/local/share/com.github.Aylur.ags"
+    LAUNCHER_PATH="$LAUNCHER_DIR/com.github.Aylur.ags"
+    sudo mkdir -p "$LAUNCHER_DIR"
 
-      # 2) Inject GI_TYPELIB_PATH export right after the GLib import
-      #    IMPORTANT: never read and write the same file in one pipeline; it can truncate to 0 bytes.
-      #    Write to a temp file and then move it into place.
-      if ! sudo grep -q 'GLib.setenv("GI_TYPELIB_PATH"' "$LAUNCHER"; then
-        TMP_FILE="$(mktemp)"
-        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib\" + (__old ? \":\" + __old : \"\"), true);"}' "$LAUNCHER" | sudo tee "$TMP_FILE" >/dev/null
-        sudo mv "$TMP_FILE" "$LAUNCHER"
-      fi
+    # Install a known-good launcher that sets GI_TYPELIB_PATH so GUtils and other
+    # typelibs can be found, matching the working setup on jak-cachy.
+    sudo tee "$LAUNCHER_PATH" >/dev/null <<'EOF'
+#!/usr/sbin/gjs -m
 
-      printf "${OK} AGS launcher patched.\n"
-    else
-      printf "${WARN} Launcher not found at $LAUNCHER, skipping patch.\n"
-    fi
+import { exit, programArgs, programInvocationName } from "system";
+import GLib from "gi://GLib";
+
+GLib.setenv("GI_TYPELIB_PATH", "/usr/local/lib:/usr/lib/girepository-1.0", true);
+
+imports.package.init({
+    name: "com.github.Aylur.ags",
+    version: "1.9.0",
+    prefix: "/usr/local",
+    libdir: "/usr/local/lib",
+});
+
+const module = await import("resource:///com/github/Aylur/ags/main.js");
+const exitCode = await module.main([programInvocationName, ...programArgs]);
+exit(exitCode);
+EOF
+
+    # Also install a convenience launcher in /usr/local/bin/ags
+    sudo mkdir -p /usr/local/bin
+    sudo tee /usr/local/bin/ags >/dev/null <<'EOF'
+#!/usr/sbin/gjs -m
+
+import { exit, programArgs, programInvocationName } from "system";
+import GLib from "gi://GLib";
+
+GLib.setenv("GI_TYPELIB_PATH", "/usr/local/lib:/usr/lib/girepository-1.0", true);
+
+imports.package.init({
+    name: "com.github.Aylur.ags",
+    version: "1.9.0",
+    prefix: "/usr/local",
+    libdir: "/usr/local/lib",
+});
+
+const module = await import("resource:///com/github/Aylur/ags/main.js");
+const exitCode = await module.main([programInvocationName, ...programArgs]);
+exit(exitCode);
+EOF
+
+    sudo chmod +x /usr/local/bin/ags
+    printf "${OK} AGS launcher installed.\n"
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
