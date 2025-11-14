@@ -1,0 +1,18 @@
+#!/usr/bin/gjs -m
+
+import { exit, programArgs, programInvocationName } from "system";
+import GLib from "gi://GLib";
+
+// Ensure GI can see typelibs in /usr/local and the system girepository
+GLib.setenv("GI_TYPELIB_PATH", "/usr/local/lib:/usr/lib/girepository-1.0", true);
+
+imports.package.init({
+    name: "com.github.Aylur.ags",
+    version: "1.9.0",
+    prefix: "/usr/local",
+    libdir: "/usr/local/lib",
+});
+
+const module = await import("resource:///com/github/Aylur/ags/main.js");
+const exitCode = await module.main([programInvocationName, ...programArgs]);
+exit(exitCode);
