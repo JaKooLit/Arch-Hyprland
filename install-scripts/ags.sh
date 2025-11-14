@@ -38,7 +38,8 @@ if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
   exit 1
 fi
 
-
+# Fail early and make pipelines fail if any command fails
+set -eo pipefail
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
@@ -79,13 +80,25 @@ printf "\n%.0s" {1..1}
 # Clone repository with the specified tag and capture git output into MLOG
 if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     cd ags_v1.9.0 || exit 1
+
+    # Patch tsconfig to avoid TS5107 failure (moduleResolution=node10 deprecation)
+    if [ -f tsconfig.json ]; then
+        if grep -q '"moduleResolution"[[:space:]]*:[[:space:]]*"node10"' tsconfig.json; then
+            if ! grep -q '"ignoreDeprecations"[[:space:]]*:' tsconfig.json; then
+                sed -i 's/"compilerOptions":[[:space:]]*{/"compilerOptions": {\n    "ignoreDeprecations": "6.0",/' tsconfig.json
+            fi
+            # Prefer a modern module resolution to future-proof builds
+            sed -i 's/"moduleResolution"[[:space:]]*:[[:space:]]*"node10"/"moduleResolution": "node16"/' tsconfig.json || true
+        fi
+    fi
+
     npm install
     meson setup build
-   if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
-    printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
-
-    # Patch installed AGS launcher to ensure GI typelibs in /usr/local/lib are discoverable in GJS ESM
-    printf "${NOTE} Applying AGS launcher patch for GI typelibs search path...\n"
+    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+        printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+    else
+        echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
+    fi
     LAUNCHER="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
     if sudo test -f "$LAUNCHER"; then
       # 1) Switch from GIRepository ESM import to GLib and drop deprecated prepend_* calls
