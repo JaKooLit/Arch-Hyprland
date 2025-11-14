@@ -116,15 +116,6 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
             mv "$tmp_pam" src/utils/pam.ts
         fi
     fi
-                if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";
-                fs.writeFileSync(p, JSON.stringify(j, null, 2));
-                '
-            fi
-        fi
-        # Log what we ended up with for troubleshooting
-        echo "== tsconfig.json after patch ==" >> "$MLOG"
-        grep -n 'moduleResolution\|ignoreDeprecations' tsconfig.json >> "$MLOG" || true
-    fi
 
     npm install
     meson setup build
