@@ -45,16 +45,9 @@ set -eo pipefail
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
-# Check if AGS is installed
-if command -v ags &>/dev/null; then
-    AGS_VERSION=$(ags -v | awk '{print $NF}') 
-    if [[ "$AGS_VERSION" == "1.9.0" ]]; then
-        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
-        printf "\n%.0s" {1..2}
-        exit 0
-    fi
-fi
-
+# NOTE: We intentionally do NOT run `ags -v` here, because a broken AGS
+# installation (missing GUtils, etc.) would crash gjs and spam errors
+# during install. We always (re)install v1.9.0 when this script is run.
 # Installation of main components
 printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
 
