@@ -70,7 +70,7 @@ fi
 printf "\n%.0s" {1..1}
 printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
 printf "\n%.0s" {1..1}
-# Clone repository with the specified tag and capture git output into MLOG
+# Clone repository with the specified tag and compile AGS
 if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     cd ags_v1.9.0 || exit 1
 
@@ -87,7 +87,8 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         # 3) Fallback with Node to rewrite JSON if sed failed to catch patterns
         if grep -q '"moduleResolution"[[:space:]]*:[[:space:]]*"node10"' tsconfig.json; then
             if command -v node >/dev/null 2>&1; then
-                node -e '\n                const fs = require("fs");\n                const p = "tsconfig.json";\n                const j = JSON.parse(fs.readFileSync(p, "utf8"));\n                j.compilerOptions = j.compilerOptions || {};\n                if (j.compilerOptions.moduleResolution === "node10") j.compilerOptions.moduleResolution = "node16";\n                if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";\n                fs.writeFileSync(p, JSON.stringify(j, null, 2));\n                '\n            fi
+                node -e '\n                const fs = require("fs");\n                const p = "tsconfig.json";\n                const j = JSON.parse(fs.readFileSync(p, "utf8"));\n                j.compilerOptions = j.compilerOptions || {};\n                if (j.compilerOptions.moduleResolution === "node10") j.compilerOptions.moduleResolution = "node16";\n                if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";\n                fs.writeFileSync(p, JSON.stringify(j, null, 2));\n                '
+            fi
         fi
         # Log what we ended up with for troubleshooting
         echo "== tsconfig.json after patch ==" >> "$MLOG"
