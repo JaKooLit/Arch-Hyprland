@@ -95,16 +95,25 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         grep -n 'moduleResolution\|ignoreDeprecations' tsconfig.json >> "$MLOG" || true
     fi
 
-    # Patch pam.ts to avoid ESM gi://GUtils (which breaks on some GJS builds)
-    # and instead use imports.gi.GUtils, which we know works from runtime tests.
+    # Replace pam.ts with a stub that does NOT depend on GUtils at all.
+    # The desktop overview does not use PAM, and GUtils typelib support is
+    # inconsistent across distros, so we disable these helpers instead of
+    # crashing at startup when the typelib is missing.
     if [ -f src/utils/pam.ts ]; then
-        if grep -q "import GUtils from 'gi://GUtils'" src/utils/pam.ts; then
-            printf "%s Patching src/utils/pam.ts to use imports.gi.GUtils...\n" "${NOTE}" | tee -a "$MLOG"
-            # 1) Drop the upstream // @ts-expect-error line (it causes TS2578 now).
-            sed -i '/@ts-expect-error/d' src/utils/pam.ts
-            # 2) Replace the gi:// import with an imports.gi-based binding.
-            sed -i "s|import GUtils from 'gi://GUtils';|// Patched by install-scripts/ags.sh to avoid gi://GUtils ESM issues\\n// eslint-disable-next-line @typescript-eslint/ban-ts-comment\\n// @ts-ignore\\ndeclare const imports: any;\\nconst GUtils = (imports as any).gi.GUtils as any;|" src/utils/pam.ts
-        fi
+        printf "%s Replacing src/utils/pam.ts with PAM stub (no GUtils dependency)...\\n" "${NOTE}" | tee -a "$MLOG"
+        cat > src/utils/pam.ts <<'PAM_STUB'
+// Stubbed PAM auth for AGS installed via Arch-Hyprland.
+// The desktop overview does not use PAM, and GUtils typelib support
+// is unreliable across distros, so we disable these helpers here.
+
+export function authenticate(password: string): Promise<number> {
+    return Promise.reject(new Error("PAM authentication disabled on this system (no GUtils)"));
+}
+
+export function authenticateUser(username: string, password: string): Promise<number> {
+    return Promise.reject(new Error("PAM authentication disabled on this system (no GUtils)"));
+}
+PAM_STUB
     fi
 
     npm install
@@ -124,56 +133,19 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     LAUNCHER_PATH="$LAUNCHER_DIR/com.github.Aylur.ags"
     sudo mkdir -p "$LAUNCHER_DIR"
 
-    # Install a known-good launcher that sets GI_TYPELIB_PATH so GUtils and other
-    # typelibs can be found, matching the working setup on jak-cachy.
-    sudo tee "$LAUNCHER_PATH" >/dev/null <<'EOF'
-#!/usr/sbin/gjs -m
+    # Install the known-good launcher we captured from a working system.
+    # This JS entry script uses GLib to set GI_TYPELIB_PATH and does not
+    # depend on GIRepository, which avoids missing-typelib crashes.
+    LAUNCHER_SRC="$SCRIPT_DIR/ags.launcher.com.github.Aylur.ags"
+    if [ -f "$LAUNCHER_SRC" ]; then
+        sudo install -m 755 "$LAUNCHER_SRC" "$LAUNCHER_PATH"
+    else
+        printf "${WARN} Saved launcher not found at %s; leaving Meson-installed launcher untouched.\\n" "$LAUNCHER_SRC" | tee -a "$MLOG"
+    fi
 
-import { exit, programArgs, programInvocationName } from "system";
-import GLib from "gi://GLib";
-
-GLib.setenv("GI_TYPELIB_PATH", "/usr/local/lib:/usr/lib/girepository-1.0", true);
-
-imports.package.init({
-    name: "com.github.Aylur.ags",
-    version: "1.9.0",
-    prefix: "/usr/local",
-    libdir: "/usr/local/lib",
-});
-
-const module = await import("resource:///com/github/Aylur/ags/main.js");
-const exitCode = await module.main([programInvocationName, ...programArgs]);
-exit(exitCode);
-EOF
-
-    # Also install a convenience launcher in /usr/local/bin/ags as a shell wrapper
-    # so GI_TYPELIB_PATH is set *before* gjs and GIRepository are initialized.
+    # Ensure /usr/local/bin/ags points to the JS entry script.
     sudo mkdir -p /usr/local/bin
-    sudo tee /usr/local/bin/ags >/dev/null <<'EOF'
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Start from user's home for configs that expect $HOME.
-cd "$HOME" 2>/dev/null || true
-
-# Locate AGS ESM entry
-MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
-if [ ! -f "$MAIN_JS" ]; then
-  MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
-fi
-if [ ! -f "$MAIN_JS" ]; then
-  echo "Unable to find AGS entry script (com.github.Aylur.ags) in /usr/local/share or /usr/share" >&2
-  exit 1
-fi
-
-# Ensure GI typelibs and native libs are discoverable before gjs ESM loads
-export GI_TYPELIB_PATH="/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
-export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
-
-exec /usr/bin/gjs -m "$MAIN_JS" -- "$@"
-EOF
-
-    sudo chmod +x /usr/local/bin/ags
+    sudo ln -srf "$LAUNCHER_PATH" /usr/local/bin/ags
     printf "${OK} AGS launcher installed.\\n"
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
