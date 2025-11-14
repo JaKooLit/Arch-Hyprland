@@ -87,12 +87,35 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         # 3) Fallback with Node to rewrite JSON if sed failed to catch patterns
         if grep -q '"moduleResolution"[[:space:]]*:[[:space:]]*"node10"' tsconfig.json; then
             if command -v node >/dev/null 2>&1; then
-                node -e '
-                const fs = require("fs");
-                const p = "tsconfig.json";
-                const j = JSON.parse(fs.readFileSync(p, "utf8"));
-                j.compilerOptions = j.compilerOptions || {};
-                if (j.compilerOptions.moduleResolution === "node10") j.compilerOptions.moduleResolution = "node16";
+                node -e '\n                const fs = require("fs");\n                const p = "tsconfig.json";\n                const j = JSON.parse(fs.readFileSync(p, "utf8"));\n                j.compilerOptions = j.compilerOptions || {};\n                if (j.compilerOptions.moduleResolution === "node10") j.compilerOptions.moduleResolution = "node16";\n                if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";\n                fs.writeFileSync(p, JSON.stringify(j, null, 2));\n                '\n            fi
+        fi
+        # Log what we ended up with for troubleshooting
+        echo "== tsconfig.json after patch ==" >> "$MLOG"
+        grep -n 'moduleResolution\|ignoreDeprecations' tsconfig.json >> "$MLOG" || true
+    fi
+
+    # Patch pam.ts to avoid ESM gi://GUtils, which fails on some GJS builds (e.g. Arch),
+    # and instead use the older imports.gi API that we know works.
+    if [ -f src/utils/pam.ts ]; then
+        if grep -q "import GUtils from 'gi://GUtils'" src/utils/pam.ts; then
+            printf "%s Patching src/utils/pam.ts to use imports.gi.GUtils...\n" "${NOTE}" | tee -a "$MLOG"
+            tmp_pam="$(mktemp)"
+            awk '
+                NR==1 {
+                    print "// Patched by install-scripts/ags.sh to avoid gi://GUtils ESM issues";
+                    print "// eslint-disable-next-line @typescript-eslint/ban-ts-comment";
+                    print "// @ts-ignore";
+                    print "declare const imports: any;";
+                }
+                $0 ~ /^import GUtils from '\''gi:\/\/GUtils'\'';/ {
+                    print "const GUtils = imports.gi.GUtils as any;";
+                    next;
+                }
+                { print }
+            ' src/utils/pam.ts > "$tmp_pam"
+            mv "$tmp_pam" src/utils/pam.ts
+        fi
+    fi
                 if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";
                 fs.writeFileSync(p, JSON.stringify(j, null, 2));
                 '
