@@ -128,7 +128,13 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
         "$LAUNCHER"
 
       # 2) Inject GI_TYPELIB_PATH export right after the GLib import
-      sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib\" + (__old ? \":\" + __old : \"\"), true);"}' "$LAUNCHER" | sudo tee "$LAUNCHER" >/dev/null
+      #    IMPORTANT: never read and write the same file in one pipeline; it can truncate to 0 bytes.
+      #    Write to a temp file and then move it into place.
+      if ! sudo grep -q 'GLib.setenv("GI_TYPELIB_PATH"' "$LAUNCHER"; then
+        TMP_FILE="$(mktemp)"
+        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib\" + (__old ? \":\" + __old : \"\"), true);"}' "$LAUNCHER" | sudo tee "$TMP_FILE" >/dev/null
+        sudo mv "$TMP_FILE" "$LAUNCHER"
+      fi
 
       printf "${OK} AGS launcher patched.\n"
     else
