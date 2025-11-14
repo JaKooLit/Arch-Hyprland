@@ -83,13 +83,31 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
 
     # Patch tsconfig to avoid TS5107 failure (moduleResolution=node10 deprecation)
     if [ -f tsconfig.json ]; then
+        # 1) Ensure ignoreDeprecations is present
+        if ! grep -q '"ignoreDeprecations"[[:space:]]*:' tsconfig.json; then
+            sed -i 's/"compilerOptions":[[:space:]]*{/"compilerOptions": {\n    "ignoreDeprecations": "6.0",/' tsconfig.json
+        fi
+        # 2) Bump moduleResolution from node10 to node16 if present
         if grep -q '"moduleResolution"[[:space:]]*:[[:space:]]*"node10"' tsconfig.json; then
-            if ! grep -q '"ignoreDeprecations"[[:space:]]*:' tsconfig.json; then
-                sed -i 's/"compilerOptions":[[:space:]]*{/"compilerOptions": {\n    "ignoreDeprecations": "6.0",/' tsconfig.json
-            fi
-            # Prefer a modern module resolution to future-proof builds
             sed -i 's/"moduleResolution"[[:space:]]*:[[:space:]]*"node10"/"moduleResolution": "node16"/' tsconfig.json || true
         fi
+        # 3) Fallback with Node to rewrite JSON if sed failed to catch patterns
+        if grep -q '"moduleResolution"[[:space:]]*:[[:space:]]*"node10"' tsconfig.json; then
+            if command -v node >/dev/null 2>&1; then
+                node -e '
+                const fs = require("fs");
+                const p = "tsconfig.json";
+                const j = JSON.parse(fs.readFileSync(p, "utf8"));
+                j.compilerOptions = j.compilerOptions || {};
+                if (j.compilerOptions.moduleResolution === "node10") j.compilerOptions.moduleResolution = "node16";
+                if (j.compilerOptions.ignoreDeprecations === undefined) j.compilerOptions.ignoreDeprecations = "6.0";
+                fs.writeFileSync(p, JSON.stringify(j, null, 2));
+                '
+            fi
+        fi
+        # Log what we ended up with for troubleshooting
+        echo "== tsconfig.json after patch ==" >> "$MLOG"
+        grep -n 'moduleResolution\|ignoreDeprecations' tsconfig.json >> "$MLOG" || true
     fi
 
     npm install
@@ -99,6 +117,7 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     else
         echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
     fi
+
     LAUNCHER="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
     if sudo test -f "$LAUNCHER"; then
       # 1) Switch from GIRepository ESM import to GLib and drop deprecated prepend_* calls
@@ -115,9 +134,6 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     else
       printf "${WARN} Launcher not found at $LAUNCHER, skipping patch.\n"
     fi
-  else
-    echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
-   fi
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
