@@ -137,30 +137,35 @@ const exitCode = await module.main([programInvocationName, ...programArgs]);
 exit(exitCode);
 EOF
 
-    # Also install a convenience launcher in /usr/local/bin/ags
+    # Also install a convenience launcher in /usr/local/bin/ags as a shell wrapper
+    # so GI_TYPELIB_PATH is set *before* gjs and GIRepository are initialized.
     sudo mkdir -p /usr/local/bin
     sudo tee /usr/local/bin/ags >/dev/null <<'EOF'
-#!/usr/sbin/gjs -m
+#!/usr/bin/env bash
+set -euo pipefail
 
-import { exit, programArgs, programInvocationName } from "system";
-import GLib from "gi://GLib";
+# Start from user's home for configs that expect $HOME.
+cd "$HOME" 2>/dev/null || true
 
-GLib.setenv("GI_TYPELIB_PATH", "/usr/local/lib:/usr/lib/girepository-1.0", true);
+# Locate AGS ESM entry
+MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+if [ ! -f "$MAIN_JS" ]; then
+  MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
+fi
+if [ ! -f "$MAIN_JS" ]; then
+  echo "Unable to find AGS entry script (com.github.Aylur.ags) in /usr/local/share or /usr/share" >&2
+  exit 1
+fi
 
-imports.package.init({
-    name: "com.github.Aylur.ags",
-    version: "1.9.0",
-    prefix: "/usr/local",
-    libdir: "/usr/local/lib",
-});
+# Ensure GI typelibs and native libs are discoverable before gjs ESM loads
+export GI_TYPELIB_PATH="/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
+export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
 
-const module = await import("resource:///com/github/Aylur/ags/main.js");
-const exitCode = await module.main([programInvocationName, ...programArgs]);
-exit(exitCode);
+exec /usr/bin/gjs -m "$MAIN_JS" -- "$@"
 EOF
 
     sudo chmod +x /usr/local/bin/ags
-    printf "${OK} AGS launcher installed.\n"
+    printf "${OK} AGS launcher installed.\\n"
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
