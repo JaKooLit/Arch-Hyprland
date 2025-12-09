@@ -106,7 +106,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - After installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
-## ✨ Auto clone and install
+## ✨ Auto clone and install 
 
 > [!CAUTION]
 > If you are using FISH SHELL, DO NOT use this function. Clone and ran install.sh instead
