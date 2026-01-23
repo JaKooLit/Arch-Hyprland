@@ -2,7 +2,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Hyprland Packages #
 
-# edit your packages desired here. 
+# edit your packages desired here.
 # WARNING! If you remove packages here, dotfiles may not work properly.
 # and also, ensure that packages are present in AUR and official Arch Repo
 
@@ -11,24 +11,24 @@ Extra=(
 
 )
 
-hypr_package=( 
+hypr_package=(
   #aylurs-gtk-shell
   bc
   cliphist
-  curl 
-  grim 
-  gvfs 
+  curl
+  grim
+  gvfs
   gvfs-mtp
   hyprpolkitagent
   imagemagick
-  inxi 
+  inxi
   jq
   kitty
   kvantum
   libspng
-  nano  
-  network-manager-applet 
-  pamixer 
+  nano
+  network-manager-applet
+  pamixer
   pavucontrol
   playerctl
   python-requests
@@ -37,32 +37,33 @@ hypr_package=(
   qt6ct
   qt6-svg
   rofi
-  slurp 
-  swappy 
-  swaync 
+  slurp
+  swappy
+  swaync
   swww
   unzip # needed later
-  wallust 
+  uwsm  # In case someone selects USWM login
+  wallust
   waybar
   wget
   wl-clipboard
   wlogout
   xdg-user-dirs
-  xdg-utils 
+  xdg-utils
   yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
 hypr_package_2=(
-  brightnessctl 
+  brightnessctl
   btop
   cava
   loupe
   fastfetch
   gnome-system-monitor
-  mousepad 
+  mousepad
   mpv
-  mpv-mpris 
+  mpv-mpris
   nvtop
   nwg-look
   nwg-displays
@@ -84,19 +85,20 @@ uninstall=(
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
-cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR"; exit 1; }
+cd "$PARENT_DIR" || {
+  echo "${ERROR} Failed to change directory to $PARENT_DIR"
+  exit 1
+}
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
   echo "Failed to source Global_functions.sh"
   exit 1
 fi
-
-
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
