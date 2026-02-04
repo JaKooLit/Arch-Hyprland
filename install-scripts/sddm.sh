@@ -41,13 +41,17 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 
 # Flag parsing
 ENABLE_SDDM_WAYLAND=0
+DISABLE_SDDM_WAYLAND=0
 for arg in "$@"; do
   case "$arg" in
     --enable-wayland)
       ENABLE_SDDM_WAYLAND=1
       ;;
+    --disable-wayland)
+      DISABLE_SDDM_WAYLAND=1
+      ;;
     -h|--help)
-      echo "Usage: $(basename "$0") [--enable-wayland]"
+      echo "Usage: $(basename "$0") [--enable-wayland | --disable-wayland]"
       exit 0
       ;;
     *)
@@ -80,11 +84,17 @@ configure_sddm_wayland() {
 
   sddm_conf="/etc/sddm.conf"
   BACKUP_SUFFIX=".bak"
+  PRE_BAK="/etc/sddm.conf.pre-wayland"
 
   # Backup or create config
   if [ -f "$sddm_conf" ]; then
     echo "Backing up $sddm_conf" | tee -a "$LOG"
     sudo cp "$sddm_conf" "$sddm_conf$BACKUP_SUFFIX" 2>&1 | tee -a "$LOG"
+    # Save a pre-change backup once for easy restore
+    if [ ! -f "$PRE_BAK" ]; then
+      sudo cp "$sddm_conf" "$PRE_BAK" 2>&1 | tee -a "$LOG"
+      echo "Saved pre-wayland backup to $PRE_BAK" | tee -a "$LOG"
+    fi
   else
     echo "$sddm_conf does not exist, creating a new one." | tee -a "$LOG"
     sudo touch "$sddm_conf" 2>&1 | tee -a "$LOG"
@@ -111,6 +121,39 @@ configure_sddm_wayland() {
   fi
 
   echo "${OK} SDDM configured for Wayland greeter via cage." | tee -a "$LOG"
+}
+
+configure_sddm_disable_wayland() {
+  printf "${INFO} Restoring SDDM greeter to X11 (disabling Wayland settings)...\n" | tee -a "$LOG"
+  sddm_conf="/etc/sddm.conf"
+  PRE_BAK="/etc/sddm.conf.pre-wayland"
+
+  if [ -f "$PRE_BAK" ]; then
+    sudo cp "$PRE_BAK" "$sddm_conf" 2>&1 | tee -a "$LOG"
+    echo "${OK} Restored original SDDM config from $PRE_BAK" | tee -a "$LOG"
+    return 0
+  fi
+
+  # If no pre-backup, attempt in-place revert
+  if [ -f "$sddm_conf" ]; then
+    if grep -q '^\[General\]' "$sddm_conf"; then
+      sudo sed -i '/^\[General\]/,/^\[/{s/^\s*DisplayServer=.*/DisplayServer=x11/}' "$sddm_conf" 2>&1 | tee -a "$LOG"
+      if ! grep -q '^\s*DisplayServer=' "$sddm_conf"; then
+        sudo sed -i '/^\[General\]/a DisplayServer=x11' "$sddm_conf" 2>&1 | tee -a "$LOG"
+      fi
+    else
+      echo -e "\n[General]\nDisplayServer=x11" | sudo tee -a "$sddm_conf" > /dev/null
+    fi
+
+    # Remove Wayland CompositorCommand
+    if grep -q '^\[Wayland\]' "$sddm_conf"; then
+      sudo sed -i '/^\[Wayland\]/,/^\[/{/^[[:space:]]*CompositorCommand=.*/d}' "$sddm_conf" 2>&1 | tee -a "$LOG"
+    fi
+
+    echo "${OK} SDDM configured back to X11 greeter." | tee -a "$LOG"
+  else
+    echo "${NOTE} $sddm_conf not found; nothing to revert." | tee -a "$LOG"
+  fi
 }
 
 # Install SDDM and SDDM theme
@@ -147,8 +190,13 @@ wayland_sessions_dir=/usr/share/wayland-sessions
   sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"
 }
 
-# If requested, configure SDDM greeter to Wayland via cage
-if [[ "$ENABLE_SDDM_WAYLAND" -eq 1 ]]; then
+# Apply Wayland/X11 greeter flags
+if [[ "$ENABLE_SDDM_WAYLAND" -eq 1 && "$DISABLE_SDDM_WAYLAND" -eq 1 ]]; then
+  printf "${NOTE} Both --enable-wayland and --disable-wayland supplied; applying disable (restore).\n" | tee -a "$LOG"
+  configure_sddm_disable_wayland
+elif [[ "$DISABLE_SDDM_WAYLAND" -eq 1 ]]; then
+  configure_sddm_disable_wayland
+elif [[ "$ENABLE_SDDM_WAYLAND" -eq 1 ]]; then
   configure_sddm_wayland
 fi
 
